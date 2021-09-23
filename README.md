@@ -29,7 +29,7 @@ You can use `ENV=local` when running the app locally to use the `example-dataset
 **NOTE:** Create if needed and ensure access to the bucket configured in `stack/config.yml`. When using github actions to deploy the API this config file is generated from `stack/config.yml.example` using the variables (including a bucket) defined there.
 
 ```bash
-pyenv install
+pyenv install 3.8.10
 pip install -e .
 # Create or add buckets for your data files
 export AWS_PROFILE=CHANGEME
