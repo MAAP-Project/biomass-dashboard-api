@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - staging
+      - production
 
 env:
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
