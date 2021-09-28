@@ -27,6 +27,7 @@ class ProductManager(object):
         """Fetch all Products."""
 
         products = self.products_cache.get("products")
+        indicators = []
 
         if products:
             cache_hit = True
@@ -38,10 +39,9 @@ class ProductManager(object):
                 print(f"Loading {example_products}")
                 s3_datasets = json.loads(open(example_products).read())
                 products = Products(**s3_datasets)
-                indicators = []
             else:    
                 try:
-                    print(f"Loading s3{BUCKET}/{PRODUCT_METADATA_FILENAME}")
+                    print(f"Loading s3://{BUCKET}/{PRODUCT_METADATA_FILENAME}")
                     s3_datasets = json.loads(
                         s3_get(bucket=BUCKET, key=PRODUCT_METADATA_FILENAME)
                     )

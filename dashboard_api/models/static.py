@@ -143,6 +143,11 @@ class Link(BaseModel):
     title: Optional[str]
 
 
+class Dataset(BaseModel):
+    id: constr(min_length=3)
+    name: constr(min_length=3)
+    
+
 class CountryPilot(BaseModel):
     """CountryPilot Model."""
 
@@ -154,6 +159,7 @@ class CountryPilot(BaseModel):
     bounding_box: Optional[List[float]] = None
     indicators: List[Any] = []
     links: List[Link] = []
+    datasets: List[Dataset] = []
 
 
 class CountryPilots(BaseModel):
@@ -173,7 +179,7 @@ class Product(BaseModel):
     bounding_box: Optional[List[float]] = None
     indicators: List[Any] = []
     links: List[Link] = []
-
+    datasets: List[Dataset] = []
 
 class Products(BaseModel):
     """Product List Model."""

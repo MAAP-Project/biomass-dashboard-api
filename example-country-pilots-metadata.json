@@ -41,6 +41,12 @@
                 53.466099815736506
             ],
             "indicators": [],
+            "datasets": [
+                {
+                    "id": "cci_biomass",
+                    "name": "CCI BIOMASS"
+                }
+            ],
             "summary": "<p>\n  This is a description for the <code>Wales</code> site config. Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.\n</p>"
         },
         {
@@ -84,6 +90,12 @@
                 45.5514834662
             ],
             "indicators": [],
+            "datasets": [
+                {
+                    "id": "cci_biomass",
+                    "name": "CCI BIOMASS"
+                }
+            ],
             "summary": "<p>\n  This is a description for the <code>Japan</code> site config.\n</p>"
         },
         {
@@ -127,6 +139,12 @@
                 -19.3427466773
             ],
             "indicators": [],
+            "datasets": [
+                {
+                    "id": "cci_biomass",
+                    "name": "CCI BIOMASS"
+                }
+            ],
             "summary": "<p>\n  This is a description for the <code>Paraguay</code> site config.\n</p>\n"
         },
         {
@@ -170,6 +188,12 @@
                 -0.0572054988649
             ],
             "indicators": [],
+            "datasets": [
+                {
+                    "id": "cci_biomass",
+                    "name": "CCI BIOMASS"
+                }
+            ],
             "summary": "<p>\n  This is a description for the <code>Peru</code> site config.\n</p>"
         }
     ]
