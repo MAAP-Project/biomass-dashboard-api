@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - staging
+      - aimee
 
 env:
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
@@ -30,12 +31,12 @@ jobs:
 
       - uses: franzbischoff/replace_envs@v1
         env:
-          PROJECT_NAME: 'biomass'
-          DATA_BUCKET: 'biomass-earthdata-dashboard'
+          PROJECT_NAME: 'aimee'
+          DATA_BUCKET: 'biomass-earthdata-dashboard-aimee'
           STAGE: ${{ steps.extract_branch.outputs.branch }}
           STAC_API_URL: ''
           VECTOR_TILESERVER_URL: 'https://mbtileserver.dev.maap-project.org/services'
-          TITILER_SERVER_URL: 'https://h9su0upami.execute-api.us-east-1.amazonaws.com'
+          TITILER_SERVER_URL: 'https://jqsd6bqdsf.execute-api.us-west-2.amazonaws.com'
         with:
           from_file: 'stack/config.yml.example'
           to_file: 'stack/config.yml'
