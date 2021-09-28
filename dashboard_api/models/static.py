@@ -143,8 +143,8 @@ class Link(BaseModel):
     title: Optional[str]
 
 
-class Site(BaseModel):
-    """Site Model."""
+class CountryPilot(BaseModel):
+    """CountryPilot Model."""
 
     id: str
     label: str
@@ -156,10 +156,29 @@ class Site(BaseModel):
     links: List[Link] = []
 
 
-class Sites(BaseModel):
-    """Site List Model."""
+class CountryPilots(BaseModel):
+    """CountryPilot List Model."""
 
-    sites: List[Site]
+    country_pilots: List[CountryPilot]
+
+
+class Product(BaseModel):
+    """Product Model."""
+
+    id: str
+    label: str
+    summary: str
+    center: List[float]
+    polygon: Optional[Polygon] = None
+    bounding_box: Optional[List[float]] = None
+    indicators: List[Any] = []
+    links: List[Link] = []
+
+
+class Products(BaseModel):
+    """Product List Model."""
+
+    products: List[Product]
 
 
 class IndicatorObservation(BaseModel):

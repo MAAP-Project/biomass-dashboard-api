@@ -10,8 +10,8 @@ from dashboard_api.core.config import (DATASET_METADATA_FILENAME,
                                    VECTOR_TILESERVER_URL,
                                    TITILER_SERVER_URL)
 from dashboard_api.db.static.errors import InvalidIdentifier
-from dashboard_api.db.static.sites import sites
-from dashboard_api.db.utils import invoke_lambda, s3_get
+# from dashboard_api.db.static.sites import sites
+from dashboard_api.db.utils import s3_get
 from dashboard_api.models.static import DatasetInternal, Datasets, GeoJsonSource
 
 data_dir = os.path.join(os.path.dirname(__file__))
@@ -76,27 +76,29 @@ class DatasetManager(object):
             spotlight_id="global",
         )
 
-        if spotlight_id == "global":
-            return Datasets(datasets=[dataset.dict() for dataset in global_datasets])
+        return Datasets(datasets=[dataset.dict() for dataset in global_datasets])
 
-        # Verify that the requested spotlight exists
-        site = sites.get(spotlight_id, api_url)
-        if not site:
-            raise InvalidIdentifier()
+        # if spotlight_id == "global":
+        #     return Datasets(datasets=[dataset.dict() for dataset in global_datasets])
 
-        spotlight_metadata = self._load_metadata_from_file().get(site.id)
-        if spotlight_metadata:
-            spotlight_datasets = self._process(
-                spotlight_metadata, api_url=api_url, spotlight_id=site.id,
-            )
-        else:
-            spotlight_datasets = []
+        # # Verify that the requested spotlight exists
+        # site = sites.get(spotlight_id, api_url)
+        # if not site:
+        #     raise InvalidIdentifier()
 
-        return Datasets(
-            datasets=[
-                dataset.dict() for dataset in [*global_datasets, *spotlight_datasets]
-            ]
-        )
+        # spotlight_metadata = self._load_metadata_from_file().get(site.id)
+        # if spotlight_metadata:
+        #     spotlight_datasets = self._process(
+        #         spotlight_metadata, api_url=api_url, spotlight_id=site.id,
+        #     )
+        # else:
+        #     spotlight_datasets = []
+
+        # return Datasets(
+        #     datasets=[
+        #         dataset.dict() for dataset in [*global_datasets, *spotlight_datasets]
+        #     ]
+        # )
 
     def get_all(self, api_url: str) -> Datasets:
         """Fetch all Datasets. Overload domain with S3 scanned domain"""
