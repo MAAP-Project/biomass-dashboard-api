@@ -1,0 +1,74 @@
+""" dashboard_api static country_pilots """
+import os
+import json
+
+import botocore
+from cachetools import TTLCache
+from typing import Optional
+
+from dashboard_api.db.utils import s3_get
+from dashboard_api.models.static import CountryPilots, Link
+from dashboard_api.core.config import COUNTRY_PILOT_METADATA_FILENAME, BUCKET
+from dashboard_api.db.utils import indicator_exists, indicator_folders
+from dashboard_api.models.static import CountryPilot, CountryPilots
+
+class CountryPilotManager(object):
+    """Default CountryPilot holder."""
+
+    def __init__(self):
+        self.country_pilots_cache = TTLCache(1, 60)
+
+    def get(self, identifier: str, api_url: str) -> Optional[CountryPilot]:
+        """Fetch a CountryPilot."""
+        country_pilots = self.get_all(api_url)
+        return next(filter(lambda x: x.id == identifier, country_pilots.country_pilots), None)
+
+    def get_all(self, api_url: str) -> CountryPilots:
+        """Fetch all CountryPilots."""
+
+        country_pilots = self.country_pilots_cache.get("country_pilots")
+
+        if country_pilots:
+            cache_hit = True
+        else:
+            cache_hit = False
+            if os.environ.get('ENV') == 'local':
+                # Useful for local testing
+                example_country_pilots = "example-country-pilots-metadata.json"
+                print(f"Loading {example_country_pilots}")
+                s3_datasets = json.loads(open(example_country_pilots).read())
+                country_pilots = CountryPilots(**s3_datasets)
+                indicators=[]
+            else:    
+                try:
+                    print(f"Loading s3{BUCKET}/{COUNTRY_PILOT_METADATA_FILENAME}")
+                    s3_datasets = json.loads(
+                        s3_get(bucket=BUCKET, key=COUNTRY_PILOT_METADATA_FILENAME)
+                    )
+                    indicators = indicator_folders()
+                    print("country_pilots json successfully loaded from S3")
+
+                except botocore.errorfactory.ClientError as e:
+                    if e.response["Error"]["Code"] in ["ResourceNotFoundException", "NoSuchKey"]:
+                        s3_datasets = json.loads(open("example-country-pilots-metadata.json").read())
+                    else:
+                        raise e
+
+            country_pilots = CountryPilots(**s3_datasets)
+
+            for country_pilot in country_pilots.country_pilots:
+                country_pilot.links.append(Link(
+                    href=f"{api_url}/country_pilots/{country_pilot.id}",
+                    rel="self",
+                    type="application/json",
+                    title="Self"
+                ))
+                country_pilot.indicators = [ind for ind in indicators if indicator_exists(country_pilot.id, ind)]
+
+        if not cache_hit and country_pilots:
+            self.country_pilots_cache["country_pilots"] = country_pilots
+
+        return country_pilots
+
+
+country_pilots = CountryPilotManager()
