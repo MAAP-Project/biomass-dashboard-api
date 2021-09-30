@@ -23,8 +23,9 @@ def get_country_pilots(
     """Return list of country pilots."""
     country_pilots = None
     if cache_client:
-        country_pilots = cache_client.get_country_pilot("_all")
-        if country_pilots:
+        country_pilots_raw = cache_client.get_country_pilot("_all")
+        if country_pilots_raw:
+            country_pilots = CountryPilots.parse_raw(country_pilots_raw)
             response.headers["X-Cache"] = "HIT"
     if not country_pilots:
         scheme = request.url.scheme

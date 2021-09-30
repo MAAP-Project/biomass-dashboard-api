@@ -24,8 +24,9 @@ def get_products(
     """Return list of products."""
     products = None
     if cache_client:
-        products = cache_client.get_product("_all")
-        if products:
+        products_raw = cache_client.get_product("_all")
+        if products_raw:
+            products = Products.parse_raw(products_raw)
             response.headers["X-Cache"] = "HIT"
     if not products:
         scheme = request.url.scheme

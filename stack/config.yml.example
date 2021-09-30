@@ -41,7 +41,6 @@ MAX_CONCURRENT: 0
 CACHE_NODE_TYPE: cache.m5.large
 CACHE_ENGINE: memcached
 CACHE_NODE_NUM: 1
-DISABLE_CACHE: yes
 
 DATASET_METADATA_FILENAME: ${STAGE}-dataset-metadata.json
 COUNTRY_PILOT_METADATA_FILENAME: ${STAGE}-country-pilots-metadata.json
