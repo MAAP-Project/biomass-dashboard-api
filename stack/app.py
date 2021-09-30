@@ -48,6 +48,7 @@ class dashboardApiLambdaStack(core.Stack):
         scope: core.Construct,
         id: str,
         dataset_metadata_filename: str,
+        disable_cache: bool = False,
         memory: int = 1024,
         timeout: int = 30,
         concurrent: int = 100,
@@ -124,6 +125,7 @@ class dashboardApiLambdaStack(core.Stack):
                 MEMCACHE_HOST=cache.attr_configuration_endpoint_address,
                 MEMCACHE_PORT=cache.attr_configuration_endpoint_port,
                 DATASET_METADATA_FILENAME=dataset_metadata_filename,
+                DISABLE_CACHE=disable_cache
             )
         )
 
@@ -190,6 +192,7 @@ lambda_stackname = f"{config.PROJECT_NAME}-lambda-{config.STAGE}"
 dashboardApiLambdaStack(
     app,
     lambda_stackname,
+    disable_cache=config.DISABLE_CACHE,
     memory=config.MEMORY,
     timeout=config.TIMEOUT,
     concurrent=config.MAX_CONCURRENT,

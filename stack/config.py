@@ -45,6 +45,7 @@ TASK_MEMORY: int = config['TASK_MEMORY']
 TIMEOUT: int = config['TIMEOUT']
 MEMORY: int = config['MEMORY']
 
+
 # stack skips setting concurrency if this value is 0
 # the stack will instead use unreserved lambda concurrency
 MAX_CONCURRENT: int = 500 if STAGE == "prod" else config['MAX_CONCURRENT']
@@ -53,3 +54,4 @@ MAX_CONCURRENT: int = 500 if STAGE == "prod" else config['MAX_CONCURRENT']
 CACHE_NODE_TYPE = config['CACHE_NODE_TYPE']
 CACHE_ENGINE = config['CACHE_ENGINE']
 CACHE_NODE_NUM = config['CACHE_NODE_NUM']
+DISABLE_CACHE = config['DISABLE_CACHE']
