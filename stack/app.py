@@ -192,7 +192,7 @@ lambda_stackname = f"{config.PROJECT_NAME}-lambda-{config.STAGE}"
 dashboardApiLambdaStack(
     app,
     lambda_stackname,
-    disable_cache=config.DISABLE_CACHE,
+    disable_cache=bool(config.DISABLE_CACHE),
     memory=config.MEMORY,
     timeout=config.TIMEOUT,
     concurrent=config.MAX_CONCURRENT,
