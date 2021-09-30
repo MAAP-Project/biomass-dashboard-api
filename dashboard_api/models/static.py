@@ -95,12 +95,12 @@ class Dataset(BaseModel):
     """Dataset Model."""
 
     id: str
-    name: str
-    type: str
+    name: Optional[str]
+    type: Optional[str]
     is_periodic: bool = False
     time_unit: Optional[str] = ""
     domain: Optional[List[str]] = []
-    source: Union[NonGeoJsonSource, GeoJsonSource]
+    source: Optional[Union[NonGeoJsonSource, GeoJsonSource]]
     background_source: Optional[Union[NonGeoJsonSource, GeoJsonSource]]
     exclusive_with: Optional[List[str]] = []
     swatch: Optional[Swatch]
@@ -132,6 +132,7 @@ class Datasets(BaseModel):
 
     datasets: List[DatasetExternal]
 
+
 class Link(BaseModel):
     """
     Link for hypermedia
@@ -142,11 +143,6 @@ class Link(BaseModel):
     type: Optional[str]
     title: Optional[str]
 
-
-class Dataset(BaseModel):
-    id: constr(min_length=3)
-    name: constr(min_length=3)
-    
 
 class CountryPilot(BaseModel):
     """CountryPilot Model."""
@@ -159,7 +155,7 @@ class CountryPilot(BaseModel):
     bounding_box: Optional[List[float]] = None
     indicators: List[Any] = []
     links: List[Link] = []
-    datasets: List[Dataset] = []
+    datasets: List[DatasetExternal] = []
 
 
 class CountryPilots(BaseModel):
@@ -173,13 +169,13 @@ class Product(BaseModel):
 
     id: str
     label: str
-    summary: str
-    center: List[float]
+    summary: str = None
+    center: List[float] = None
     polygon: Optional[Polygon] = None
     bounding_box: Optional[List[float]] = None
     indicators: List[Any] = []
     links: List[Link] = []
-    datasets: List[Dataset] = []
+    datasets: List[DatasetExternal] = []
 
 class Products(BaseModel):
     """Product List Model."""
