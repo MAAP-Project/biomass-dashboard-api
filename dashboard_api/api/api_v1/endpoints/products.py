@@ -55,11 +55,14 @@ def get_product(
 ):
     """Return product info."""
     product = None
+    product_raw = None
 
     if cache_client:
-        product = cache_client.get_product(product_id)
+        product_raw = cache_client.get_product(product_id)
+        response.headers["X-Cache"] = "HIT"
 
-    if product:
+    if product_raw:
+        product = Product.parse_raw(product_raw)
         response.headers["X-Cache"] = "HIT"
     else:
         api_url = _api_url(request)

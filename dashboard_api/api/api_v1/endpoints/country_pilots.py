@@ -54,11 +54,13 @@ def get_country_pilot(
 ):
     """Return country_pilot info."""
     country_pilot = None
-
+    country_pilot_raw = None
+    
     if cache_client:
-        country_pilot = cache_client.get_country_pilot(country_pilot_id)
+        country_pilot_raw = cache_client.get_country_pilot(country_pilot_id)
 
-    if country_pilot:
+    if country_pilot_raw:
+        country_pilot = CountryPilot.parse_raw(country_pilot_raw)
         response.headers["X-Cache"] = "HIT"
     else:
         country_pilot = country_pilots_manager.get(country_pilot_id, _api_url(request))
