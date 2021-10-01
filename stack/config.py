@@ -45,6 +45,7 @@ TASK_MEMORY: int = config['TASK_MEMORY']
 TIMEOUT: int = config['TIMEOUT']
 MEMORY: int = config['MEMORY']
 
+
 # stack skips setting concurrency if this value is 0
 # the stack will instead use unreserved lambda concurrency
 MAX_CONCURRENT: int = 500 if STAGE == "prod" else config['MAX_CONCURRENT']

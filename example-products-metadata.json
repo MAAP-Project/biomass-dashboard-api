@@ -41,6 +41,11 @@
                 45.5514834662
             ],
             "indicators": [],
+            "datasets": [
+                {
+                    "id": "cci_biomass"
+                }
+            ],
             "summary": "<p>\n  This is a description for the <code>CCI BIOMASS</code> product config.\n</p>"
         },
         {
@@ -84,6 +89,11 @@
                 -19.3427466773
             ],
             "indicators": [],
+            "datasets": [
+                {
+                    "id": "gedi_l4b"
+                }
+            ],
             "summary": "<p>\n  This is a description for the <code>GEDI L4B</code> product config.\n</p>\n"
         },
         {
@@ -127,10 +137,15 @@
                 53.466099815736506
             ],
             "indicators": [],
+            "datasets": [
+                {
+                    "id": "nasa_jpl"
+                }
+            ],
             "summary": "<p>\n  This is a description for the <code>NASA JPL</code> product config.\n</p>"
         },
         {
-            "id": "icesat_2_boreal",
+            "id": "icesat2_boreal",
             "label": "ICESAT-2 Boreal",
             "center": [
                 -75.0152,
@@ -170,6 +185,11 @@
                 -0.0572054988649
             ],
             "indicators": [],
+            "datasets": [
+                {
+                    "id": "icesat2_boreal"
+                }
+            ],
             "summary": "<p>\n  This is a description for the <code>ICESat-2 Boreal</code> product config.\n</p>"
         },
         {
@@ -213,6 +233,11 @@
                 53.466099815736506
             ],
             "indicators": [],
+            "datasets": [
+                {
+                    "id": "nceo_africa"
+                }
+            ],
             "summary": "<p>\n  This is a description for the <code>NCEO Africa</code> product config.\n</p>"
         }
     ]

@@ -21,11 +21,11 @@ def get_country_pilots(
         response: Response,
         cache_client: CacheLayer = Depends(utils.get_cache)):
     """Return list of country pilots."""
-    country_pilots_hash = utils.get_hash(country_pilot_id="_all")
     country_pilots = None
     if cache_client:
-        country_pilots = cache_client.get_dataset_from_cache(country_pilots_hash)
-        if country_pilots:
+        country_pilots_raw = cache_client.get_country_pilot("_all")
+        if country_pilots_raw:
+            country_pilots = CountryPilots.parse_raw(country_pilots_raw)
             response.headers["X-Cache"] = "HIT"
     if not country_pilots:
         scheme = request.url.scheme
@@ -36,7 +36,7 @@ def get_country_pilots(
         country_pilots = country_pilots_manager.get_all(api_url=f"{scheme}://{host}")
 
         if cache_client and country_pilots:
-            cache_client.set_dataset_cache(country_pilots_hash, country_pilots, 60)
+            cache_client.set_country_pilot("_all", country_pilots)
 
     return country_pilots
 
@@ -53,18 +53,19 @@ def get_country_pilot(
     cache_client: CacheLayer = Depends(utils.get_cache),
 ):
     """Return country_pilot info."""
-    country_pilot_hash = utils.get_hash(country_pilot_id=country_pilot_id)
     country_pilot = None
-
+    country_pilot_raw = None
+    
     if cache_client:
-        country_pilot = cache_client.get_dataset_from_cache(country_pilot_hash)
+        country_pilot_raw = cache_client.get_country_pilot(country_pilot_id)
 
-    if country_pilot:
+    if country_pilot_raw:
+        country_pilot = CountryPilot.parse_raw(country_pilot_raw)
         response.headers["X-Cache"] = "HIT"
     else:
         country_pilot = country_pilots_manager.get(country_pilot_id, _api_url(request))
         if cache_client and country_pilot:
-            cache_client.set_dataset_cache(country_pilot_hash, country_pilot, 60)
+            cache_client.set_country_pilot(country_pilot_id, country_pilot)
 
     if not country_pilot:
         raise HTTPException(

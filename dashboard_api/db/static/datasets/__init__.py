@@ -9,8 +9,6 @@ from dashboard_api.core.config import (DATASET_METADATA_FILENAME,
                                    BUCKET,
                                    VECTOR_TILESERVER_URL,
                                    TITILER_SERVER_URL)
-from dashboard_api.db.static.errors import InvalidIdentifier
-# from dashboard_api.db.static.sites import sites
 from dashboard_api.db.utils import s3_get
 from dashboard_api.models.static import DatasetInternal, Datasets, GeoJsonSource
 
@@ -51,7 +49,7 @@ class DatasetManager(object):
                 raise e
 
 
-    def get(self, spotlight_id: str, api_url: str) -> Datasets:
+    def get(self, dataset_id: str, api_url: str) -> Datasets:
         """
         Fetches all the datasets available for a given spotlight. If the
         spotlight_id provided is "global" then this method will return
@@ -76,29 +74,10 @@ class DatasetManager(object):
             spotlight_id="global",
         )
 
-        return Datasets(datasets=[dataset.dict() for dataset in global_datasets])
-
-        # if spotlight_id == "global":
-        #     return Datasets(datasets=[dataset.dict() for dataset in global_datasets])
-
-        # # Verify that the requested spotlight exists
-        # site = sites.get(spotlight_id, api_url)
-        # if not site:
-        #     raise InvalidIdentifier()
-
-        # spotlight_metadata = self._load_metadata_from_file().get(site.id)
-        # if spotlight_metadata:
-        #     spotlight_datasets = self._process(
-        #         spotlight_metadata, api_url=api_url, spotlight_id=site.id,
-        #     )
-        # else:
-        #     spotlight_datasets = []
-
-        # return Datasets(
-        #     datasets=[
-        #         dataset.dict() for dataset in [*global_datasets, *spotlight_datasets]
-        #     ]
-        # )
+        if dataset_id == "global":
+            return Datasets(datasets=[dataset.dict() for dataset in global_datasets])
+        else:
+            return Datasets(datasets=[dataset.dict() for dataset in global_datasets if dataset.id == dataset_id])
 
     def get_all(self, api_url: str) -> Datasets:
         """Fetch all Datasets. Overload domain with S3 scanned domain"""
@@ -197,4 +176,4 @@ class DatasetManager(object):
         return output_datasets
 
 
-datasets = DatasetManager()
+datasets_manager = DatasetManager()

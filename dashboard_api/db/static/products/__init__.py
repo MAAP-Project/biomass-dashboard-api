@@ -11,6 +11,7 @@ from dashboard_api.models.static import Products, Link
 from dashboard_api.core.config import PRODUCT_METADATA_FILENAME, BUCKET
 from dashboard_api.db.utils import indicator_exists, indicator_folders
 from dashboard_api.models.static import Product, Products
+from dashboard_api.db.static.datasets import datasets_manager
 
 class ProductManager(object):
     """Default Product holder."""
@@ -27,6 +28,7 @@ class ProductManager(object):
         """Fetch all Products."""
 
         products = self.products_cache.get("products")
+        indicators = []
 
         if products:
             cache_hit = True
@@ -36,13 +38,12 @@ class ProductManager(object):
                 # Useful for local testing
                 example_products = "example-products-metadata.json"
                 print(f"Loading {example_products}")
-                s3_datasets = json.loads(open(example_products).read())
-                products = Products(**s3_datasets)
-                indicators = []
+                s3_products = json.loads(open(example_products).read())
+                products = Products(**s3_products)
             else:    
                 try:
-                    print(f"Loading s3{BUCKET}/{PRODUCT_METADATA_FILENAME}")
-                    s3_datasets = json.loads(
+                    print(f"Loading s3://{BUCKET}/{PRODUCT_METADATA_FILENAME}")
+                    s3_products = json.loads(
                         s3_get(bucket=BUCKET, key=PRODUCT_METADATA_FILENAME)
                     )
                     indicators = indicator_folders()
@@ -50,11 +51,11 @@ class ProductManager(object):
 
                 except botocore.errorfactory.ClientError as e:
                     if e.response["Error"]["Code"] in ["ResourceNotFoundException", "NoSuchKey"]:
-                        s3_datasets = json.loads(open("example-products-metadata.json").read())
+                        s3_products = json.loads(open("example-products-metadata.json").read())
                     else:
                         raise e
 
-            products = Products(**s3_datasets)
+            products = Products(**s3_products)
 
             for product in products.products:
                 product.links.append(Link(
@@ -64,6 +65,11 @@ class ProductManager(object):
                     title="Self"
                 ))
                 product.indicators = [ind for ind in indicators if indicator_exists(product.id, ind)]
+
+                # we have to flatten the datasets list because of how the api works
+                datasets = [datasets_manager.get(
+                    ds.id, api_url).datasets for ds in product.datasets]
+                product.datasets = [i for sub in datasets for i in sub]
 
         if not cache_hit and products:
             self.products_cache["products"] = products
