@@ -96,7 +96,7 @@ class CirclePaint(Paint):
     # To use the Union we must make at least one attribute non-optional in order to bypass this option in favor of RasterPaint, for example.
     circle_radius: float
     circle_opacity: Optional[float]
-    circle_color: Optional[dict]
+    circle_color: Optional[str]
     circle_stroke_color: Optional[str]
 
 class Dataset(BaseModel):
