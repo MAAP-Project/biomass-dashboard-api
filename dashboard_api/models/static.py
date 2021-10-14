@@ -75,12 +75,6 @@ def snake_case_to_kebab_case(s):
 
 class Paint(BaseModel):
     """Paint Model."""
-    # raster_opacity: Optional[float] = None
-    circle_radius: Optional[float]
-    circle_opacity: Optional[float]
-    circle_color: Optional[str]
-    circle_stroke_color: Optional[str]
-    circle_stroke_width: Optional[str]
 
     class Config:
         """Paint Model Config"""
@@ -99,7 +93,7 @@ class CirclePaint(Paint):
     circle_opacity: Optional[float]
     circle_color: Optional[str]
     circle_stroke_color: Optional[str]
-    circle_stroke_width: Optional[str]
+    circle_stroke_width: Optional[float]
 
 class Dataset(BaseModel):
     """Dataset Model."""
