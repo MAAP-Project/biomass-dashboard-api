@@ -25,10 +25,13 @@ class DatasetManager(object):
 
     def _data(self):
         dataset_objects = self._load_metadata_from_file()
-        return {
-            key: DatasetInternal.parse_obj(dataset)
-            for key, dataset in dataset_objects["_all"].items()
-        }
+        if dataset_objects.get('_all'):
+            return {
+                key: DatasetInternal.parse_obj(dataset)
+                for key, dataset in dataset_objects["_all"].items()
+            }
+        else:
+            return {}
 
     def _load_metadata_from_file(self):
         if os.environ.get('ENV') == 'local':
@@ -69,7 +72,7 @@ class DatasetManager(object):
         """
 
         global_datasets = self._process(
-            self._load_metadata_from_file()["global"],
+            self._load_metadata_from_file().get("global"),
             api_url=api_url,
             spotlight_id="global",
         )
@@ -82,7 +85,7 @@ class DatasetManager(object):
     def get_all(self, api_url: str) -> Datasets:
         """Fetch all Datasets. Overload domain with S3 scanned domain"""
         datasets = self._process(
-            datasets_domains_metadata=self._load_metadata_from_file()["_all"],
+            datasets_domains_metadata=self._load_metadata_from_file().get("_all"),
             api_url=api_url,
         )
         return Datasets(datasets=[dataset.dict() for dataset in datasets])
