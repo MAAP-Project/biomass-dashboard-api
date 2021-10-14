@@ -80,6 +80,7 @@ class Paint(BaseModel):
     circle_opacity: Optional[float]
     circle_color: Optional[str]
     circle_stroke_color: Optional[str]
+    circle_stroke_width: Optional[str]
 
     class Config:
         """Paint Model Config"""
@@ -98,6 +99,7 @@ class CirclePaint(Paint):
     circle_opacity: Optional[float]
     circle_color: Optional[str]
     circle_stroke_color: Optional[str]
+    circle_stroke_width: Optional[str]
 
 class Dataset(BaseModel):
     """Dataset Model."""
