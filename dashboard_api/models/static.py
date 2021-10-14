@@ -74,8 +74,16 @@ def snake_case_to_kebab_case(s):
     return s.replace("_", "-")
 
 class Paint(BaseModel):
+    """Paint Model."""
+    # raster_opacity: Optional[float] = None
+    circle_radius: Optional[float]
+    circle_opacity: Optional[float]
+    circle_color: Optional[dict]
+    circle_stroke_color: Optional[str]
+
     class Config:
         """Paint Model Config"""
+
         alias_generator = snake_case_to_kebab_case
         allow_population_by_field_name = True
 
