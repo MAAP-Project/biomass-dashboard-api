@@ -151,14 +151,13 @@ class DatasetManager(object):
                     tiles=dataset.source.tiles, **format_url_params
                 )
 
-            if dataset.source.source_url:
+            if dataset.source.type != 'geojson':
                 dataset.source.source_url = dataset.source.source_url.replace("{vector_tileserver_url}", VECTOR_TILESERVER_URL)
                 dataset.source.source_url = dataset.source.source_url.replace("{titiler_server_url}", TITILER_SERVER_URL)
-
-            if dataset.background_source:
                 dataset.background_source.tiles = self._format_urls(
                     tiles=dataset.background_source.tiles, **format_url_params
                 )
+
             if dataset.compare:
                 dataset.compare.source.tiles = self._format_urls(
                     tiles=dataset.compare.source.tiles, **format_url_params
