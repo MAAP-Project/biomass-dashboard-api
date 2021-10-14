@@ -78,7 +78,7 @@ class Paint(BaseModel):
     # raster_opacity: Optional[float] = None
     circle_radius: Optional[float]
     circle_opacity: Optional[float]
-    circle_color: Optional[dict]
+    circle_color: Optional[str]
     circle_stroke_color: Optional[str]
 
     class Config:
