@@ -33,12 +33,11 @@ MEMCACHE_PORT = int(os.environ.get("MEMCACHE_PORT", 11211))
 MEMCACHE_USERNAME = os.environ.get("MEMCACHE_USERNAME")
 MEMCACHE_PASSWORD = os.environ.get("MEMCACHE_PASSWORD")
 
-BUCKET = 'biomass-earthdata-dashboard-aimee' #os.environ.get("BUCKET", config_object["BUCKET"])
+BUCKET = os.environ.get("BUCKET", config_object["BUCKET"])
 
-DATASET_METADATA_FILENAME = 'aimee-dataset-metadata.json'
-# os.environ.get(
-#     "DATASET_METADATA_FILENAME", config_object["DATASET_METADATA_FILENAME"]
-# )
+DATASET_METADATA_FILENAME = os.environ.get(
+    "DATASET_METADATA_FILENAME", config_object["DATASET_METADATA_FILENAME"]
+)
 
 COUNTRY_PILOT_METADATA_FILENAME = os.environ.get(
     "COUNTRY_PILOT_METADATA_FILENAME", config_object["COUNTRY_PILOT_METADATA_FILENAME"]
