@@ -143,7 +143,7 @@ class DatasetManager(object):
                     spotlight_id = "EUPorts"
                 format_url_params.update(dict(spotlight_id=spotlight_id))
 
-            if 'tiles' in dataset.source:
+            if dataset.source.type != 'geojson':
                 dataset.source.tiles = self._format_urls(
                     tiles=dataset.source.tiles, **format_url_params
                 )
