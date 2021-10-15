@@ -44,7 +44,7 @@ Test the api `open http://localhost:8000/v1/datasets`
 ### Running the app with docker:
 
 ```bash
-docker-compose up --build api
+docker-compose up --build
 ```
 
 Test the api `open http://localhost:8000/v1/datasets`
