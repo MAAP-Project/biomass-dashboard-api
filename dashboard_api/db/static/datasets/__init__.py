@@ -143,12 +143,10 @@ class DatasetManager(object):
                     spotlight_id = "EUPorts"
                 format_url_params.update(dict(spotlight_id=spotlight_id))
 
-            if 'tiles' in dataset.source:
+            if dataset.source.type != 'geojson':
                 dataset.source.tiles = self._format_urls(
                     tiles=dataset.source.tiles, **format_url_params
                 )
-
-            if 'source_url' in dataset.source:
                 dataset.source.source_url = dataset.source.source_url.replace("{vector_tileserver_url}", VECTOR_TILESERVER_URL)
                 dataset.source.source_url = dataset.source.source_url.replace("{titiler_server_url}", TITILER_SERVER_URL)
                 dataset.background_source.tiles = self._format_urls(
