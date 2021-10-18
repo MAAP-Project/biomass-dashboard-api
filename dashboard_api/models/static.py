@@ -74,8 +74,11 @@ def snake_case_to_kebab_case(s):
     return s.replace("_", "-")
 
 class Paint(BaseModel):
+    """Paint Model."""
+
     class Config:
         """Paint Model Config"""
+
         alias_generator = snake_case_to_kebab_case
         allow_population_by_field_name = True
 
@@ -88,8 +91,9 @@ class CirclePaint(Paint):
     # To use the Union we must make at least one attribute non-optional in order to bypass this option in favor of RasterPaint, for example.
     circle_radius: float
     circle_opacity: Optional[float]
-    circle_color: Optional[dict]
+    circle_color: Optional[str]
     circle_stroke_color: Optional[str]
+    circle_stroke_width: Optional[float]
 
 class Dataset(BaseModel):
     """Dataset Model."""

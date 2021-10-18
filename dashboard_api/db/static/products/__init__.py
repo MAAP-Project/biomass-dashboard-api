@@ -50,6 +50,7 @@ class ProductManager(object):
                     print("products json successfully loaded from S3")
 
                 except botocore.errorfactory.ClientError as e:
+                    print("Error accessing S3 files")
                     if e.response["Error"]["Code"] in ["ResourceNotFoundException", "NoSuchKey"]:
                         s3_products = json.loads(open("example-products-metadata.json").read())
                     else:
