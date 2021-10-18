@@ -10,7 +10,7 @@ from dashboard_api.core.config import (DATASET_METADATA_FILENAME,
                                    VECTOR_TILESERVER_URL,
                                    TITILER_SERVER_URL)
 from dashboard_api.db.utils import s3_get
-from dashboard_api.models.static import DatasetInternal, Datasets, GeoJsonSource
+from dashboard_api.models.static import DatasetInternal, Datasets, GeoJsonSource, NonGeoJsonSource
 
 data_dir = os.path.join(os.path.dirname(__file__))
 
@@ -143,14 +143,17 @@ class DatasetManager(object):
                     spotlight_id = "EUPorts"
                 format_url_params.update(dict(spotlight_id=spotlight_id))
 
-            if "tiles" in dataset.source:
-                dataset.source.tiles = self._format_urls(
-                    tiles=dataset.source.tiles, **format_url_params
-                )
+            if isinstance(dataset.source, NonGeoJsonSource):
+                if dataset.source.tiles:
+                    dataset.source.tiles = self._format_urls(
+                        tiles=dataset.source.tiles, **format_url_params
+                    )
 
-            if "source_url" in dataset.source:
-                dataset.source.source_url = dataset.source.source_url.replace("{vector_tileserver_url}", VECTOR_TILESERVER_URL)
-                dataset.source.source_url = dataset.source.source_url.replace("{titiler_server_url}", TITILER_SERVER_URL)
+                if dataset.source.source_url:
+                    dataset.source.source_url = dataset.source.source_url.replace("{vector_tileserver_url}", VECTOR_TILESERVER_URL)
+                    dataset.source.source_url = dataset.source.source_url.replace("{titiler_server_url}", TITILER_SERVER_URL)
+
+            if dataset.background_source:
                 dataset.background_source.tiles = self._format_urls(
                     tiles=dataset.background_source.tiles, **format_url_params
                 )
