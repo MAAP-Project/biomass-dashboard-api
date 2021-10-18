@@ -42,7 +42,7 @@ class CountryPilotManager(object):
                 country_pilots = CountryPilots(**s3_datasets)
             else:    
                 try:
-                    print(f"Loading s3{BUCKET}/{COUNTRY_PILOT_METADATA_FILENAME}")
+                    print(f"Loading s3://{BUCKET}/{COUNTRY_PILOT_METADATA_FILENAME}")
                     s3_datasets = json.loads(
                         s3_get(bucket=BUCKET, key=COUNTRY_PILOT_METADATA_FILENAME)
                     )
