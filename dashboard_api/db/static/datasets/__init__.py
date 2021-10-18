@@ -151,28 +151,14 @@ class DatasetManager(object):
             if "source_url" in dataset.source:
                 dataset.source.source_url = dataset.source.source_url.replace("{vector_tileserver_url}", VECTOR_TILESERVER_URL)
                 dataset.source.source_url = dataset.source.source_url.replace("{titiler_server_url}", TITILER_SERVER_URL)
-
-            if dataset.background_source:
                 dataset.background_source.tiles = self._format_urls(
                     tiles=dataset.background_source.tiles, **format_url_params
                 )
+
             if dataset.compare:
                 dataset.compare.source.tiles = self._format_urls(
                     tiles=dataset.compare.source.tiles, **format_url_params
                 )
-            # source URLs of background tiles for `detections-*` datasets are
-            # handled differently in the front end so the the `source` objects
-            # get updated here
-            if k.startswith("detections-"):
-                dataset.source = GeoJsonSource(
-                    type=dataset.source.type, data=dataset.source.tiles[0]
-                ).dict()
-
-            if spotlight_id == "tk" and k == "water-chlorophyll":
-                dataset.source.tiles = [
-                    tile.replace("&rescale=-100%2C100", "")
-                    for tile in dataset.source.tiles
-                ]
         output_datasets = sorted(output_datasets.values(), key=lambda x: x.order)
         return output_datasets
 
