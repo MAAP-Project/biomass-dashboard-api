@@ -37,17 +37,14 @@ class ProductManager(object):
             if os.environ.get('ENV') == 'local':
                 # Useful for local testing
                 example_products = "example-products-metadata.json"
-                print(f"Loading {example_products}")
                 s3_products = json.loads(open(example_products).read())
                 products = Products(**s3_products)
             else:    
                 try:
-                    print(f"Loading s3://{BUCKET}/{PRODUCT_METADATA_FILENAME}")
                     s3_products = json.loads(
                         s3_get(bucket=BUCKET, key=PRODUCT_METADATA_FILENAME)
                     )
                     indicators = indicator_folders()
-                    print("products json successfully loaded from S3")
 
                 except botocore.errorfactory.ClientError as e:
                     print("Error accessing S3 files")

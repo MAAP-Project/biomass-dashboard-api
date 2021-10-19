@@ -37,17 +37,14 @@ class CountryPilotManager(object):
             if os.environ.get('ENV') == 'local':
                 # Useful for local testing
                 example_country_pilots = "example-country-pilots-metadata.json"
-                print(f"Loading {example_country_pilots}")
                 s3_datasets = json.loads(open(example_country_pilots).read())
                 country_pilots = CountryPilots(**s3_datasets)
             else:    
                 try:
-                    print(f"Loading s3://{BUCKET}/{COUNTRY_PILOT_METADATA_FILENAME}")
                     s3_datasets = json.loads(
                         s3_get(bucket=BUCKET, key=COUNTRY_PILOT_METADATA_FILENAME)
                     )
                     indicators = indicator_folders()
-                    print("country_pilots json successfully loaded from S3")
 
                 except botocore.errorfactory.ClientError as e:
                     if e.response["Error"]["Code"] in ["ResourceNotFoundException", "NoSuchKey"]:
