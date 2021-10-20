@@ -34,13 +34,11 @@ class DatasetManager(object):
         if os.environ.get('ENV') == 'local':
             # Useful for local testing
             example_datasets = "example-dataset-metadata.json"
-            print(f'Loading {example_datasets}')
             return json.loads(open(example_datasets).read())
         try:
             s3_datasets = json.loads(
                 s3_get(bucket=BUCKET, key=DATASET_METADATA_FILENAME)
             )
-            print("datasets json successfully loaded from S3")
             return s3_datasets
         except botocore.errorfactory.ClientError as e:
             if e.response["Error"]["Code"] in ["ResourceNotFoundException", "NoSuchKey"]:
