@@ -10,7 +10,7 @@ from dashboard_api.core.config import (DATASET_METADATA_FILENAME,
                                    VECTOR_TILESERVER_URL,
                                    TITILER_SERVER_URL)
 from dashboard_api.db.utils import s3_get
-from dashboard_api.models.static import DatasetInternal, Datasets, GeoJsonSource
+from dashboard_api.models.static import DatasetInternal, Datasets, GeoJsonSource, NonGeoJsonSource
 
 data_dir = os.path.join(os.path.dirname(__file__))
 
@@ -34,13 +34,11 @@ class DatasetManager(object):
         if os.environ.get('ENV') == 'local':
             # Useful for local testing
             example_datasets = "example-dataset-metadata.json"
-            print(f'Loading {example_datasets}')
             return json.loads(open(example_datasets).read())
         try:
             s3_datasets = json.loads(
                 s3_get(bucket=BUCKET, key=DATASET_METADATA_FILENAME)
             )
-            print("datasets json successfully loaded from S3")
             return s3_datasets
         except botocore.errorfactory.ClientError as e:
             if e.response["Error"]["Code"] in ["ResourceNotFoundException", "NoSuchKey"]:
@@ -143,14 +141,17 @@ class DatasetManager(object):
                     spotlight_id = "EUPorts"
                 format_url_params.update(dict(spotlight_id=spotlight_id))
 
-            if dataset.source.type != 'geojson':
-                dataset.source.tiles = self._format_urls(
-                    tiles=dataset.source.tiles, **format_url_params
-                )
+            if isinstance(dataset.source, NonGeoJsonSource):
+                if dataset.source.tiles:
+                    dataset.source.tiles = self._format_urls(
+                        tiles=dataset.source.tiles, **format_url_params
+                    )
 
-            if 'source_url' in dataset.source:
-                dataset.source.source_url = dataset.source.source_url.replace("{vector_tileserver_url}", VECTOR_TILESERVER_URL)
-                dataset.source.source_url = dataset.source.source_url.replace("{titiler_server_url}", TITILER_SERVER_URL)
+                if dataset.source.source_url:
+                    dataset.source.source_url = dataset.source.source_url.replace("{vector_tileserver_url}", VECTOR_TILESERVER_URL)
+                    dataset.source.source_url = dataset.source.source_url.replace("{titiler_server_url}", TITILER_SERVER_URL)
+
+            if dataset.background_source:
                 dataset.background_source.tiles = self._format_urls(
                     tiles=dataset.background_source.tiles, **format_url_params
                 )

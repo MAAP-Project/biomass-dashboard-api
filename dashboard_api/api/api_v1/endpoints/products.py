@@ -66,10 +66,7 @@ def get_product(
         response.headers["X-Cache"] = "HIT"
     else:
         api_url = _api_url(request)
-        if product_id == "global":
-            product = Product(id="global", label="Global", datasets=datasets_manager.get_all(api_url).datasets)
-        else:    
-            product = products_manager.get(product_id, api_url)
+        product = products_manager.get(product_id, api_url)
         if cache_client and product:
             cache_client.set_product(product_id, product)
 
