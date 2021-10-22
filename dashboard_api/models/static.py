@@ -86,14 +86,21 @@ class RasterPaint(Paint):
     """Raster Paint Model."""
     raster_opacity: Optional[float] = None
 
-class CirclePaint(Paint):
+class CirclePaint(CirclePaint):
     """Circle Paint Model."""
     # To use the Union we must make at least one attribute non-optional in order to bypass this option in favor of RasterPaint, for example.
     circle_radius: float
     circle_opacity: Optional[float]
-    circle_color: Optional[str]
     circle_stroke_color: Optional[str]
     circle_stroke_width: Optional[float]
+
+class SimpleCirclePaint(CirclePaint):
+    """Circle Paint Model."""
+    circle_color: Optional[str]
+
+class VectorCirclePaint(Paint):
+    """Circle Paint Model."""
+    circle_color: Optional[dict]
 
 class Dataset(BaseModel):
     """Dataset Model."""
@@ -110,7 +117,7 @@ class Dataset(BaseModel):
     swatch: Optional[Swatch]
     compare: Optional[DatasetComparison]
     legend: Optional[Legend]
-    paint: Optional[Union[CirclePaint, RasterPaint]]
+    paint: Optional[Union[SimpleCirclePaint, VectorCirclePaint, RasterPaint]]
     info: Optional[str] = ""
     order: Optional[int] = 10000
 
