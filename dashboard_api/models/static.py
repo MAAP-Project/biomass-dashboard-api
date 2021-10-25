@@ -55,6 +55,7 @@ class Legend(BaseModel):
     type: str
     min: Optional[str]
     max: Optional[str]
+    units: Optional[str]
     stops: Union[List[str], List[LabelStop]]
 
 
