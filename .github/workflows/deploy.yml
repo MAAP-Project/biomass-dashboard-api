@@ -5,6 +5,7 @@ on:
       - main
       - staging
       - production
+      - aimee
 
 env:
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
