@@ -69,7 +69,7 @@ Test the DIT environment (biomass.dit.maap-project.org)
 ```bash
 git co staging
 git pull origin staging
-git merge -s theirs staging
+git merge -s theirs $TAG
 git push origin $TAG
 ```
 
