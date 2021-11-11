@@ -79,5 +79,5 @@ git push origin staging
 git co production
 git pull origin production
 git merge -s theirs $TAG
-git push origin $TAG
+git push origin production
 ```
