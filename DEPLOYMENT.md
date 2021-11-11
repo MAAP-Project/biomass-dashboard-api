@@ -6,7 +6,7 @@ This repository deploys to 3 environments:
 
 * The `main` branch deploys to the `dit` environment.
 * The `staging` branch deploys to the `staging` environment.
-* The `production` branch deploys to the `producion` environment.
+* The `production` branch deploys to the `production` environment.
 
 The API Gateway endpoint can be viewable as output in the Github Actions interface.
 
