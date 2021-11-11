@@ -77,7 +77,7 @@ git push origin $TAG
 
 ```bash
 git co production
-git pull production
+git pull origin production
 git merge -s theirs production
 git push origin $TAG
 ```
