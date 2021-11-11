@@ -70,7 +70,7 @@ Test the DIT environment (biomass.dit.maap-project.org)
 git co staging
 git pull origin staging
 git merge -s theirs $TAG
-git push origin $TAG
+git push origin staging
 ```
 
 ### Checkout and push to production
