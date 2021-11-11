@@ -53,7 +53,7 @@ Open a PR and merge to main once approved.
 
 ## 3. Push the tag, push and test staging and production
 
-Now that main has the CHANGELOG updates, create a relase tag and promote those changes.
+Now that main has the CHANGELOG updates, create a release tag and promote those changes.
 
 ```bash
 git checkout $TAG
