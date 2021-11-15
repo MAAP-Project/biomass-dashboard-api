@@ -53,6 +53,9 @@ jobs:
       - name: Install python packages
         run: pip install -e ".[dev]" -e ".[test]"
 
+      - name: Remove old unused dependencies
+        run: pip uninstall httplib2 twisted          
+
       - name: Run safety dependency vulnerability check
         run: safety check
 
