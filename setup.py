@@ -25,7 +25,7 @@ inst_reqs = [
     "cachetools"
 ]
 extra_reqs = {
-    "dev": ["pytest", "pytest-cov", "pytest-asyncio", "pre-commit", "safety"],
+    "dev": ["pytest", "pytest-cov", "pytest-asyncio", "pre-commit", "safety", "bandit"],
     "server": ["uvicorn", "click==7.0"],
     "deploy": [
         "docker",

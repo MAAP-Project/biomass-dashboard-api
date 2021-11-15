@@ -1,0 +1,66 @@
+name: PR
+on:
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron:  '0 0 * * *' # daily
+
+env:
+  STAC_API_URL: ""
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('package.json') }} # or package-lock.json
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Upgrade pip
+        run: sudo python -m pip install -U pip
+
+      - name: Get pip cache dir
+        id: pip-cache
+        run: |
+          echo "::set-output name=dir::$(pip cache dir)"
+
+      - name: pip cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('setup.py') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install AWS CDK and pip requirements
+        run: npm install -g aws-cdk
+
+      - name: Install python packages
+        run: pip install -e ".[dev]" -e ".[test]"
+
+      - name: Run safety dependency vulnerability check
+        run: safety check
+
+      - name: Run bandit static analysis check
+        run: bandit -r dashboard_api
+
+      - name: Run tests
+        run: pytest
+
+      - name: Run CDK synth
+        run: cdk synth
