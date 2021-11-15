@@ -10,7 +10,7 @@ env:
   STAC_API_URL: ""
 
 jobs:
-  deploy:
+  pre-commit-check:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -53,11 +53,9 @@ jobs:
       - name: Install python packages
         run: pip install -e ".[dev]" -e ".[test]"
 
-      - name: Remove old unused dependencies
-        run: pip uninstall --yes httplib2 twisted          
-
       - name: Run safety dependency vulnerability check
-        run: safety check
+        # ignore some vulnerabilities in twisted and httplib2 that are already installed and can't be uninstalled      
+        run: safety check -i 39557 -i 37040 -i 37209 -i 37554 -i 38085 -i 38368 -i 38303 -i 39608
 
       - name: Run bandit static analysis check
         run: bandit -r dashboard_api
