@@ -8,6 +8,8 @@ on:
 
 env:
   STAC_API_URL: ""
+  CDK_DEFAULT_ACCOUNT: 1111111111
+  CDK_DEFAULT_REGION: us-west-2
 
 jobs:
   pre-commit-check:
