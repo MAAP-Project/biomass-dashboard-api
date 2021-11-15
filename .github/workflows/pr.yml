@@ -60,8 +60,8 @@ jobs:
       - name: Run bandit static analysis check
         run: bandit -r dashboard_api
 
-      - name: Run tests
-        run: pytest
+      # - name: Run tests
+      #   run: pytest
 
       - name: Run CDK synth
         run: cdk synth
