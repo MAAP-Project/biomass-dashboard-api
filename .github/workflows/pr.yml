@@ -13,8 +13,27 @@ jobs:
   pre-commit-check:
     runs-on: ubuntu-latest
     steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
       - name: Check out repository code
         uses: actions/checkout@v2
+
+      - uses: franzbischoff/replace_envs@v1
+        env:
+          PROJECT_NAME: 'biomass'
+          DATA_BUCKET: 'biomass-earthdata-dashboard'
+          STAGE: ${{ steps.extract_branch.outputs.branch }}
+          STAC_API_URL: ''
+          VECTOR_TILESERVER_URL: 'https://mbtileserver.dev.maap-project.org/services'
+          TITILER_SERVER_URL: 'https://titiler.maap-project.org'
+        with:
+          from_file: 'stack/config.yml.example'
+          to_file: 'stack/config.yml'
+          commit: 'false'
+  
 
       - uses: actions/setup-node@v2
         with:
