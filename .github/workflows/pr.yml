@@ -54,7 +54,7 @@ jobs:
         run: pip install -e ".[dev]" -e ".[test]"
 
       - name: Remove old unused dependencies
-        run: pip uninstall httplib2 twisted          
+        run: pip uninstall --yes httplib2 twisted          
 
       - name: Run safety dependency vulnerability check
         run: safety check
