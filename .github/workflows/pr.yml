@@ -70,7 +70,7 @@ jobs:
         run: npm install -g aws-cdk
 
       - name: Install python packages
-        run: pip install -e ".[dev]" -e ".[test]"
+        run: pip install -e ".[dev]" -e ".[test]" -e ".[deploy]"
 
       - name: Run safety dependency vulnerability check
         # ignore some vulnerabilities in twisted and httplib2 that are already installed and can't be uninstalled      
