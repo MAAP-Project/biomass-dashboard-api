@@ -14,6 +14,9 @@ env:
 jobs:
   pre-commit-check:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["12"]
     steps:
       - name: Extract branch name
         shell: bash
@@ -68,7 +71,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      - name: Install AWS CDK and pip requirements
+      - name: Install AWS CDK
         run: npm install -g aws-cdk
 
       - name: Install python packages
