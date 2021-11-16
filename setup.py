@@ -6,7 +6,7 @@ with open("README.md") as f:
     long_description = f.read()
 
 inst_reqs = [
-    "fastapi==0.70.0", # < 0.65.2 has JSON/cookie vulnerability
+    "fastapi~=0.70.0", # < 0.65.2 has JSON/cookie vulnerability
     "urllib3>=1.26.5", # earlier versions have DoS vulnerability
     "jinja2~=3.0.1",
     "python-binary-memcached",
