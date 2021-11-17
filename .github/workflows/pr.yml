@@ -10,7 +10,7 @@ env:
   STAC_API_URL: ""
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
-  CDK_DEFAULT_ACCOUNT: 1111111111
+  CDK_DEFAULT_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
   CDK_DEFAULT_REGION: us-west-2
 
 jobs:
