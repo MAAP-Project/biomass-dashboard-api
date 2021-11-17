@@ -14,9 +14,6 @@ env:
 jobs:
   pre-commit-check:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: ["12"]
     steps:
       - name: Extract branch name
         shell: bash
@@ -42,8 +39,7 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
-
+          node-version: '12'
       - name: Cache Node.js modules
         uses: actions/cache@v2
         with:
