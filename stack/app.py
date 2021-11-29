@@ -195,8 +195,8 @@ dashboardApiLambdaStack(
     concurrent=config.MAX_CONCURRENT,
     dataset_metadata_filename=f"{config.STAGE}-dataset-metadata.json",
     env=dict(
-        account=os.environ["CDK_DEFAULT_ACCOUNT"],
-        region=os.environ["CDK_DEFAULT_REGION"],
+        account=os.environ.get("CDK_DEFAULT_ACCOUNT", ""),
+        region=os.environ.get("CDK_DEFAULT_REGION", ""),
     ),
 )
 

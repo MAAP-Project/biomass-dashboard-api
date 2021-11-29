@@ -3,7 +3,7 @@
 import os
 import yaml
 
-config = yaml.load(open('stack/config.yml', 'r'), Loader=yaml.FullLoader)
+config = yaml.safe_load(open('stack/config.yml', 'r'))
 
 PROJECT_NAME = config['PROJECT_NAME']
 STAGE = config.get('STAGE') or 'dev'

@@ -10,7 +10,7 @@ import yaml
 import boto3
 
 BASE_PATH = os.path.abspath('.')
-config = yaml.load(open(f"{BASE_PATH}/stack/config.yml", 'r'), Loader=yaml.FullLoader)
+config = yaml.safe_load(open(f"{BASE_PATH}/stack/config.yml", 'r'))
 
 DATASETS_JSON_FILEPATH = os.path.join(BASE_PATH, "dashboard_api/db/static/datasets")
 SITES_JSON_FILEPATH = os.path.join(BASE_PATH, "dashboard_api/db/static/sites")
