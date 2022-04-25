@@ -9,7 +9,7 @@ COPY dashboard_api/ /app/dashboard_api/
 COPY setup.py /app/setup.py
 
 RUN pip install --upgrade pip && \
-    pip install . "mangum>=0.9.0,<0.10.1" -t /var/task --no-binary numpy,pydantic && \
+    pip install . mangum>=0.10.0 -t /var/task --no-binary numpy,pydantic && \
     cd /var/task && find . -type f -name '*.pyc' | while read f; do n=$(echo $f | sed 's/__pycache__\///' | sed 's/.cpython-[2-3][0-9]//'); cp $f $n; done; \
     cd /var/task && find . -type d -a -name '__pycache__' -print0 | xargs -0 rm -rf && \
     cd /var/task && find . -type f -a -name '*.py' -print0 | xargs -0 rm -f && \
