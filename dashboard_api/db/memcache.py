@@ -98,9 +98,8 @@ class CacheLayer(object):
 
     def set_dataset(self, dataset_id: str, datasets: Datasets) -> bool:
         """Set dataset response in cache layer"""
-        # TODO: Check this
         try:
-            return self.get_object(
+            return self.set_object(
                 utils.get_hash(dataset_id=dataset_id), datasets.json()
             )
         except Exception:
