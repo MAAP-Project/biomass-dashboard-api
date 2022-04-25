@@ -22,7 +22,7 @@ from dashboard_api.models.timelapse import Feature
 
 def get_cache(request: Request) -> CacheLayer:
     """Get Memcached Layer."""
-    return request.state.cache
+    return request.app.state.cache
 
 
 def get_hash(**kwargs: Any) -> str:
