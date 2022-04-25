@@ -2,28 +2,18 @@
 
 import os
 import re
-from functools import partial
 from typing import Any, Dict, Optional, Union
 from urllib.parse import urlencode
 
 import numpy
-from rio_tiler.io import cogeo
-
-from dashboard_api.api.utils import info as cogInfo
-from dashboard_api.core import config
-from dashboard_api.models.mapbox import TileJSON
-from dashboard_api.ressources.enums import ImageType
-
 from fastapi import APIRouter, Query
-
-from starlette.concurrency import run_in_threadpool
+from rio_tiler.io import COGReader
 from starlette.requests import Request
 from starlette.responses import Response
 
-_info = partial(run_in_threadpool, cogInfo)
-_bounds = partial(run_in_threadpool, cogeo.bounds)
-_metadata = partial(run_in_threadpool, cogeo.metadata)
-_spatial_info = partial(run_in_threadpool, cogeo.spatial_info)
+from dashboard_api.core import config
+from dashboard_api.models.mapbox import TileJSON
+from dashboard_api.ressources.enums import ImageType
 
 router = APIRouter()
 
@@ -32,18 +22,9 @@ router = APIRouter()
     "/tilejson.json",
     response_model=TileJSON,
     responses={200: {"description": "Return a tilejson"}},
-    response_model_include={
-        "tilejson",
-        "scheme",
-        "version",
-        "minzoom",
-        "maxzoom",
-        "bounds",
-        "center",
-        "tiles",
-    },  # https://github.com/tiangolo/fastapi/issues/528#issuecomment-589659378
+    response_model_exclude_none=True,
 )
-async def tilejson(
+def tilejson(
     request: Request,
     response: Response,
     url: str = Query(..., description="Cloud Optimized GeoTIFF URL."),
@@ -60,56 +41,64 @@ async def tilejson(
     if config.API_VERSION_STR:
         host += config.API_VERSION_STR
 
-    kwargs = dict(request.query_params)
-    kwargs.pop("tile_format", None)
-    kwargs.pop("tile_scale", None)
-
-    qs = urlencode(list(kwargs.items()))
     if tile_format:
-        tile_url = (
-            f"{scheme}://{host}/{{z}}/{{x}}/{{y}}@{tile_scale}x.{tile_format}?{qs}"
-        )
+        tile_url = f"{scheme}://{host}/{{z}}/{{x}}/{{y}}@{tile_scale}x.{tile_format}"
     else:
-        tile_url = f"{scheme}://{host}/{{z}}/{{x}}/{{y}}@{tile_scale}x?{qs}"
+        tile_url = f"{scheme}://{host}/{{z}}/{{x}}/{{y}}@{tile_scale}x"
 
-    meta = await _spatial_info(url)
+    qs_key_to_remove = [
+        "tile_format",
+        "tile_scale",
+    ]
+    qs = [
+        (key, value)
+        for (key, value) in request.query_params._list
+        if key.lower() not in qs_key_to_remove
+    ]
+    if qs:
+        tile_url += f"?{urlencode(qs)}"
+
     response.headers["Cache-Control"] = "max-age=3600"
-    return dict(
-        bounds=meta["bounds"],
-        center=meta["center"],
-        minzoom=meta["minzoom"],
-        maxzoom=meta["maxzoom"],
-        name=os.path.basename(url),
-        tiles=[tile_url],
-    )
+
+    with COGReader(url) as src_dst:
+        return {
+            "bounds": src_dst.geographic_bounds,
+            "minzoom": src_dst.minzoom,
+            "maxzoom": src_dst.maxzoom,
+            "tiles": [tile_url],
+            "name": os.path.basename(url),
+        }
 
 
 @router.get(
     "/bounds", responses={200: {"description": "Return the bounds of the COG."}}
 )
-async def bounds(
+def bounds(
     response: Response,
     url: str = Query(..., description="Cloud Optimized GeoTIFF URL."),
 ):
     """Handle /bounds requests."""
     response.headers["Cache-Control"] = "max-age=3600"
-    return await _bounds(url)
+    with COGReader(url) as src_dst:
+        return {"address": url, "bounds": src_dst.geographic_bounds}
 
 
 @router.get("/info", responses={200: {"description": "Return basic info on COG."}})
-async def info(
+def info(
     response: Response,
     url: str = Query(..., description="Cloud Optimized GeoTIFF URL."),
 ):
     """Handle /info requests."""
     response.headers["Cache-Control"] = "max-age=3600"
-    return await _info(url)
+    with COGReader(url) as src_dst:
+        info = src_dst.info()
+        return {"address": url, **info}
 
 
 @router.get(
     "/metadata", responses={200: {"description": "Return the metadata of the COG."}}
 )
-async def metadata(
+def metadata(
     request: Request,
     response: Response,
     url: str = Query(..., description="Cloud Optimized GeoTIFF URL."),
@@ -148,12 +137,15 @@ async def metadata(
         hist_options.update(dict(range=list(map(float, histogram_range.split(",")))))
 
     response.headers["Cache-Control"] = "max-age=3600"
-    return await _metadata(
-        url,
-        pmin,
-        pmax,
-        nodata=nodata,
-        indexes=indexes,
-        hist_options=hist_options,
-        **kwargs,
-    )
+
+    with COGReader(url, nodata=nodata) as cog:
+        info = cog.info().dict()
+        stats = cog.statistics(
+            indexes=indexes,
+            percentiles=[pmin, pmax],
+            histogram_params=hist_options,
+            max_size=max_size,
+            **kwargs,
+        ).dict()
+
+        return {"address": url, **info, "statistics": stats}

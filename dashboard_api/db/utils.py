@@ -8,7 +8,7 @@ from typing import Dict, List
 import boto3
 from botocore import config
 
-from dashboard_api.core.config import DT_FORMAT, BUCKET
+from dashboard_api.core.config import BUCKET, DT_FORMAT
 from dashboard_api.models.static import IndicatorObservation
 
 s3 = boto3.client("s3")
@@ -102,16 +102,24 @@ def get_indicator_site_metadata(identifier: str, folder: str) -> Dict:
 def indicator_folders() -> List:
     """Get Indicator folders."""
     response = s3.list_objects_v2(
-        Bucket=BUCKET, Prefix="indicators/", Delimiter="/",
+        Bucket=BUCKET,
+        Prefix="indicators/",
+        Delimiter="/",
     )
-    common_prefixes = response.get('CommonPrefixes')
-    return [obj["Prefix"].split("/")[1] for obj in common_prefixes] if common_prefixes else []
+    common_prefixes = response.get("CommonPrefixes")
+    return (
+        [obj["Prefix"].split("/")[1] for obj in common_prefixes]
+        if common_prefixes
+        else []
+    )
+
 
 def indicator_exists(identifier: str, indicator: str):
     """Check if an indicator exists for a site"""
     try:
         s3.head_object(
-            Bucket=BUCKET, Key=f"indicators/{indicator}/{identifier}.csv",
+            Bucket=BUCKET,
+            Key=f"indicators/{indicator}/{identifier}.csv",
         )
         return True
     except Exception:
@@ -134,17 +142,15 @@ def get_indicators(identifier) -> List:
             try:
                 data = []
                 # metadata for reading the data and converting to a consistent format
-                metadata_json = s3_get(
-                    BUCKET, f"indicators/{folder}/metadata.json"
-                )
+                metadata_json = s3_get(BUCKET, f"indicators/{folder}/metadata.json")
                 metadata_dict = json.loads(metadata_json.decode("utf-8"))
 
                 # read the actual indicator data
-                indicator_csv = s3_get(
-                    BUCKET, f"indicators/{folder}/{identifier}.csv"
-                )
+                indicator_csv = s3_get(BUCKET, f"indicators/{folder}/{identifier}.csv")
                 indicator_lines = indicator_csv.decode("utf-8").split("\n")
-                reader = csv.DictReader(indicator_lines,)
+                reader = csv.DictReader(
+                    indicator_lines,
+                )
 
                 # top level metadata is added directly to the response
                 top_level_fields = {
@@ -173,10 +179,12 @@ def get_indicators(identifier) -> List:
                 indicator["domain"] = dict(
                     date=[
                         min(
-                            data, key=lambda x: datetime.strptime(x["date"], DT_FORMAT),
+                            data,
+                            key=lambda x: datetime.strptime(x["date"], DT_FORMAT),
                         )["date"],
                         max(
-                            data, key=lambda x: datetime.strptime(x["date"], DT_FORMAT),
+                            data,
+                            key=lambda x: datetime.strptime(x["date"], DT_FORMAT),
                         )["date"],
                     ],
                     indicator=[

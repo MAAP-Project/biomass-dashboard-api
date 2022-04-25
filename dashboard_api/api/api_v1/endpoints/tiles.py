@@ -1,30 +1,17 @@
 """API tiles."""
 
 import re
-from functools import partial
-from io import BytesIO
 from typing import Any, Dict, Optional, Union
 
 import numpy
-from rio_tiler.colormap import get_colormap
-from rio_tiler.io import cogeo
-from rio_tiler.profiles import img_profiles
-from rio_tiler.utils import geotiff_options, render
+from fastapi import APIRouter, Depends, Path, Query
+from rio_tiler.io import COGReader
+from starlette.responses import Response
 
 from dashboard_api.api import utils
 from dashboard_api.db.memcache import CacheLayer
-from dashboard_api.ressources.common import drivers, mimetype
 from dashboard_api.ressources.enums import ImageType
 from dashboard_api.ressources.responses import TileResponse
-
-from fastapi import APIRouter, Depends, Path, Query
-
-from starlette.concurrency import run_in_threadpool
-
-_tile = partial(run_in_threadpool, cogeo.tile)
-_render = partial(run_in_threadpool, render)
-_postprocess = partial(run_in_threadpool, utils.postprocess)
-
 
 router = APIRouter()
 responses = {
@@ -45,10 +32,10 @@ tile_routes_params: Dict[str, Any] = dict(
 
 
 @router.get(r"/{z}/{x}/{y}", **tile_routes_params)
-@router.get(r"/{z}/{x}/{y}\.{ext}", **tile_routes_params)
+@router.get(r"/{z}/{x}/{y}.{ext}", **tile_routes_params)
 @router.get(r"/{z}/{x}/{y}@{scale}x", **tile_routes_params)
-@router.get(r"/{z}/{x}/{y}@{scale}x\.{ext}", **tile_routes_params)
-async def tile(
+@router.get(r"/{z}/{x}/{y}@{scale}x.{ext}", **tile_routes_params)
+def tile(
     z: int = Path(..., ge=0, le=30, description="Mercator tiles's zoom level"),
     x: int = Path(..., description="Mercator tiles's column"),
     y: int = Path(..., description="Mercator tiles's row"),
@@ -106,41 +93,32 @@ async def tile(
             nodata = numpy.nan if nodata == "nan" else float(nodata)
 
         with utils.Timer() as t:
-            tile, mask = await _tile(
-                url, x, y, z, indexes=indexes, tilesize=tilesize, nodata=nodata
-            )
+            with COGReader(url, nodata=nodata) as cog:
+                data = cog.tile(x, y, z, indexes=indexes, tilesize=tilesize)
         timings.append(("Read", t.elapsed))
 
         if not ext:
-            ext = ImageType.jpg if mask.all() else ImageType.png
+            ext = ImageType.jpg if data.mask.all() else ImageType.png
 
         with utils.Timer() as t:
-            tile = await _postprocess(
-                tile, mask, rescale=rescale, color_formula=color_formula
-            )
+            if rescale:
+                rescale = [  # type: ignore
+                    tuple(map(float, r.replace(" ", "").split(","))) for r in rescale
+                ]
+
+            image = data.post_process(rescale=rescale, color_formula=color_formula)
+
         timings.append(("Post-process", t.elapsed))
 
         if color_map:
-            if color_map.value.startswith("custom_"):
-                color_map = utils.get_custom_cmap(color_map.value)  # type: ignore
-            else:
-                color_map = get_colormap(color_map.value)  # type: ignore
+            color_map = utils.cmap.get(color_map.value)  # type: ignore
 
         with utils.Timer() as t:
-            if ext == ImageType.npy:
-                sio = BytesIO()
-                numpy.save(sio, (tile, mask))
-                sio.seek(0)
-                content = sio.getvalue()
-            else:
-                driver = drivers[ext.value]
-                options = img_profiles.get(driver.lower(), {})
-                if ext == ImageType.tif:
-                    options = geotiff_options(x, y, z, tilesize=tilesize)
-
-                content = await _render(
-                    tile, mask, img_format=driver, colormap=color_map, **options
-                )
+            content = image.render(
+                img_format=ext.driver,
+                colormap=color_map,
+                **ext.profile,
+            )
 
         timings.append(("Format", t.elapsed))
 
@@ -152,4 +130,7 @@ async def tile(
             ["{} - {:0.2f}".format(name, time * 1000) for (name, time) in timings]
         )
 
-    return TileResponse(content, media_type=mimetype[ext.value], headers=headers)
+    # By default we set a 3600 second TLL
+    headers["Cache-Control"] = "max-age=3600"
+
+    return Response(content, media_type=ext.mediatype, headers=headers)

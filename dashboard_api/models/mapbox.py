@@ -2,7 +2,7 @@
 
 from typing import List, Optional, Tuple
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, root_validator
 
 
 class TileJSON(BaseModel):
@@ -28,3 +28,15 @@ class TileJSON(BaseModel):
     maxzoom: int = Field(30, ge=0, le=30)
     bounds: List[float] = [-180, -90, 180, 90]
     center: Tuple[float, float, int]
+
+    @root_validator
+    def compute_center(cls, values):
+        """Compute center if it does not exist."""
+        bounds = values["bounds"]
+        if not values.get("center"):
+            values["center"] = (
+                (bounds[0] + bounds[2]) / 2,
+                (bounds[1] + bounds[3]) / 2,
+                values["minzoom"],
+            )
+        return values

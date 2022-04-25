@@ -2,21 +2,15 @@
 
 from urllib.parse import urlencode
 
-import rasterio
-from rasterio import warp
-from rio_tiler import constants
-from rio_tiler.mercator import get_zooms
-
-from dashboard_api.core import config
-from dashboard_api.ressources.common import mimetype
-from dashboard_api.ressources.enums import ImageType
-from dashboard_api.ressources.responses import XMLResponse
-
 from fastapi import APIRouter, Query
-
+from rio_tiler.io import COGReader
 from starlette.requests import Request
 from starlette.responses import Response
 from starlette.templating import Jinja2Templates
+
+from dashboard_api.core import config
+from dashboard_api.ressources.enums import ImageType, MediaType
+from dashboard_api.ressources.responses import XMLResponse
 
 router = APIRouter()
 templates = Jinja2Templates(directory="dashboard_api/templates")
@@ -38,27 +32,30 @@ def wtms(
         1, gt=0, lt=4, description="Tile size scale. 1=256x256, 2=512x512..."
     ),
 ):
-    """Wmts endpoit."""
+    """Wmts endpoint."""
     scheme = request.url.scheme
     host = request.headers["host"]
     if config.API_VERSION_STR:
         host += config.API_VERSION_STR
     endpoint = f"{scheme}://{host}"
 
-    kwargs = dict(request.query_params)
-    kwargs.pop("tile_format", None)
-    kwargs.pop("tile_scale", None)
-    qs = urlencode(list(kwargs.items()))
+    qs_key_to_remove = [
+        "tile_format",
+        "tile_scale",
+        "service",
+        "request",
+    ]
+    qs = [
+        (key, value)
+        for (key, value) in request.query_params._list
+        if key.lower() not in qs_key_to_remove
+    ]
+    query_params = urlencode(qs)
 
-    with rasterio.open(url) as src_dst:
-        bounds = list(
-            warp.transform_bounds(
-                src_dst.crs, constants.WGS84_CRS, *src_dst.bounds, densify_pts=21
-            )
-        )
-        minzoom, maxzoom = get_zooms(src_dst)
+    with COGReader(url) as cog:
+        bounds = cog.geographic_bounds
+        minzoom, maxzoom = cog.minzoom, cog.maxzoom
 
-    media_type = mimetype[tile_format.value]
     tilesize = tile_scale * 256
     tileMatrix = []
     for zoom in range(minzoom, maxzoom + 1):
@@ -82,10 +79,10 @@ def wtms(
             "bounds": bounds,
             "tileMatrix": tileMatrix,
             "title": "Cloud Optimized GeoTIFF",
-            "query_string": qs,
+            "query_string": query_params,
             "tile_scale": tile_scale,
             "tile_format": tile_format.value,
-            "media_type": media_type,
+            "media_type": tile_format.mediatype,
         },
-        media_type="application/xml",
+        media_type=MediaType.xml.value,
     )

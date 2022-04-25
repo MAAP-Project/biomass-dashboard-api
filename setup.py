@@ -6,40 +6,38 @@ with open("README.md") as f:
     long_description = f.read()
 
 inst_reqs = [
-    "fastapi~=0.70.0", # < 0.65.2 has JSON/cookie vulnerability
-    "urllib3>=1.26.5", # earlier versions have DoS vulnerability
+    "fastapi>=0.73",
+    "urllib3>=1.26.5",  # earlier versions have DoS vulnerability
     "jinja2~=3.0.1",
     "python-binary-memcached",
     "rio-color",
-    "rio-tiler==2.0a.11",
+    "rio-tiler>=3.1,<3.2",
     "email-validator",
     "fiona",
     "shapely",
-    "rasterio==1.1.8",
     "rasterstats",
     "geojson-pydantic",
     "boto3",
     "requests",
     "mercantile",
     "pyyaml~=5.4.0",
-    "cachetools"
+    "cachetools",
 ]
 extra_reqs = {
     "dev": ["pytest", "pytest-cov", "pytest-asyncio", "pre-commit", "safety", "bandit"],
     "server": ["uvicorn", "click==7.0"],
     "deploy": [
-        "docker",
         "attrs==20.1.0",
-        "aws-cdk.core==1.119.0",
-        "aws-cdk.aws_lambda==1.119.0",
-        "aws-cdk.aws_apigatewayv2==1.119.0",
-        "aws-cdk.aws_apigatewayv2_integrations==1.119.0",
-        "aws-cdk.aws_ecs==1.119.0",
-        "aws-cdk.aws_ec2==1.119.0",
-        "aws-cdk.aws_autoscaling==1.119.0",
-        "aws-cdk.aws_ecs_patterns==1.119.0",
-        "aws-cdk.aws_iam==1.119.0",
-        "aws-cdk.aws_elasticache==1.119.0",
+        "aws-cdk.core==1.139.0",
+        "aws-cdk.aws_lambda==1.139.0",
+        "aws-cdk.aws_apigatewayv2==1.139.0",
+        "aws-cdk.aws_apigatewayv2_integrations==1.139.0",
+        "aws-cdk.aws_ecs==1.139.0",
+        "aws-cdk.aws_ec2==1.139.0",
+        "aws-cdk.aws_autoscaling==1.139.0",
+        "aws-cdk.aws_ecs_patterns==1.139.0",
+        "aws-cdk.aws_iam==1.139.0",
+        "aws-cdk.aws_elasticache==1.139.0",
     ],
     "test": ["moto[iam]", "mock", "pytest", "pytest-cov", "pytest-asyncio", "requests"],
 }
@@ -48,7 +46,7 @@ extra_reqs = {
 setup(
     name="dashboard_api",
     version="0.5.0",
-    description=u"",
+    description="",
     long_description=long_description,
     long_description_content_type="text/markdown",
     python_requires=">=3",
@@ -60,7 +58,7 @@ setup(
         "Programming Language :: Python :: 3.7",
     ],
     keywords="",
-    author=u"Development Seed",
+    author="Development Seed",
     author_email="info@developmentseed.org",
     url="https://github.com/developmentseed/dashboard_api",
     license="MIT",

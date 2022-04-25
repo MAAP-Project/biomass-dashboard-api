@@ -1,21 +1,21 @@
 """dashboard_api app."""
-from typing import Any, Dict
-
-from dashboard_api import version
-from dashboard_api.api.api_v1.api import api_router
-from dashboard_api.core import config
-from dashboard_api.db.memcache import CacheLayer
+from typing import Any, Dict, Optional
 
 from fastapi import FastAPI
-
 from starlette.middleware.cors import CORSMiddleware
 from starlette.middleware.gzip import GZipMiddleware
 from starlette.requests import Request
 from starlette.responses import HTMLResponse
 from starlette.templating import Jinja2Templates
 
+from dashboard_api import version
+from dashboard_api.api.api_v1.api import api_router
+from dashboard_api.core import config
+from dashboard_api.db.memcache import CacheLayer
+
 templates = Jinja2Templates(directory="dashboard_api/templates")
 
+cache: Optional[CacheLayer] = None
 if config.MEMCACHE_HOST and not config.DISABLE_CACHE:
     kwargs: Dict[str, Any] = {
         k: v
@@ -26,8 +26,6 @@ if config.MEMCACHE_HOST and not config.DISABLE_CACHE:
         if v
     }
     cache = CacheLayer(config.MEMCACHE_HOST, **kwargs)
-else:
-    cache = None
 
 
 app = FastAPI(
@@ -56,7 +54,7 @@ async def cache_middleware(request: Request, call_next):
     """Add cache layer."""
     request.state.cache = cache
     response = await call_next(request)
-    if cache:
+    if request.state.cache:
         request.state.cache.client.disconnect_all()
     return response
 
