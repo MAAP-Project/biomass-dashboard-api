@@ -146,6 +146,6 @@ def metadata(
             hist_options=hist_options,
             max_size=max_size,
             **kwargs,
-        ).dict()
+        )
 
         return {"address": url, **info, "statistics": stats}

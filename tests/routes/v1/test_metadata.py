@@ -21,7 +21,7 @@ def test_tilejson(rio, app):
     assert len(body["tiles"]) == 1
     assert body["tiles"][0].startswith("http://testserver/v1/{z}/{x}/{y}@1x?url=https")
     assert body["minzoom"] == 5
-    assert body["maxzoom"] == 8
+    assert body["maxzoom"] == 9
     assert body["bounds"]
     assert body["center"]
 
