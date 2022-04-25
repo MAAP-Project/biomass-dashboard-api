@@ -7,7 +7,7 @@ from mock import patch
 from ...conftest import mock_rio
 
 
-@patch("dashboard_api.api.api_v1.endpoints.metadata.cogeo.rasterio")
+@patch("rio_tiler.io.cogeo.rasterio")
 def test_tilejson(rio, app):
     """test /tilejson endpoint."""
     rio.open = mock_rio
@@ -35,7 +35,7 @@ def test_tilejson(rio, app):
     )
 
 
-@patch("dashboard_api.api.api_v1.endpoints.metadata.cogeo.rasterio")
+@patch("rio_tiler.io.cogeo.rasterio")
 def test_bounds(rio, app):
     """test /bounds endpoint."""
     rio.open = mock_rio
@@ -47,7 +47,7 @@ def test_bounds(rio, app):
     assert len(body["bounds"]) == 4
 
 
-@patch("dashboard_api.api.api_v1.endpoints.metadata.cogeo.rasterio")
+@patch("rio_tiler.io.cogeo.rasterio")
 def test_metadata(rio, app):
     """test /metadata endpoint."""
     rio.open = mock_rio
