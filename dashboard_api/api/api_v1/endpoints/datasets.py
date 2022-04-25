@@ -4,7 +4,7 @@ from dashboard_api.core import config
 from dashboard_api.db.memcache import CacheLayer
 from dashboard_api.db.static.datasets import datasets_manager
 from dashboard_api.db.static.errors import InvalidIdentifier
-from dashboard_api.models.static import Datasets, Dataset
+from dashboard_api.models.static import DatasetExternal, Datasets
 
 from fastapi import APIRouter, Depends, HTTPException, Response
 
@@ -49,7 +49,7 @@ def get_datasets(
     responses={
         200: dict(description="return datasets available for a given spotlight")
     },
-    response_model=Dataset,
+    response_model=DatasetExternal,
 )
 def get_dataset(
     request: Request,

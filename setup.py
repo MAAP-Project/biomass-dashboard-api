@@ -6,8 +6,9 @@ with open("README.md") as f:
     long_description = f.read()
 
 inst_reqs = [
-    "fastapi==0.60.0",
-    "jinja2",
+    "fastapi~=0.70.0", # < 0.65.2 has JSON/cookie vulnerability
+    "urllib3>=1.26.5", # earlier versions have DoS vulnerability
+    "jinja2~=3.0.1",
     "python-binary-memcached",
     "rio-color",
     "rio-tiler==2.0a.11",
@@ -20,11 +21,11 @@ inst_reqs = [
     "boto3",
     "requests",
     "mercantile",
-    "pyyaml",
+    "pyyaml~=5.4.0",
     "cachetools"
 ]
 extra_reqs = {
-    "dev": ["pytest", "pytest-cov", "pytest-asyncio", "pre-commit"],
+    "dev": ["pytest", "pytest-cov", "pytest-asyncio", "pre-commit", "safety", "bandit"],
     "server": ["uvicorn", "click==7.0"],
     "deploy": [
         "docker",
