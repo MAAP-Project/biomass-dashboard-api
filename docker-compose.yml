@@ -24,13 +24,17 @@ services:
       - MEMCACHE_HOST=memcached
       - MEMCACHE_USERNAME=myuser
       - MEMCACHE_PASSWORD=mypassword
-      - DATASET_METADATA_FILENAME=${STAGE}-dataset-metadata.json
+      - DATASET_METADATA_FILENAME=main-dataset-metadata.json
       - PORT=8000
       - PYTHONWARNINGS=ignore
       - VARIABLE_NAME=app
       - VSI_CACHE=TRUE
       - VSI_CACHE_SIZE=536870912
       - WORKERS_PER_CORE=5
+      - PROJECT_NAME=biomass
+      - DATA_BUCKET=biomass-earthdata-dashboard
+      - STAGE=main
+      - TITILER_SERVER_URL=https://titiler.maap-project.org
 
   memcached:
     image: remotepixel/memcached-sasl:latest
