@@ -1,11 +1,12 @@
 """API tiles."""
 
 import re
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 import numpy
 from fastapi import APIRouter, Depends, Path, Query
 from rio_tiler.io import COGReader
+from rio_tiler.utils import _chunks
 from starlette.responses import Response
 
 from dashboard_api.api import utils
@@ -101,12 +102,14 @@ def tile(
             ext = ImageType.jpg if data.mask.all() else ImageType.png
 
         with utils.Timer() as t:
+            rescale_arr: Optional[List[List[float]]]
             if rescale:
-                rescale = [  # type: ignore
-                    tuple(map(float, r.replace(" ", "").split(","))) for r in rescale
-                ]
+                rescale_arr = list(map(float, rescale.split(",")))  # type: ignore
+                rescale_arr = list(_chunks(rescale_arr, 2))
+                if len(rescale_arr) != data.data.shape[0]:
+                    rescale_arr = ((rescale_arr[0]),) * data.data.shape[0]
 
-            image = data.post_process(rescale=rescale, color_formula=color_formula)
+            image = data.post_process(rescale=rescale_arr, color_formula=color_formula)
 
         timings.append(("Post-process", t.elapsed))
 

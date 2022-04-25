@@ -49,14 +49,27 @@ if config.BACKEND_CORS_ORIGINS:
 app.add_middleware(GZipMiddleware, minimum_size=0)
 
 
-@app.middleware("http")
-async def cache_middleware(request: Request, call_next):
-    """Add cache layer."""
-    request.state.cache = cache
-    response = await call_next(request)
-    if request.state.cache:
-        request.state.cache.client.disconnect_all()
-    return response
+# @app.middleware("http")
+# async def cache_middleware(request: Request, call_next):
+#     """Add cache layer."""
+#     request.state.cache = cache
+#     response = await call_next(request)
+#     if request.state.cache:
+#         request.state.cache.client.disconnect_all()
+#     return response
+
+
+@app.on_event("startup")
+def startup_event():
+    """Application startup: register the database connection and create table list."""
+    app.state.cache = cache
+
+
+@app.on_event("shutdown")
+def shutdown_event():
+    """Application shutdown: de-register the database connection."""
+    if app.state.cache:
+        app.state.cache.client.disconnect_all()
 
 
 @app.get(

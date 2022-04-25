@@ -143,7 +143,7 @@ def metadata(
         stats = cog.statistics(
             indexes=indexes,
             percentiles=[pmin, pmax],
-            histogram_params=hist_options,
+            hist_options=hist_options,
             max_size=max_size,
             **kwargs,
         ).dict()
