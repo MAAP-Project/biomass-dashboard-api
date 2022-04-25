@@ -21,6 +21,8 @@ def app() -> TestClient:
 
     from dashboard_api.main import app
 
+    app.state.cache = None
+
     return TestClient(app)
 
 

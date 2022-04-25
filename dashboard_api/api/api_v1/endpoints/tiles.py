@@ -102,7 +102,7 @@ def tile(
             ext = ImageType.jpg if data.mask.all() else ImageType.png
 
         with utils.Timer() as t:
-            rescale_arr: Optional[List[List[float]]]
+            rescale_arr: Optional[List[List[float]]] = None
             if rescale:
                 rescale_arr = list(map(float, rescale.split(",")))  # type: ignore
                 rescale_arr = list(_chunks(rescale_arr, 2))

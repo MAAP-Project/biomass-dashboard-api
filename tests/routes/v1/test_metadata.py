@@ -59,7 +59,7 @@ def test_metadata(rio, app):
     assert len(body["bounds"]) == 4
     assert body["statistics"]
     assert len(body["statistics"]["1"]["histogram"][0]) == 20
-    assert body["band_descriptions"] == [[1, "band1"]]
+    assert body["band_descriptions"] == [["1", ""]]
     assert body["dtype"] == "uint16"
     assert body["colorinterp"] == ["gray"]
     assert body["nodata_type"] == "None"
