@@ -81,7 +81,7 @@ jobs:
 
       - name: Install python packages
         run: |
-          python -m pip install .["dev,test,deploy"]
+          python -m pip install .["dev,test"]
 
       - name: run pre-commit
         run: pre-commit run --all-files
@@ -95,6 +95,3 @@ jobs:
 
       - name: Run test
         run: python -m pytest tests/
-
-      - name: Run CDK synth
-        run: cdk synth
