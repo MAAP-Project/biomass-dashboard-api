@@ -29,7 +29,13 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
 
-      - uses: franzbischoff/replace_envs@v1
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Create Config.yml
+        uses: franzbischoff/replace_envs@v1
         env:
           PROJECT_NAME: 'biomass'
           DATA_BUCKET: 'biomass-earthdata-dashboard'
@@ -58,7 +64,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Upgrade pip
-        run: sudo python -m pip install -U pip
+        run: python -m pip install -U pip
 
       - name: Get pip cache dir
         id: pip-cache
@@ -76,10 +82,14 @@ jobs:
       - name: Install jq
         run: sudo apt-get install jq
 
-      - name: Install AWS CDK and pip requirements
-        run: ./install.sh
+      - name: Install AWS CDK
+        run: npm install -g aws-cdk
+
+      - name: Install python packages
+        run: |
+          python -m pip install .["deploy"]
 
       - name: Deploy the resources to AWS
-        run: ./deploy.sh
-      
+        run: cdk deploy --all --require-approval never
+
       - run: echo "Successfully deployed."
