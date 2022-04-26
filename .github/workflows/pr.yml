@@ -61,8 +61,8 @@ jobs:
       - name: Run bandit static analysis check
         run: bandit -r dashboard_api
 
-      - name: Run test
-        run: python -m pytest tests/
+      # - name: Run test
+      #   run: python -m pytest tests/
 
   synth:
     needs: [tests]
