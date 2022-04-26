@@ -27,7 +27,6 @@ extra_reqs = {
     "dev": ["pre-commit", "safety", "bandit"],
     "server": ["uvicorn", "click==7.0"],
     "deploy": [
-        "attrs==20.1.0",
         "aws-cdk.core==1.139.0",
         "aws-cdk.aws_lambda==1.139.0",
         "aws-cdk.aws_apigatewayv2==1.139.0",

@@ -16,7 +16,7 @@ env:
   AWS_SECRET_ACCESS_KEY: secrets.AWS_SECRET_ACCESS_KEY
 
 jobs:
-  pre-commit-check:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - name: Extract branch name
@@ -63,3 +63,60 @@ jobs:
 
       - name: Run test
         run: python -m pytest tests/
+
+  synth:
+    needs: [tests]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('package.json') }} # or package-lock.json
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Create Config.yml
+        uses: franzbischoff/replace_envs@v1
+        env:
+          PROJECT_NAME: 'biomass'
+          DATA_BUCKET: 'biomass-earthdata-dashboard'
+          STAGE: ${{ steps.extract_branch.outputs.branch }}
+          STAC_API_URL: ''
+          VECTOR_TILESERVER_URL: 'https://mbtileserver.dev.maap-project.org/services'
+          TITILER_SERVER_URL: 'https://titiler.maap-project.org'
+        with:
+          from_file: 'stack/config.yml.example'
+          to_file: 'stack/config.yml'
+          commit: 'false'
+
+      - name: Install AWS CDK
+        run: npm install -g
+
+      - name: Install python packages
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install .["deploy"]
+
+      - name: Run CDK synth
+        run: cdk synth

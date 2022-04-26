@@ -4,8 +4,6 @@ import os
 from typing import Any
 
 import config
-
-# import docker
 from aws_cdk import aws_apigatewayv2 as apigw
 from aws_cdk import aws_apigatewayv2_integrations as apigw_integrations
 from aws_cdk import aws_ec2 as ec2
