@@ -52,8 +52,8 @@ def get_datasets(
 )
 def get_dataset(
     request: Request,
-    dataset_id: str,
     response: Response,
+    dataset_id: str,
     cache_client: CacheLayer = Depends(utils.get_cache),
 ):
     """Return dataset info for all datasets available for a given spotlight"""
