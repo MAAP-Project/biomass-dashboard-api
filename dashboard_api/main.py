@@ -15,19 +15,6 @@ from dashboard_api.db.memcache import CacheLayer
 
 templates = Jinja2Templates(directory="dashboard_api/templates")
 
-cache: Optional[CacheLayer] = None
-if config.MEMCACHE_HOST and not config.DISABLE_CACHE:
-    kwargs: Dict[str, Any] = {
-        k: v
-        for k, v in zip(
-            ["port", "user", "password"],
-            [config.MEMCACHE_PORT, config.MEMCACHE_USERNAME, config.MEMCACHE_PASSWORD],
-        )
-        if v
-    }
-    cache = CacheLayer(config.MEMCACHE_HOST, **kwargs)
-
-
 app = FastAPI(
     title=config.PROJECT_NAME,
     openapi_url="/api/v1/openapi.json",
@@ -49,19 +36,24 @@ if config.BACKEND_CORS_ORIGINS:
 app.add_middleware(GZipMiddleware, minimum_size=0)
 
 
-# @app.middleware("http")
-# async def cache_middleware(request: Request, call_next):
-#     """Add cache layer."""
-#     request.state.cache = cache
-#     response = await call_next(request)
-#     if request.state.cache:
-#         request.state.cache.client.disconnect_all()
-#     return response
-
-
 @app.on_event("startup")
 def startup_event():
     """Application startup: register the database connection and create table list."""
+    cache: Optional[CacheLayer] = None
+    if config.MEMCACHE_HOST and not config.DISABLE_CACHE:
+        kwargs: Dict[str, Any] = {
+            k: v
+            for k, v in zip(
+                ["port", "user", "password"],
+                [
+                    config.MEMCACHE_PORT,
+                    config.MEMCACHE_USERNAME,
+                    config.MEMCACHE_PASSWORD,
+                ],
+            )
+            if v
+        }
+        cache = CacheLayer(config.MEMCACHE_HOST, **kwargs)
     app.state.cache = cache
 
 
