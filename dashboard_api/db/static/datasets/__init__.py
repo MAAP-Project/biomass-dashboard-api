@@ -5,12 +5,14 @@ from typing import List
 
 import botocore
 
-from dashboard_api.core.config import (DATASET_METADATA_FILENAME,
-                                   BUCKET,
-                                   VECTOR_TILESERVER_URL,
-                                   TITILER_SERVER_URL)
+from dashboard_api.core.config import (
+    BUCKET,
+    DATASET_METADATA_FILENAME,
+    TITILER_SERVER_URL,
+    VECTOR_TILESERVER_URL,
+)
 from dashboard_api.db.utils import s3_get
-from dashboard_api.models.static import DatasetInternal, Datasets, GeoJsonSource, NonGeoJsonSource
+from dashboard_api.models.static import DatasetInternal, Datasets, NonGeoJsonSource
 
 data_dir = os.path.join(os.path.dirname(__file__))
 
@@ -31,7 +33,7 @@ class DatasetManager(object):
         }
 
     def _load_metadata_from_file(self):
-        if os.environ.get('ENV') == 'local':
+        if os.environ.get("ENV") == "local":
             # Useful for local testing
             example_datasets = "example-dataset-metadata.json"
             return json.loads(open(example_datasets).read())
@@ -41,11 +43,13 @@ class DatasetManager(object):
             )
             return s3_datasets
         except botocore.errorfactory.ClientError as e:
-            if e.response["Error"]["Code"] in ["ResourceNotFoundException", "NoSuchKey"]:
+            if e.response["Error"]["Code"] in [
+                "ResourceNotFoundException",
+                "NoSuchKey",
+            ]:
                 return json.loads(open("example-dataset-metadata.json").read())
             else:
                 raise e
-
 
     def get(self, dataset_id: str, api_url: str) -> Datasets:
         """
@@ -75,7 +79,13 @@ class DatasetManager(object):
         if dataset_id == "global":
             return Datasets(datasets=[dataset.dict() for dataset in global_datasets])
         else:
-            return Datasets(datasets=[dataset.dict() for dataset in global_datasets if dataset.id == dataset_id])
+            return Datasets(
+                datasets=[
+                    dataset.dict()
+                    for dataset in global_datasets
+                    if dataset.id == dataset_id
+                ]
+            )
 
     def get_all(self, api_url: str) -> Datasets:
         """Fetch all Datasets. Overload domain with S3 scanned domain"""
@@ -91,7 +101,7 @@ class DatasetManager(object):
 
     def _format_urls(self, tiles: List[str], api_url: str, spotlight_id: str = None):
         if spotlight_id:
-            [ tile.replace("{spotlightId}", spotlight_id) for tile in tiles ]
+            [tile.replace("{spotlightId}", spotlight_id) for tile in tiles]
         return [
             tile.replace("{api_url}", api_url)
             .replace("{vector_tileserver_url}", VECTOR_TILESERVER_URL)
@@ -148,8 +158,12 @@ class DatasetManager(object):
                     )
 
                 if dataset.source.source_url:
-                    dataset.source.source_url = dataset.source.source_url.replace("{vector_tileserver_url}", VECTOR_TILESERVER_URL)
-                    dataset.source.source_url = dataset.source.source_url.replace("{titiler_server_url}", TITILER_SERVER_URL)
+                    dataset.source.source_url = dataset.source.source_url.replace(
+                        "{vector_tileserver_url}", VECTOR_TILESERVER_URL
+                    )
+                    dataset.source.source_url = dataset.source.source_url.replace(
+                        "{titiler_server_url}", TITILER_SERVER_URL
+                    )
 
             if dataset.background_source:
                 dataset.background_source.tiles = self._format_urls(
@@ -160,8 +174,7 @@ class DatasetManager(object):
                 dataset.compare.source.tiles = self._format_urls(
                     tiles=dataset.compare.source.tiles, **format_url_params
                 )
-        output_datasets = sorted(output_datasets.values(), key=lambda x: x.order)
-        return output_datasets
+        return sorted(output_datasets.values(), key=lambda x: x.order)
 
 
 datasets_manager = DatasetManager()

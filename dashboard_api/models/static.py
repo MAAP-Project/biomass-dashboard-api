@@ -3,7 +3,7 @@
 from typing import Any, List, Optional, Union
 
 from geojson_pydantic.geometries import Polygon
-from pydantic import BaseModel, constr
+from pydantic import BaseModel
 
 
 def to_camel(snake_str: str) -> str:
@@ -60,7 +60,7 @@ class Legend(BaseModel):
 
 
 class DatasetComparison(BaseModel):
-    """ Dataset `compare` Model."""
+    """Dataset `compare` Model."""
 
     enabled: bool
     help: str
@@ -74,6 +74,7 @@ def snake_case_to_kebab_case(s):
     """Util method to convert kebab-case fieldnames to snake_case."""
     return s.replace("_", "-")
 
+
 class Paint(BaseModel):
     """Paint Model."""
 
@@ -83,18 +84,23 @@ class Paint(BaseModel):
         alias_generator = snake_case_to_kebab_case
         allow_population_by_field_name = True
 
+
 class RasterPaint(Paint):
     """Raster Paint Model."""
+
     raster_opacity: Optional[float] = None
+
 
 class CirclePaint(Paint):
     """Circle Paint Model."""
+
     # To use the Union we must make at least one attribute non-optional in order to bypass this option in favor of RasterPaint, for example.
     circle_radius: float
     circle_color: Union[dict, str]
     circle_opacity: Optional[float]
     circle_stroke_color: Optional[str]
     circle_stroke_width: Optional[float]
+
 
 class Dataset(BaseModel):
     """Dataset Model."""
@@ -117,7 +123,7 @@ class Dataset(BaseModel):
 
 
 class DatasetExternal(Dataset):
-    """ Public facing dataset model (uses camelCase fieldnames) """
+    """Public facing dataset model (uses camelCase fieldnames)"""
 
     class Config:
         """Generates alias to convert all fieldnames from snake_case to camelCase"""
@@ -127,7 +133,7 @@ class DatasetExternal(Dataset):
 
 
 class DatasetInternal(Dataset):
-    """ Private dataset model (includes the dataset's location in s3) """
+    """Private dataset model (includes the dataset's location in s3)"""
 
     s3_location: Optional[str]
 
@@ -143,8 +149,8 @@ class Link(BaseModel):
     Link for hypermedia
     """
 
-    href: constr(min_length=1)
-    rel: constr(min_length=1)
+    href: str
+    rel: str
     type: Optional[str]
     title: Optional[str]
 
@@ -174,13 +180,14 @@ class Product(BaseModel):
 
     id: str
     label: str
-    summary: str = None
-    center: List[float] = None
-    polygon: Optional[Polygon] = None
-    bounding_box: Optional[List[float]] = None
+    summary: Optional[str]
+    center: Optional[List[float]]
+    polygon: Optional[Polygon]
+    bounding_box: Optional[List[float]]
     indicators: List[Any] = []
     links: List[Link] = []
     datasets: List[DatasetExternal] = []
+
 
 class Products(BaseModel):
     """Product List Model."""
@@ -192,9 +199,9 @@ class IndicatorObservation(BaseModel):
     """Indicator Observation Model."""
 
     indicator: float
-    indicator_conf_low: Optional[float] = None
-    indicator_conf_high: Optional[float] = None
-    baseline: Optional[float] = None
-    baseline_conf_low: Optional[float] = None
-    baseline_conf_high: Optional[float] = None
-    anomaly: Optional[str] = None
+    indicator_conf_low: Optional[float]
+    indicator_conf_high: Optional[float]
+    baseline: Optional[float]
+    baseline_conf_low: Optional[float]
+    baseline_conf_high: Optional[float]
+    anomaly: Optional[str]

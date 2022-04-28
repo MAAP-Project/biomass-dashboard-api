@@ -1,12 +1,14 @@
 """country_pilots endpoint."""
 
-from dashboard_api.api import utils
-from dashboard_api.db.static.country_pilots import country_pilots as country_pilots_manager
-from dashboard_api.db.memcache import CacheLayer
-from dashboard_api.core import config
-from dashboard_api.models.static import CountryPilot, CountryPilots
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
 
-from fastapi import APIRouter, Depends, HTTPException, Response, Request
+from dashboard_api.api import utils
+from dashboard_api.core import config
+from dashboard_api.db.memcache import CacheLayer
+from dashboard_api.db.static.country_pilots import (
+    country_pilots as country_pilots_manager,
+)
+from dashboard_api.models.static import CountryPilot, CountryPilots
 
 router = APIRouter()
 
@@ -17,9 +19,10 @@ router = APIRouter()
     response_model=CountryPilots,
 )
 def get_country_pilots(
-        request: Request,
-        response: Response,
-        cache_client: CacheLayer = Depends(utils.get_cache)):
+    request: Request,
+    response: Response,
+    cache_client: CacheLayer = Depends(utils.get_cache),
+):
     """Return list of country pilots."""
     country_pilots = None
     if cache_client:
@@ -55,7 +58,7 @@ def get_country_pilot(
     """Return country_pilot info."""
     country_pilot = None
     country_pilot_raw = None
-    
+
     if cache_client:
         country_pilot_raw = cache_client.get_country_pilot(country_pilot_id)
 
@@ -69,11 +72,12 @@ def get_country_pilot(
 
     if not country_pilot:
         raise HTTPException(
-            status_code=404, detail=f"Non-existant country_pilot identifier: {country_pilot_id}"
+            status_code=404,
+            detail=f"Non-existant country_pilot identifier: {country_pilot_id}",
         )
 
     return country_pilot
-    
+
 
 def _api_url(request: Request) -> str:
     scheme = request.url.scheme

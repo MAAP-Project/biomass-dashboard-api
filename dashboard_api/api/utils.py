@@ -2,139 +2,32 @@
 
 import hashlib
 import json
-import re
 import time
 from enum import Enum
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Tuple
 
 import numpy as np
 
 # Temporary
 import rasterio
 from rasterio import features
-from rasterio.warp import transform_bounds
 from rasterstats.io import bounds_window
-from rio_color.operations import parse_operations
-from rio_color.utils import scale_dtype, to_math_type
-from rio_tiler import constants
-from rio_tiler.mercator import get_zooms
-from rio_tiler.utils import _chunks, has_alpha_band, has_mask_band, linear_rescale
+from rio_tiler.colormap import cmap
 from shapely.geometry import box, shape
+from starlette.requests import Request
 
 from dashboard_api.db.memcache import CacheLayer
 from dashboard_api.models.timelapse import Feature
 
-from starlette.requests import Request
-
 
 def get_cache(request: Request) -> CacheLayer:
     """Get Memcached Layer."""
-    return request.state.cache
+    return request.app.state.cache
 
 
 def get_hash(**kwargs: Any) -> str:
     """Create hash from kwargs."""
     return hashlib.sha224(json.dumps(kwargs, sort_keys=True).encode()).hexdigest()
-
-
-def postprocess(
-    tile: np.ndarray,
-    mask: np.ndarray,
-    rescale: Optional[str] = None,
-    color_formula: Optional[str] = None,
-) -> np.ndarray:
-    """Post-process tile data."""
-    if rescale:
-        rescale_arr = list(map(float, rescale.split(",")))
-        rescale_arr = list(_chunks(rescale_arr, 2))
-        if len(rescale_arr) != tile.shape[0]:
-            rescale_arr = ((rescale_arr[0]),) * tile.shape[0]
-
-        for bdx in range(tile.shape[0]):
-            tile[bdx] = np.where(
-                mask,
-                linear_rescale(
-                    tile[bdx], in_range=rescale_arr[bdx], out_range=[0, 255]
-                ),
-                0,
-            )
-        tile = tile.astype(np.uint8)
-
-    if color_formula:
-        # make sure one last time we don't have
-        # negative value before applying color formula
-        tile[tile < 0] = 0
-        for ops in parse_operations(color_formula):
-            tile = scale_dtype(ops(to_math_type(tile)), np.uint8)
-
-    return tile
-
-
-# from rio-tiler 2.0a5
-def info(address: str) -> Dict:
-    """
-    Return simple metadata about the file.
-
-    Attributes
-    ----------
-    address : str or PathLike object
-        A dataset path or URL. Will be opened in "r" mode.
-
-    Returns
-    -------
-    out : dict.
-
-    """
-    with rasterio.open(address) as src_dst:
-        minzoom, maxzoom = get_zooms(src_dst)
-        bounds = transform_bounds(
-            src_dst.crs, constants.WGS84_CRS, *src_dst.bounds, densify_pts=21
-        )
-        center = [(bounds[0] + bounds[2]) / 2, (bounds[1] + bounds[3]) / 2, minzoom]
-
-        def _get_descr(ix):
-            """Return band description."""
-            name = src_dst.descriptions[ix - 1]
-            if not name:
-                name = "band{}".format(ix)
-            return name
-
-        band_descriptions = [(ix, _get_descr(ix)) for ix in src_dst.indexes]
-        tags = [(ix, src_dst.tags(ix)) for ix in src_dst.indexes]
-
-        other_meta = dict()
-        if src_dst.scales[0] and src_dst.offsets[0]:
-            other_meta.update(dict(scale=src_dst.scales[0]))
-            other_meta.update(dict(offset=src_dst.offsets[0]))
-
-        if has_alpha_band(src_dst):
-            nodata_type = "Alpha"
-        elif has_mask_band(src_dst):
-            nodata_type = "Mask"
-        elif src_dst.nodata is not None:
-            nodata_type = "Nodata"
-        else:
-            nodata_type = "None"
-
-        try:
-            cmap = src_dst.colormap(1)
-            other_meta.update(dict(colormap=cmap))
-        except ValueError:
-            pass
-
-        return dict(
-            address=address,
-            bounds=bounds,
-            center=center,
-            minzoom=minzoom,
-            maxzoom=maxzoom,
-            band_metadata=tags,
-            band_descriptions=band_descriptions,
-            dtype=src_dst.meta["dtype"],
-            colorinterp=[src_dst.colorinterp[ix - 1].name for ix in src_dst.indexes],
-            nodata_type=nodata_type,
-            **other_meta,
-        )
 
 
 # This code is copied from marblecutter
@@ -490,190 +383,13 @@ crop_monitor_cmap = {
     7: [0, 143, 201, 255],
 }
 
+cmap = cmap.register(
+    {
+        "custom_no2": no2_cmap,
+        "custom_cropmonitor": crop_monitor_cmap,
+    }
+)
 
-COLOR_MAPS = {
-    "no2": no2_cmap.copy(),
-    "cropmonitor": crop_monitor_cmap.copy(),
-}
-
-
-def get_custom_cmap(cname) -> Dict:
-    """Return custom colormap."""
-    if not re.match(r"^custom_", cname):
-        raise Exception("Invalid colormap name")
-    _, name = cname.split("_")
-    return COLOR_MAPS[name]
-
-
-COLOR_MAP_NAMES = [
-    "accent",
-    "accent_r",
-    "afmhot",
-    "afmhot_r",
-    "autumn",
-    "autumn_r",
-    "binary",
-    "binary_r",
-    "blues",
-    "blues_r",
-    "bone",
-    "bone_r",
-    "brbg",
-    "brbg_r",
-    "brg",
-    "brg_r",
-    "bugn",
-    "bugn_r",
-    "bupu",
-    "bupu_r",
-    "bwr",
-    "bwr_r",
-    "cfastie",
-    "cividis",
-    "cividis_r",
-    "cmrmap",
-    "cmrmap_r",
-    "cool",
-    "cool_r",
-    "coolwarm",
-    "coolwarm_r",
-    "copper",
-    "copper_r",
-    "cubehelix",
-    "cubehelix_r",
-    "dark2",
-    "dark2_r",
-    "flag",
-    "flag_r",
-    "gist_earth",
-    "gist_earth_r",
-    "gist_gray",
-    "gist_gray_r",
-    "gist_heat",
-    "gist_heat_r",
-    "gist_ncar",
-    "gist_ncar_r",
-    "gist_rainbow",
-    "gist_rainbow_r",
-    "gist_stern",
-    "gist_stern_r",
-    "gist_yarg",
-    "gist_yarg_r",
-    "gnbu",
-    "gnbu_r",
-    "gnuplot",
-    "gnuplot2",
-    "gnuplot2_r",
-    "gnuplot_r",
-    "gray",
-    "gray_r",
-    "greens",
-    "greens_r",
-    "greys",
-    "greys_r",
-    "hot",
-    "hot_r",
-    "hsv",
-    "hsv_r",
-    "inferno",
-    "inferno_r",
-    "jet",
-    "jet_r",
-    "magma",
-    "magma_r",
-    "nipy_spectral",
-    "nipy_spectral_r",
-    "ocean",
-    "ocean_r",
-    "oranges",
-    "oranges_r",
-    "orrd",
-    "orrd_r",
-    "paired",
-    "paired_r",
-    "pastel1",
-    "pastel1_r",
-    "pastel2",
-    "pastel2_r",
-    "pink",
-    "pink_r",
-    "piyg",
-    "piyg_r",
-    "plasma",
-    "plasma_r",
-    "prgn",
-    "prgn_r",
-    "prism",
-    "prism_r",
-    "pubu",
-    "pubu_r",
-    "pubugn",
-    "pubugn_r",
-    "puor",
-    "puor_r",
-    "purd",
-    "purd_r",
-    "purples",
-    "purples_r",
-    "rainbow",
-    "rainbow_r",
-    "rdbu",
-    "rdbu_r",
-    "rdgy",
-    "rdgy_r",
-    "rdpu",
-    "rdpu_r",
-    "rdylbu",
-    "rdylbu_r",
-    "rdylgn",
-    "rdylgn_r",
-    "reds",
-    "reds_r",
-    "rplumbo",
-    "schwarzwald",
-    "seismic",
-    "seismic_r",
-    "set1",
-    "set1_r",
-    "set2",
-    "set2_r",
-    "set3",
-    "set3_r",
-    "spectral",
-    "spectral_r",
-    "spring",
-    "spring_r",
-    "summer",
-    "summer_r",
-    "tab10",
-    "tab10_r",
-    "tab20",
-    "tab20_r",
-    "tab20b",
-    "tab20b_r",
-    "tab20c",
-    "tab20c_r",
-    "terrain",
-    "terrain_r",
-    "twilight",
-    "twilight_r",
-    "twilight_shifted",
-    "twilight_shifted_r",
-    "viridis",
-    "viridis_r",
-    "winter",
-    "winter_r",
-    "wistia",
-    "wistia_r",
-    "ylgn",
-    "ylgn_r",
-    "ylgnbu",
-    "ylgnbu_r",
-    "ylorbr",
-    "ylorbr_r",
-    "ylorrd",
-    "ylorrd_r",
-] + [f"custom_{c}" for c in COLOR_MAPS.keys()]
-
-
-ColorMapName = Enum("ColorMapNames", [(a, a) for a in COLOR_MAP_NAMES])  # type: ignore
+ColorMapName = Enum(  # type: ignore
+    "ColorMapName", [(a, a) for a in sorted(cmap.list())]
+)

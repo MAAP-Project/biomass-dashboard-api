@@ -1,19 +1,15 @@
 """Construct App."""
 
 import os
-import shutil
 from typing import Any
 
 import config
-
-# import docker
 from aws_cdk import aws_apigatewayv2 as apigw
 from aws_cdk import aws_apigatewayv2_integrations as apigw_integrations
 from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_elasticache as escache
-from aws_cdk import aws_events, aws_events_targets
 from aws_cdk import aws_iam as iam
-from aws_cdk import aws_lambda, aws_s3, core
+from aws_cdk import aws_lambda, core
 
 s3_full_access_to_data_bucket = iam.PolicyStatement(
     actions=["s3:*"], resources=[f"arn:aws:s3:::{config.BUCKET}*"]
@@ -59,7 +55,11 @@ class dashboardApiLambdaStack(core.Stack):
 
         # add cache
         if config.VPC_ID:
-            vpc = ec2.Vpc.from_lookup(self, f"{id}-vpc", vpc_id=config.VPC_ID,)
+            vpc = ec2.Vpc.from_lookup(
+                self,
+                f"{id}-vpc",
+                vpc_id=config.VPC_ID,
+            )
         else:
             vpc = ec2.Vpc(self, f"{id}-vpc")
 
@@ -128,8 +128,11 @@ class dashboardApiLambdaStack(core.Stack):
         )
 
         lambda_function_props = dict(
-            runtime=aws_lambda.Runtime.PYTHON_3_7,
-            code=self.create_package(code_dir),
+            runtime=aws_lambda.Runtime.PYTHON_3_8,
+            code=aws_lambda.Code.from_docker_build(
+                path=os.path.abspath(code_dir),
+                file="Dockerfiles/lambda/Dockerfile",
+            ),
             handler="handler.handler",
             memory_size=memory,
             timeout=core.Duration.seconds(timeout),
@@ -153,25 +156,12 @@ class dashboardApiLambdaStack(core.Stack):
         api = apigw.HttpApi(
             self,
             f"{id}-endpoint",
-            default_integration=apigw_integrations.LambdaProxyIntegration(
-                handler=lambda_function
+            default_integration=apigw_integrations.HttpLambdaIntegration(
+                f"{id}-integration", handler=lambda_function
             ),
         )
         core.CfnOutput(self, "API Endpoint", value=api.url)
 
-    def create_package(self, code_dir: str) -> aws_lambda.Code:
-        """Build docker image and create package."""
-
-        return aws_lambda.Code.from_asset(
-            path=os.path.abspath(code_dir),
-            bundling=core.BundlingOptions(
-                image=core.DockerImage.from_build(
-                    path=os.path.abspath(code_dir),
-                    file="Dockerfiles/lambda/Dockerfile",
-                ),
-                command=["bash", "-c", "cp -R /var/task/. /asset-output/."],
-            ),
-        )
 
 app = core.App()
 

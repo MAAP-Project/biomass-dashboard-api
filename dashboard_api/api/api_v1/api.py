@@ -1,9 +1,16 @@
 """dashboard_api api."""
 
 from dashboard_api.api.api_v1.endpoints import datasets  # isort:skip
-from dashboard_api.api.api_v1.endpoints import metadata, ogc, products, country_pilots, tiles, timelapse
-
 from fastapi import APIRouter
+
+from dashboard_api.api.api_v1.endpoints import (
+    country_pilots,
+    metadata,
+    ogc,
+    products,
+    tiles,
+    timelapse,
+)
 
 api_router = APIRouter()
 api_router.include_router(tiles.router, tags=["tiles"])

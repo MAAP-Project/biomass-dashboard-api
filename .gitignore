@@ -109,3 +109,5 @@ cdk.out/*
 config.yml
 *dataset-metadata.json
 !example-dataset-metadata.json
+
+stack/config.yml
