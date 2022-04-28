@@ -119,4 +119,4 @@ jobs:
           python -m pip install .["deploy"]
 
       - name: Run CDK synth
-        run: npm run cdk synth
+        run: npm run cdk-synth

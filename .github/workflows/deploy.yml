@@ -87,6 +87,6 @@ jobs:
           python -m pip install .["deploy"]
 
       - name: Deploy the resources to AWS
-        run:  npm run cdk deploy --all --require-approval never
+        run:  npm run cdk-deploy
 
       - run: echo "Successfully deployed."
