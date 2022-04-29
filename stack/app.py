@@ -128,7 +128,7 @@ class dashboardApiLambdaStack(core.Stack):
         )
 
         lambda_function_props = dict(
-            runtime=aws_lambda.Runtime.PYTHON_3_9,
+            runtime=aws_lambda.Runtime.PYTHON_3_7,
             code=aws_lambda.Code.from_docker_build(
                 path=os.path.abspath(code_dir),
                 file="Dockerfiles/lambda/Dockerfile",

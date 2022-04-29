@@ -111,3 +111,6 @@ config.yml
 !example-dataset-metadata.json
 
 stack/config.yml
+
+node_modules
+package-lock.json

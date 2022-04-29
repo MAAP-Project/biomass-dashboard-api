@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 public.ecr.aws/lambda/python:3.9
+FROM --platform=linux/amd64 public.ecr.aws/lambda/python:3.7
 # or, if choosing to use a container pre-built with numpy:
 # FROM AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/PROJECT-dashboard-api-base:TAG
 
