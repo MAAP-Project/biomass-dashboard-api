@@ -16,7 +16,7 @@ def parse_img(content: bytes) -> Dict:
             return dst.meta
 
 
-@patch("dashboard_api.api.api_v1.endpoints.tiles.cogeo.rasterio")
+@patch("rio_tiler.io.cogeo.rasterio")
 def test_tile(rio, app):
     """test tile endpoints."""
     rio.open = mock_rio
@@ -52,7 +52,7 @@ def test_tile(rio, app):
         "/v1/8/87/48@2x.tif?url=https://myurl.com/cog.tif&nodata=0&bidx=1"
     )
     assert response.status_code == 200
-    assert response.headers["content-type"] == "image/tiff"
+    assert response.headers["content-type"] == "image/tiff; application=geotiff"
     meta = parse_img(response.content)
     assert meta["dtype"] == "uint16"
     assert meta["count"] == 2
@@ -63,7 +63,7 @@ def test_tile(rio, app):
     assert response.status_code == 200
     assert response.headers["content-type"] == "application/x-binary"
     t, m = numpy.load(BytesIO(response.content), allow_pickle=True)
-    assert t.shape == (1, 256, 256)
+    assert t.shape == (256, 256)
     assert m.shape == (256, 256)
 
     # partial

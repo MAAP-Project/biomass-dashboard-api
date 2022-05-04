@@ -7,7 +7,7 @@ from mock import patch
 from ...conftest import mock_rio
 
 
-@patch("dashboard_api.api.api_v1.endpoints.metadata.cogeo.rasterio")
+@patch("rio_tiler.io.cogeo.rasterio")
 def test_tilejson(rio, app):
     """test /tilejson endpoint."""
     rio.open = mock_rio
@@ -21,7 +21,7 @@ def test_tilejson(rio, app):
     assert len(body["tiles"]) == 1
     assert body["tiles"][0].startswith("http://testserver/v1/{z}/{x}/{y}@1x?url=https")
     assert body["minzoom"] == 5
-    assert body["maxzoom"] == 8
+    assert body["maxzoom"] == 9
     assert body["bounds"]
     assert body["center"]
 
@@ -35,7 +35,7 @@ def test_tilejson(rio, app):
     )
 
 
-@patch("dashboard_api.api.api_v1.endpoints.metadata.cogeo.rasterio")
+@patch("rio_tiler.io.cogeo.rasterio")
 def test_bounds(rio, app):
     """test /bounds endpoint."""
     rio.open = mock_rio
@@ -47,7 +47,7 @@ def test_bounds(rio, app):
     assert len(body["bounds"]) == 4
 
 
-@patch("dashboard_api.api.api_v1.endpoints.metadata.cogeo.rasterio")
+@patch("rio_tiler.io.cogeo.rasterio")
 def test_metadata(rio, app):
     """test /metadata endpoint."""
     rio.open = mock_rio
@@ -59,7 +59,7 @@ def test_metadata(rio, app):
     assert len(body["bounds"]) == 4
     assert body["statistics"]
     assert len(body["statistics"]["1"]["histogram"][0]) == 20
-    assert body["band_descriptions"] == [[1, "band1"]]
+    assert body["band_descriptions"] == [["1", ""]]
     assert body["dtype"] == "uint16"
     assert body["colorinterp"] == ["gray"]
     assert body["nodata_type"] == "None"

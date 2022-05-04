@@ -5,7 +5,6 @@ import os
 import pytest
 import rasterio
 from rasterio.io import DatasetReader
-
 from starlette.testclient import TestClient
 
 
@@ -21,6 +20,8 @@ def app() -> TestClient:
     """Make sure we use monkeypatch env."""
 
     from dashboard_api.main import app
+
+    app.state.cache = None
 
     return TestClient(app)
 

@@ -36,7 +36,10 @@ def _setup_s3(empty=False):
     dataset_metadata_json = json.dumps(datasets_domains)
     s3_keys = [
         ("indicators/test/super.csv", b"test"),
-        (DATASET_METADATA_FILENAME, dataset_metadata_json,),
+        (
+            DATASET_METADATA_FILENAME,
+            dataset_metadata_json,
+        ),
     ]
     for key, content in s3_keys:
         bucket.put_object(Body=content, Key=key)

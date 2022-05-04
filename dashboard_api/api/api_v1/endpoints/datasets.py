@@ -1,14 +1,13 @@
 """Dataset endpoints."""
+from fastapi import APIRouter, Depends, HTTPException, Response
+from starlette.requests import Request
+
 from dashboard_api.api import utils
 from dashboard_api.core import config
 from dashboard_api.db.memcache import CacheLayer
 from dashboard_api.db.static.datasets import datasets_manager
 from dashboard_api.db.static.errors import InvalidIdentifier
-from dashboard_api.models.static import Datasets, Dataset
-
-from fastapi import APIRouter, Depends, HTTPException, Response
-
-from starlette.requests import Request
+from dashboard_api.models.static import DatasetExternal, Datasets
 
 router = APIRouter()
 
@@ -49,12 +48,12 @@ def get_datasets(
     responses={
         200: dict(description="return datasets available for a given spotlight")
     },
-    response_model=Dataset,
+    response_model=DatasetExternal,
 )
 def get_dataset(
     request: Request,
-    dataset_id: str,
     response: Response,
+    dataset_id: str,
     cache_client: CacheLayer = Depends(utils.get_cache),
 ):
     """Return dataset info for all datasets available for a given spotlight"""
@@ -77,7 +76,7 @@ def get_dataset(
             if cache_client and content:
                 cache_client.set_dataset(dataset_id, content)
 
-        return content.datasets[0]
+        return content.datasets[0]  # type: ignore
     except InvalidIdentifier:
         raise HTTPException(
             status_code=404, detail=f"Invalid dataset identifier: {dataset_id}"
