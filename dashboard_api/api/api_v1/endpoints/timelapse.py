@@ -1,9 +1,9 @@
 """API metadata."""
 
+from fastapi import APIRouter
+
 from dashboard_api.api.utils import get_zonal_stat
 from dashboard_api.models.timelapse import TimelapseRequest, TimelapseValue
-
-from fastapi import APIRouter
 
 router = APIRouter()
 

@@ -1,5 +1,3 @@
 """dashboard_api."""
 
-import pkg_resources
-
-version = pkg_resources.get_distribution(__package__).version
+version = "0.5.0"

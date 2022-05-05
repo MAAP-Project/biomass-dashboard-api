@@ -1,1 +1,15 @@
-{}
+{
+  "name": "cdk-deploy",
+  "version": "0.1.0",
+  "description": "Dependencies for CDK deployment",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "cdk": "1.139.0"
+  },
+  "scripts": {
+    "cdk": "cdk",
+    "cdk-deploy": "cdk deploy --all --require-approval never",
+    "cdk-synth": "cdk synth"
+  }
+}

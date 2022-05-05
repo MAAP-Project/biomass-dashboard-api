@@ -1,13 +1,12 @@
 """products endpoint."""
 
-from dashboard_api.api import utils
-from dashboard_api.db.static.products import products as products_manager
-from dashboard_api.db.static.datasets import datasets_manager
-from dashboard_api.db.memcache import CacheLayer
-from dashboard_api.core import config
-from dashboard_api.models.static import Product, Products
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
 
-from fastapi import APIRouter, Depends, HTTPException, Response, Request
+from dashboard_api.api import utils
+from dashboard_api.core import config
+from dashboard_api.db.memcache import CacheLayer
+from dashboard_api.db.static.products import products as products_manager
+from dashboard_api.models.static import Product, Products
 
 router = APIRouter()
 
@@ -18,9 +17,10 @@ router = APIRouter()
     response_model=Products,
 )
 def get_products(
-        request: Request,
-        response: Response,
-        cache_client: CacheLayer = Depends(utils.get_cache)):
+    request: Request,
+    response: Response,
+    cache_client: CacheLayer = Depends(utils.get_cache),
+):
     """Return list of products."""
     products = None
     if cache_client:
@@ -76,7 +76,7 @@ def get_product(
         )
 
     return product
-    
+
 
 def _api_url(request: Request) -> str:
     scheme = request.url.scheme

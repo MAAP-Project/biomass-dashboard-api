@@ -4,19 +4,16 @@ import os
 
 import yaml
 
-config_object = yaml.load(
-    open(f"{os.path.abspath('.')}/stack/config.yml", "r"), Loader=yaml.FullLoader
-)
+config_object = yaml.safe_load(open(f"{os.path.abspath('.')}/stack/config.yml", "r"))
 
 STAGE = os.environ.get("STAGE", config_object["STAGE"])
-VECTOR_TILESERVER_URL = os.environ.get(
-    "VECTOR_TILESERVER_URL",
-    config_object.get("VECTOR_TILESERVER_URL")
-) or ""
-TITILER_SERVER_URL = os.environ.get(
-    "TITILER_SERVER_URL",
-    config_object.get("TITILER_SERVER_URL")
-) or ""
+VECTOR_TILESERVER_URL = (
+    os.environ.get("VECTOR_TILESERVER_URL", config_object.get("VECTOR_TILESERVER_URL"))
+    or ""
+)
+TITILER_SERVER_URL = (
+    os.environ.get("TITILER_SERVER_URL", config_object.get("TITILER_SERVER_URL")) or ""
+)
 API_VERSION_STR = "/v1"
 
 PROJECT_NAME = config_object["PROJECT_NAME"]
