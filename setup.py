@@ -27,16 +27,7 @@ extra_reqs = {
     "dev": ["pre-commit", "safety", "bandit"],
     "server": ["uvicorn", "click==7.0"],
     "deploy": [
-        "aws-cdk.core>=2.0.0",
-        "aws-cdk.aws_lambda>=2.0.0",
-        "aws-cdk.aws_apigatewayv2>=2.0.0",
-        "aws-cdk.aws_apigatewayv2_integrations>=2.0.0",
-        "aws-cdk.aws_ecs>=2.0.0",
-        "aws-cdk.aws_ec2>=2.0.0",
-        "aws-cdk.aws_autoscaling>=2.0.0",
-        "aws-cdk.aws_ecs_patterns>=2.0.0",
-        "aws-cdk.aws_iam>=2.0.0",
-        "aws-cdk.aws_elasticache>=2.0.0",
+        "aws-cdk-lib>=2.0.0"
     ],
     "test": ["moto[iam]", "mock", "pytest", "pytest-cov", "pytest-asyncio", "requests"],
 }
