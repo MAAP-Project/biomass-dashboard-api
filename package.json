@@ -9,7 +9,7 @@
   },
   "scripts": {
     "cdk": "cdk",
-    "cdk-deploy": "cdk deploy --all --require-approval never -vvv --debug",
+    "cdk-deploy": "cdk deploy --all --require-approval never",
     "cdk-synth": "cdk synth"
   }
 }

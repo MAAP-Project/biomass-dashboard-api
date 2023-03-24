@@ -80,7 +80,7 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install AWS CDK
-        run: npm install -g
+        run: npm install -g aws-cdk
 
       - name: Install python packages
         run: |
