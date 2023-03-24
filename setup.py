@@ -28,8 +28,8 @@ extra_reqs = {
     "server": ["uvicorn", "click==7.0"],
     "deploy": [
         "aws-cdk-lib>=2.0.0",
-        "aws-cdk.aws_apigatewayv2_alpha>=2.0.0",
-        "aws-cdk.aws_apigatewayv2_integrations_alpha>=2.0.0",
+        "aws-cdk.aws_apigatewayv2_alpha>=2.67.0a0",
+        "aws-cdk.aws_apigatewayv2_integrations_alpha>=2.67.0a0",
     ],
     "test": ["moto[iam]", "mock", "pytest", "pytest-cov", "pytest-asyncio", "requests"],
 }
