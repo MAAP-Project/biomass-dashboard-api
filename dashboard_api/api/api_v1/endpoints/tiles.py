@@ -40,10 +40,11 @@ def tile(
     z: int = Path(..., ge=0, le=30, description="Mercator tiles's zoom level"),
     x: int = Path(..., description="Mercator tiles's column"),
     y: int = Path(..., description="Mercator tiles's row"),
-    scale: int = Query(
-        1, gt=0, lt=4, description="Tile size scale. 1=256x256, 2=512x512..."
-    ),
-    ext: ImageType = Query(None, description="Output image type. Default is auto."),
+    # AssertionError: Cannot use `Query` for path param 'scale'
+    # scale: int = Query(
+    #     1, gt=0, lt=4, description="Tile size scale. 1=256x256, 2=512x512..."
+    # ),
+    # ext: ImageType = Query(None, description="Output image type. Default is auto."),
     url: str = Query(..., description="Cloud Optimized GeoTIFF URL."),
     bidx: Optional[str] = Query(None, description="Coma (',') delimited band indexes"),
     nodata: Optional[Union[str, int, float]] = Query(

@@ -4,12 +4,14 @@ import os
 from typing import Any
 
 import config
-from aws_cdk import aws_apigatewayv2 as apigw
-from aws_cdk import aws_apigatewayv2_integrations as apigw_integrations
+from constructs import Construct
+from aws_cdk import aws_apigatewayv2_alpha as apigw
+from aws_cdk import aws_apigatewayv2_integrations_alpha as apigw_integrations
 from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_elasticache as escache
 from aws_cdk import aws_iam as iam
-from aws_cdk import aws_lambda, core
+from aws_cdk import aws_lambda
+from aws_cdk import App, Stack, CfnOutput, Duration, Tag
 
 s3_full_access_to_data_bucket = iam.PolicyStatement(
     actions=["s3:*"], resources=[f"arn:aws:s3:::{config.BUCKET}*"]
@@ -28,8 +30,7 @@ DEFAULT_ENV = dict(
     VSI_CACHE_SIZE="1000000",
 )
 
-
-class dashboardApiLambdaStack(core.Stack):
+class dashboardApiLambdaStack(Stack):
     """
     Dashboard Api Lambda Stack
 
@@ -41,7 +42,7 @@ class dashboardApiLambdaStack(core.Stack):
 
     def __init__(
         self,
-        scope: core.Construct,
+        scope: Construct,
         id: str,
         dataset_metadata_filename: str,
         memory: int = 1024,
@@ -135,7 +136,7 @@ class dashboardApiLambdaStack(core.Stack):
             ),
             handler="handler.handler",
             memory_size=memory,
-            timeout=core.Duration.seconds(timeout),
+            timeout=Duration.seconds(timeout),
             environment=lambda_env,
             security_groups=[lambda_function_security_group],
             vpc=vpc,
@@ -160,10 +161,10 @@ class dashboardApiLambdaStack(core.Stack):
                 f"{id}-integration", handler=lambda_function
             ),
         )
-        core.CfnOutput(self, "API Endpoint", value=api.url)
+        CfnOutput(self, "API Endpoint", value=api.url)
 
 
-app = core.App()
+app = App()
 
 
 # Tag infrastructure
@@ -174,7 +175,7 @@ for key, value in {
     "Client": os.environ.get("CLIENT"),
 }.items():
     if value:
-        core.Tag.add(app, key, value)
+        Tag(key, value)
 
 lambda_stackname = f"{config.PROJECT_NAME}-lambda-{config.STAGE}"
 dashboardApiLambdaStack(
