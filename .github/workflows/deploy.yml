@@ -66,18 +66,18 @@ jobs:
       - name: Upgrade pip
         run: python -m pip install -U pip
 
-      - name: Get pip cache dir
-        id: pip-cache
-        run: |
-          echo "::set-output name=dir::$(pip cache dir)"
+#       - name: Get pip cache dir
+#         id: pip-cache
+#         run: |
+#           echo "::set-output name=dir::$(pip cache dir)"
 
-      - name: pip cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.pip-cache.outputs.dir }}
-          key: ${{ runner.os }}-pip-${{ hashFiles('setup.py') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+#       - name: pip cache
+#         uses: actions/cache@v2
+#         with:
+#           path: ${{ steps.pip-cache.outputs.dir }}
+#           key: ${{ runner.os }}-pip-${{ hashFiles('setup.py') }}
+#           restore-keys: |
+#             ${{ runner.os }}-pip-
 
       - name: Install AWS CDK
         run: npm install -g aws-cdk
