@@ -27,7 +27,9 @@ extra_reqs = {
     "dev": ["pre-commit", "safety", "bandit"],
     "server": ["uvicorn", "click==7.0"],
     "deploy": [
-        "aws-cdk-lib>=2.0.0"
+        "aws-cdk-lib>=2.0.0",
+        "aws-cdk.aws_apigatewayv2_alpha>=2.0.0",
+        "aws-cdk.aws_apigatewayv2_integrations_alpha>=2.0.0",
     ],
     "test": ["moto[iam]", "mock", "pytest", "pytest-cov", "pytest-asyncio", "requests"],
 }
