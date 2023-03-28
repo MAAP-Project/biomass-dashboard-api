@@ -10,6 +10,8 @@ COPY README.md /app/README.md
 COPY dashboard_api/ /app/dashboard_api/
 COPY setup.py /app/setup.py
 COPY example-dataset-metadata.json /app/example-dataset-metadata.json
+COPY example-products-metadata.json /app/example-products-metadata.json
+COPY example-country-pilots-metadata.json /app/example-country-pilots-metadata.json
 RUN mkdir /app/stack
 COPY stack/config.yml /app/stack/config.yml
 

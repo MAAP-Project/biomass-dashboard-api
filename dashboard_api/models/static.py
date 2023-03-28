@@ -27,6 +27,8 @@ class NonGeoJsonSource(Source):
     source_layer: Optional[str]
     layer_type: Optional[str]
     source_url: Optional[str]
+    minzoom: int = 0
+    maxzoom: int = 23
 
 
 class GeoJsonSource(Source):
