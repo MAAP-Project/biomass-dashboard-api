@@ -3,8 +3,6 @@ on:
   pull_request:
     branches:
       - main
-  schedule:
-    - cron:  '0 0 * * *' # daily
 
 env:
   STAC_API_URL: ""
