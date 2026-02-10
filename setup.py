@@ -25,7 +25,7 @@ inst_reqs = [
     "pydantic<2",
 ]
 extra_reqs = {
-    "dev": ["pre-commit", "safety", "bandit"],
+    "dev": ["pre-commit", "safety", "bandit", "mypy==1.13.0"],
     "server": ["uvicorn", "click==7.0"],
     "deploy": [
         "aws-cdk-lib>=2.0.0",

@@ -1,7 +1,8 @@
 """ dashboard_api static datasets """
+
 import json
 import os
-from typing import List
+from typing import List, Optional
 
 import botocore
 
@@ -99,7 +100,9 @@ class DatasetManager(object):
         """List all datasets"""
         return list(self._data().keys())
 
-    def _format_urls(self, tiles: List[str], api_url: str, spotlight_id: str = None):
+    def _format_urls(
+        self, tiles: List[str], api_url: str, spotlight_id: Optional[str] = None
+    ):
         if spotlight_id:
             [tile.replace("{spotlightId}", spotlight_id) for tile in tiles]
         return [
@@ -110,7 +113,10 @@ class DatasetManager(object):
         ]
 
     def _process(
-        self, datasets_domains_metadata: dict, api_url: str, spotlight_id: str = None
+        self,
+        datasets_domains_metadata: dict,
+        api_url: str,
+        spotlight_id: Optional[str] = None,
     ):
         """
         Processes datasets to be returned to the API consumer:
