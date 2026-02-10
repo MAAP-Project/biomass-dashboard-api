@@ -28,7 +28,7 @@ extra_reqs = {
     "dev": ["pre-commit", "safety", "bandit", "mypy==1.13.0"],
     "server": ["uvicorn", "click==7.0"],
     "deploy": [
-        "aws-cdk-lib>=2.0.0",
+        "aws-cdk-lib==2.91.0",
         "aws-cdk.aws_apigatewayv2_alpha>=2.67.0a0",
         "aws-cdk.aws_apigatewayv2_integrations_alpha>=2.67.0a0",
     ],

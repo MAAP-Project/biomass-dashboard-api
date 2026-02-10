@@ -109,8 +109,8 @@ jobs:
           to_file: 'stack/config.yml'
           commit: 'false'
 
-      - name: Install AWS CDK
-        run: npm install -g
+      - name: Install Node.js dependencies
+        run: npm install
 
       - name: Install python packages
         run: |

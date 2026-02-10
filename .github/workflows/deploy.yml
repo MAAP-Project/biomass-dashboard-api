@@ -79,8 +79,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      - name: Install AWS CDK
-        run: npm install -g cdk
+      - name: Install Node.js dependencies
+        run: npm install
 
       - name: Install python packages
         run: |
