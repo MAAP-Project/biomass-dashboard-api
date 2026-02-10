@@ -1,1020 +1,814 @@
 {
-    "_all": {
-        "nceo_africa_sd": {
-            "id": "nceo_africa_sd",
-            "name": "NCEO Africa Standard Deviation",
-            "type": "raster",
-            "swatch": {
-                "color": "#c0392b",
-                "name": "Pomegranate"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "{titiler_server_url}/cog/tiles/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/96a28977-02db-46a0-8429-70f5b4267d38/SD_map_2017v0m_COG.tif&rescale=0%2C310&colormap_name=reds&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": "0",
-                "max": "310",
-                "units": "Mg/ha",
-                "stops": [
-                    "#fff5f0",
-                    "#fee6da",
-                    "#fdcfbc",
-                    "#fcb498",
-                    "#fc9676",
-                    "#fb7959",
-                    "#f7593f",
-                    "#ec382b",
-                    "#d21e20",
-                    "#b61319",
-                    "#940b13",
-                    "#67000d"
-                ]
-            },
-            "info": "The total uncertainty (SD) at pixel level is composed of different sources of error, which are assumed to be random and independent."
-        },
-        "nasa_jpl_se": {
-            "id": "nasa_jpl_se",
-            "name": "NASA JPL Global Above Ground Biomass Mean Prediction 2020 SE",
-            "type": "raster",
-            "swatch": {
-                "color": "#c0392b",
-                "name": "Pomegranate"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "https://titiler.maap-project.org/mosaics/210e8e5d-35c0-4549-8fc1-2b2145ad6ecf/tiles/{z}/{x}/{y}?bidx=1&max_size=1024&resampling_method=nearest&rescale=0,150&return_mask=true&colormap_name=reds&nodata=0&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 150,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fff5f0",
-                    "#fee6da",
-                    "#fdcfbc",
-                    "#fcb498",
-                    "#fc9676",
-                    "#fb7959",
-                    "#f7593f",
-                    "#ec382b",
-                    "#d21e20",
-                    "#b61319",
-                    "#940b13",
-                    "#67000d"
-                ]
-            },
-            "info": "The uncertainty map in the AGB 2020 product was produced using quantile regression to calculate the lower- and upper-bound of the estimation for each pixel, such that the 2.5-percentile and 97.5-percentile of the AGB estimation were predicted. The error map was produced by assuming that the error distribution is Gaussian. Therefore 95% of the predictions are approximately ±2 SD."
-        },
-        "paraguay_estimated_biomass": {
-            "id": "paraguay_estimated_biomass",
-            "name": "Estimated biomass in Paraguay within 6km grids",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "{titiler_server_url}/cog/tiles/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/0bfec58c-45fb-464e-b301-b1afbdf5249e/5_biomass_cog.masked.tif&nodata=0&bidx=1&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "Estimated biomass within 6km grids."
-        },
-        "icesat2_boreal_biomass": {
-            "id": "icesat2_boreal_biomass",
-            "name": "ICESat-2 Boreal Biomass 2020",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "minzoom": 7,
-                "tiles": [
-                    "https://titiler.maap-project.org/mosaics/e7027568-3a10-472d-a96b-3d0c81aadc6d/tiles/{z}/{x}/{y}.png?bidx=1&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "Aboveground biomass density 2020 gridded to 30m derived from ICESat-2, Harmonized Landsat Sentinel-2 and Copernicus DEM."
-        },
-        "nceo_africa": {
-            "id": "nceo_africa",
-            "name": "NCEO Africa Biomass 2017",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "{titiler_server_url}/cog/tiles/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/ae841191-8a43-4226-9c5e-db4f500adb45/AGB_map_2017v0m_COG.tif&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "The NCEO Africa Aboveground Woody Biomass (AGB) map for the year 2017 at 100m spatial resolution was developed using a combination of LiDAR, Synthetic Aperture Radar (SAR) and optical based data."
-        },
-        "icesat2_boreal_biomass_reduced": {
-            "id": "icesat2_boreal_biomass_reduced",
-            "name": "ICESat-2 Boreal Biomass 2020 - Reduced Resolution",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "maxzoom": 7,
-                "tiles": [
-                    "https://titiler.maap-project.org/cog/tiles/{z}/{x}/{y}.png?url=s3://maap-ops-workspace/shared/nathanmthomas/DPS_tile_lists/AGB/c2020/map_boreal_2022_rh_noground_v4/AGB_tindex_average_4500m.tif&bidx=1&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "Aboveground biomass density 2020 gridded to 30m derived from ICESat-2, Harmonized Landsat Sentinel-2 and Copernicus DEM."
-        },
-        "nasa_jpl": {
-            "id": "nasa_jpl",
-            "name": "NASA JPL Global Above Ground Biomass Mean Prediction 2020",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "https://titiler.maap-project.org/mosaics/f0e6f941-4e50-46b3-9463-11b3c2181662/tiles/{z}/{x}/{y}?bidx=1&max_size=1024&resampling_method=nearest&rescale=0,400&return_mask=true&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "Global aboveground biomass (AGB) density estimates (unit: Mg/ha) derived from a combination of Landsat-8 composites, ALOS-2 PALSAR-2 backscatter (2019-2020) data and SRTM DEM at 100m spatial resolution, trained with samples from the spaceborne lidar data of ICESAT-1, airborne laser scanning (ALS) data, and field inventory data. The boosting tree machine learning model was applied to predict wall-to-wall AGB inferred from satellite data."
-        },
-        "icesat2_boreal_biomass_se": {
-            "id": "icesat2_boreal_biomass_se",
-            "name": "ICESat-2 Boreal Biomass SE",
-            "type": "raster",
-            "swatch": {
-                "color": "#c0392b",
-                "name": "Pomegranate"
-            },
-            "source": {
-                "type": "raster",
-                "minzoom": 8,
-                "tiles": [
-                    "https://titiler.maap-project.org/mosaics/e7027568-3a10-472d-a96b-3d0c81aadc6d/tiles/{z}/{x}/{y}.png?bidx=2&rescale=0%2C20&colormap_name=reds&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": "0",
-                "max": "20",
-                "units": "Mg/ha",
-                "stops": [
-                    "#fff5f0",
-                    "#fee6da",
-                    "#fdcfbc",
-                    "#fcb498",
-                    "#fc9676",
-                    "#fb7959",
-                    "#f7593f",
-                    "#ec382b",
-                    "#d21e20",
-                    "#b61319",
-                    "#940b13",
-                    "#67000d"
-                ]
-            },
-            "info": "Boreal above ground biomass (AGB) standard error (SE), Mg/ha, of the biomass calculated from ICESat-2, Harmonized Landsat Sentinel-2, and Copernicus DEM."
-        },
-        "gedi_l4b": {
-            "id": "gedi_l4b",
-            "name": "GEDI Gridded Biomass 2020",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "https://titiler.dit.maap-project.org/cog/tiles/{z}/{x}/{y}.png?url=s3://ornl-cumulus-prod-protected/gedi/GEDI_L4B_Gridded_Biomass/data/GEDI04_B_MW019MW138_02_002_05_R01000M_MU.tif&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "Mean aboveground biomass density (MU): Estimated mean AGBD for the 1 km grid cell, including forest and non-forest. This Global Ecosystem Dynamics Investigation (GEDI) L4B product provides 1 km x 1 km (1 km, hereafter) estimates of mean aboveground biomass density (AGBD) based on observations from mission week 19 starting on 2019-04-18 to mission week 138 ending on 2021-08-04. The GEDI L4A Footprint Biomass product converts each high-quality waveform to an AGBD prediction, and the L4B product uses the sample present within the borders of each 1 km cell to statistically infer mean AGBD. The gridding procedure is described in the GEDI L4B Algorithm Theoretical Basis Document (ATBD). Patterson et al. (2019) describes the hybrid model-based mode of inference used in the L4B product. Corresponding 1 km estimates of the standard error of the mean are also provided in the L4B product. Uncertainty is due to both GEDI's sampling of the 1 km area (as opposed to making wall-to-wall observations) and the fact that L4A biomass values are modeled in a process subject to error instead of measured in a process that may be assumed to be error-free. Learn more: https://daac.ornl.gov/GEDI/guides/GEDI_L4B_Gridded_Biomass.html"
-        },
-        "gedi_l4b_se": {
-            "id": "gedi_l4b_se",
-            "name": "GEDI Gridded Biomass 2020 Standard Error",
-            "type": "raster",
-            "swatch": {
-                "color": "#c0392b",
-                "name": "Pomegranate"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "https://titiler.dit.maap-project.org/cog/tiles/{z}/{x}/{y}.png?url=s3://ornl-cumulus-prod-protected/gedi/GEDI_L4B_Gridded_Biomass/data/GEDI04_B_MW019MW138_02_002_05_R01000M_SE.tif&rescale=0,310&colormap_name=reds&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": "0",
-                "max": "310",
-                "units": "Mg/ha",
-                "stops": [
-                    "#fff5f0",
-                    "#fee6da",
-                    "#fdcfbc",
-                    "#fcb498",
-                    "#fc9676",
-                    "#fb7959",
-                    "#f7593f",
-                    "#ec382b",
-                    "#d21e20",
-                    "#b61319",
-                    "#940b13",
-                    "#67000d"
-                ]
-            },
-            "info": "Mean aboveground biomass density standard error (SE): Standard Error of the mean estimate, combining sampling and modeling uncertainty. Learn more: https://daac.ornl.gov/GEDI/guides/GEDI_L4B_Gridded_Biomass.html"
-        },
-        "cci_biomass_sd": {
-            "id": "cci_biomass_sd",
-            "name": "CCI Biomass SD",
-            "type": "raster",
-            "swatch": {
-                "color": "#c0392b",
-                "name": "Pomegranate"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "https://titiler.maap-project.org/mosaics/f343756d-bf15-4095-a8f3-f4fcbb26b5f9/tiles/{z}/{x}/{y}?rescale=0,500&bidx=2&colormap_name=reds&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": "0",
-                "max": "500",
-                "units": "Mg/ha",
-                "stops": [
-                    "#fff5f0",
-                    "#fee6da",
-                    "#fdcfbc",
-                    "#fcb498",
-                    "#fc9676",
-                    "#fb7959",
-                    "#f7593f",
-                    "#ec382b",
-                    "#d21e20",
-                    "#b61319",
-                    "#940b13",
-                    "#67000d"
-                ]
-            },
-            "info": "Validation of the Biomass CCI 2020 map used a dedicated tool (plot2map) that allowed comparison with an extensive dataset of ground-based tree size measurements collected from small (averaging 0.15 ha; n > 70,549) and medium (0.9 - 3 ha; n > 462) to large-sized (> 6 ha; n > 20) research plots (Tiers 1-3 respectively), with adjustments made for temporal discrepancies and partial forest fractions."
-        },
-        "gedi_calval_plots": {
-            "id": "gedi_calval_plots",
-            "name": "GEDI Cal/Val Field Data",
-            "type": "geojson",
-            "source": {
-                "type": "geojson",
-                "data": "https://gist.githubusercontent.com/abarciauskas-bgse/23d637003fce13aa6740ec4586550658/raw/22452601f339ab10c9d64597a05a9ed9f32599b5/gedi-calval-plot.geojson"
-            },
-            "enabled": true,
-            "paint": {
-                "circle-radius": 5,
-                "circle-color": "#F261AC",
-                "circle-opacity": 1,
-                "circle-stroke-width": 0.5,
-                "circle-stroke-color": "#730B41"
-            },
-            "swatch": {
-                "color": "#C0C0C0",
-                "name": "Grey"
-            },
-            "info": "Plot locations from the Global Ecosystem Dynamics Investigation (GEDI) Forest Structure and Biomass Database (FSBD). The database is a collection of field and LiDAR datasets developed to serve a central repository for calibration and validation of the GEDI mission data. The GEDI Cal/Val Field Data collection contains the field data contributions to the FSBD. The database has contributions across the globe for a variety of vegetation types from projects dating back to 2003. This shows only the publicly available portion of this training dataset. GEDI's biomass product also uses training data from a large set of internationally contributed datasets that are not currently publicly available."
-        },
-        "paraguay_forest_mask": {
-            "id": "paraguay_forest_mask",
-            "name": "2020 Paraguay Forest/Non-Forest Mask",
-            "type": "raster",
-            "swatch": {
-                "color": "#C0C0C0",
-                "name": "Grey"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "{titiler_server_url}/cog/tiles/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/45fe2e6f-2007-4cb1-964a-f337f39f4fdc/1_forest_cog.masked.tif&rescale=0,1&nodata=0&colormap_name=greens"
-                ]
-            },
-            "legend": {
-                "type": "categorical",
-                "stops": [
-                    {
-                        "color": "#00441b",
-                        "label": "Forest"
-                    }
-                ]
-            },
-            "info": "A binary forest/non-forest mask for Paraguay for 2020."
-        },
-        "paraguay_tree_cover": {
-            "id": "paraguay_tree_cover",
-            "name": "% Tree cover for 2019",
-            "type": "raster",
-            "swatch": {
-                "color": "#C0C0C0",
-                "name": "Grey"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "{titiler_server_url}/cog/tiles/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/ee5eb60c-3c01-4789-ae8e-c03f1d719440/4_tree_cover_cog.masked.tif&rescale=0,75&nodata=0&colormap_name=greens&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": "0",
-                "max": "75",
-                "stops": [
-                    "#f7fcf5",
-                    "#00441b"
-                ]
-            },
-            "info": "Percent (%) Tree cover for 2019."
-        },
-        "cci_biomass": {
-            "id": "cci_biomass",
-            "name": "CCI Biomass 2020",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "https://titiler.maap-project.org/mosaics/f343756d-bf15-4095-a8f3-f4fcbb26b5f9/tiles/{z}/{x}/{y}?rescale=0,400&bidx=1&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "The CCI BIOMASS project delivers spatially explicit estimates of AGB for four epochs and related standard deviations (SDs) as separate map products. The AGB product consists of global datasets with estimates of AGB (unit: tons/ha = Mg/ha). AGB is defined as the mass, expressed as the oven-dry weight of the woody parts (stem, bark, branches and twigs) of all living trees excluding stump and roots. The AGB SD product is a separate data layer providing per-pixel SD of the AGB estimates in Mg/ha. The data products currently provided by the project (year 3, Version 3.0, and additional 2020) consist of four maps of AGB and AGB SD based on Earth Observation data acquired in 2010, 2017, 2018 and 2020, respectively. The spatial resolution of the map products is 100 m."
-        }
+  "_all": {
+    "gedi_l4b_se": {
+      "id": "gedi_l4b_se",
+      "name": "GEDI Gridded Biomass 2020 Standard Error",
+      "type": "raster",
+      "swatch": {
+        "color": "#c0392b",
+        "name": "Pomegranate"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "https://titiler.maap-project.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://ornl-cumulus-prod-protected/gedi/GEDI_L4B_Gridded_Biomass_V2_1/data/GEDI04_B_MW019MW223_02_002_02_R01000M_SE.tif&rescale=0,310&colormap_name=reds&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": "0",
+        "max": "310",
+        "units": "Mg/ha",
+        "stops": [
+          "#fff5f0",
+          "#fee6da",
+          "#fdcfbc",
+          "#fcb498",
+          "#fc9676",
+          "#fb7959",
+          "#f7593f",
+          "#ec382b",
+          "#d21e20",
+          "#b61319",
+          "#940b13",
+          "#67000d"
+        ]
+      },
+      "info": "Mean aboveground biomass density standard error (SE): Standard Error of the mean estimate, combining sampling and modeling uncertainty. Learn more: https://daac.ornl.gov/GEDI/guides/GEDI_L4B_Gridded_Biomass.html"
     },
-    "global": {
-        "nceo_africa_sd": {
-            "id": "nceo_africa_sd",
-            "name": "NCEO Africa Standard Deviation",
-            "type": "raster",
-            "swatch": {
-                "color": "#c0392b",
-                "name": "Pomegranate"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "{titiler_server_url}/cog/tiles/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/96a28977-02db-46a0-8429-70f5b4267d38/SD_map_2017v0m_COG.tif&rescale=0%2C310&colormap_name=reds&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": "0",
-                "max": "310",
-                "units": "Mg/ha",
-                "stops": [
-                    "#fff5f0",
-                    "#fee6da",
-                    "#fdcfbc",
-                    "#fcb498",
-                    "#fc9676",
-                    "#fb7959",
-                    "#f7593f",
-                    "#ec382b",
-                    "#d21e20",
-                    "#b61319",
-                    "#940b13",
-                    "#67000d"
-                ]
-            },
-            "info": "The total uncertainty (SD) at pixel level is composed of different sources of error, which are assumed to be random and independent."
+    "nceo_africa": {
+      "id": "nceo_africa",
+      "name": "NCEO Africa Biomass 2017",
+      "type": "raster",
+      "swatch": {
+        "color": "#189C54",
+        "name": "Dark Green"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "{titiler_server_url}/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/ae841191-8a43-4226-9c5e-db4f500adb45/AGB_map_2017v0m_COG.tif&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": 0,
+        "max": 400,
+        "units": "Mg/ha",
+        "stops": [
+          "#fdfbfb",
+          "#e3c3b5",
+          "#c9a87a",
+          "#bab060",
+          "#9db059",
+          "#76a652",
+          "#45994a",
+          "#3a8c66",
+          "#2e7c7f",
+          "#1f567b",
+          "#0f2577",
+          "#000000"
+        ]
+      },
+      "info": "The NCEO Africa Aboveground Woody Biomass (AGB) map for the year 2017 at 100m spatial resolution was developed using a combination of LiDAR, Synthetic Aperture Radar (SAR) and optical based data."
+    },
+    "paraguay_estimated_biomass": {
+      "id": "paraguay_estimated_biomass",
+      "name": "Estimated biomass in Paraguay within 6km grids",
+      "type": "raster",
+      "swatch": {
+        "color": "#189C54",
+        "name": "Dark Green"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "{titiler_server_url}/cog/tiles/WebMercatorQaud/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/0bfec58c-45fb-464e-b301-b1afbdf5249e/5_biomass_cog.masked.tif&nodata=0&bidx=1&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": 0,
+        "max": 400,
+        "units": "Mg/ha",
+        "stops": [
+          "#fdfbfb",
+          "#e3c3b5",
+          "#c9a87a",
+          "#bab060",
+          "#9db059",
+          "#76a652",
+          "#45994a",
+          "#3a8c66",
+          "#2e7c7f",
+          "#1f567b",
+          "#0f2577",
+          "#000000"
+        ]
+      },
+      "info": "Estimated biomass within 6km grids."
+    },
+    "icesat2_boreal_biomass_se": {
+      "id": "icesat2_boreal_biomass_se",
+      "name": "ICESat-2 Boreal Biomass SE",
+      "type": "raster",
+      "swatch": {
+        "color": "#c0392b",
+        "name": "Pomegranate"
+      },
+      "source": {
+        "type": "raster",
+        "minzoom": 8,
+        "tiles": [
+          "https://titiler.maap-project.org/searches/76c04112ddbe5d4fa938c24a88855882/tiles/WebMercatorQuad/{z}/{x}/{y}.png?assets=cog&bidx=2&rescale=0%2C20&colormap_name=reds&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": "0",
+        "max": "20",
+        "units": "Mg/ha",
+        "stops": [
+          "#fff5f0",
+          "#fee6da",
+          "#fdcfbc",
+          "#fcb498",
+          "#fc9676",
+          "#fb7959",
+          "#f7593f",
+          "#ec382b",
+          "#d21e20",
+          "#b61319",
+          "#940b13",
+          "#67000d"
+        ]
+      },
+      "info": "Boreal above ground biomass (AGB) standard error (SE), Mg/ha, of the biomass calculated from ICESat-2, Harmonized Landsat Sentinel-2, and Copernicus DEM."
+    },
+    "gedi_calval_plots": {
+      "id": "gedi_calval_plots",
+      "name": "GEDI Cal/Val Field Data",
+      "type": "geojson",
+      "source": {
+        "type": "geojson",
+        "data": "https://gist.githubusercontent.com/abarciauskas-bgse/23d637003fce13aa6740ec4586550658/raw/22452601f339ab10c9d64597a05a9ed9f32599b5/gedi-calval-plot.geojson"
+      },
+      "enabled": true,
+      "paint": {
+        "circle-radius": 5,
+        "circle-color": "#F261AC",
+        "circle-opacity": 1,
+        "circle-stroke-width": 0.5,
+        "circle-stroke-color": "#730B41"
+      },
+      "swatch": {
+        "color": "#C0C0C0",
+        "name": "Grey"
+      },
+      "info": "Plot locations from the Global Ecosystem Dynamics Investigation (GEDI) Forest Structure and Biomass Database (FSBD). The database is a collection of field and LiDAR datasets developed to serve a central repository for calibration and validation of the GEDI mission data. The GEDI Cal/Val Field Data collection contains the field data contributions to the FSBD. The database has contributions across the globe for a variety of vegetation types from projects dating back to 2003. This shows only the publicly available portion of this training dataset. GEDI's biomass product also uses training data from a large set of internationally contributed datasets that are not currently publicly available."
+    },
+    "gedi_l4b": {
+      "id": "gedi_l4b",
+      "name": "GEDI Gridded Biomass 2020",
+      "type": "raster",
+      "swatch": {
+        "color": "#189C54",
+        "name": "Dark Green"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "https://titiler.maap-project.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://ornl-cumulus-prod-protected/gedi/GEDI_L4B_Gridded_Biomass_V2_1/data/GEDI04_B_MW019MW223_02_002_02_R01000M_MU.tif&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": 0,
+        "max": 400,
+        "units": "Mg/ha",
+        "stops": [
+          "#fdfbfb",
+          "#e3c3b5",
+          "#c9a87a",
+          "#bab060",
+          "#9db059",
+          "#76a652",
+          "#45994a",
+          "#3a8c66",
+          "#2e7c7f",
+          "#1f567b",
+          "#0f2577",
+          "#000000"
+        ]
+      },
+      "info": "Mean aboveground biomass density (MU): Estimated mean AGBD for the 1 km grid cell, including forest and non-forest. This Global Ecosystem Dynamics Investigation (GEDI) L4B product provides 1 km x 1 km (1 km, hereafter) estimates of mean aboveground biomass density (AGBD) based on observations from mission week 19 starting on 2019-04-18 to mission week 138 ending on 2021-08-04. The GEDI L4A Footprint Biomass product converts each high-quality waveform to an AGBD prediction, and the L4B product uses the sample present within the borders of each 1 km cell to statistically infer mean AGBD. The gridding procedure is described in the GEDI L4B Algorithm Theoretical Basis Document (ATBD). Patterson et al. (2019) describes the hybrid model-based mode of inference used in the L4B product. Corresponding 1 km estimates of the standard error of the mean are also provided in the L4B product. Uncertainty is due to both GEDI's sampling of the 1 km area (as opposed to making wall-to-wall observations) and the fact that L4A biomass values are modeled in a process subject to error instead of measured in a process that may be assumed to be error-free. Learn more: https://daac.ornl.gov/GEDI/guides/GEDI_L4B_Gridded_Biomass.html"
+    },
+    "icesat2_boreal_biomass": {
+      "id": "icesat2_boreal_biomass",
+      "name": "ICESat-2 Boreal Biomass 2020",
+      "type": "raster",
+      "swatch": {
+        "color": "#189C54",
+        "name": "Dark Green"
+      },
+      "source": [
+        {
+          "type": "raster",
+          "minzoom": 7,
+          "tiles": [
+            "https://titiler.maap-project.org/searches/76c04112ddbe5d4fa938c24a88855882/tiles/WebMercatorQuad/{z}/{x}/{y}.png?assets=cog&bidx=1&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
+          ]
         },
-        "nasa_jpl_se": {
-            "id": "nasa_jpl_se",
-            "name": "NASA JPL Global Above Ground Biomass Mean Prediction 2020 SE",
-            "type": "raster",
-            "swatch": {
-                "color": "#c0392b",
-                "name": "Pomegranate"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "https://titiler.maap-project.org/mosaics/210e8e5d-35c0-4549-8fc1-2b2145ad6ecf/tiles/{z}/{x}/{y}?bidx=1&max_size=1024&resampling_method=nearest&rescale=0,150&return_mask=true&colormap_name=reds&nodata=0&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 150,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fff5f0",
-                    "#fee6da",
-                    "#fdcfbc",
-                    "#fcb498",
-                    "#fc9676",
-                    "#fb7959",
-                    "#f7593f",
-                    "#ec382b",
-                    "#d21e20",
-                    "#b61319",
-                    "#940b13",
-                    "#67000d"
-                ]
-            },
-            "info": "The uncertainty map in the AGB 2020 product was produced using quantile regression to calculate the lower- and upper-bound of the estimation for each pixel, such that the 2.5-percentile and 97.5-percentile of the AGB estimation were predicted. The error map was produced by assuming that the error distribution is Gaussian. Therefore 95% of the predictions are approximately ±2 SD."
-        },
-        "paraguay_estimated_biomass": {
-            "id": "paraguay_estimated_biomass",
-            "name": "Estimated biomass in Paraguay within 6km grids",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "{titiler_server_url}/cog/tiles/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/0bfec58c-45fb-464e-b301-b1afbdf5249e/5_biomass_cog.masked.tif&nodata=0&bidx=1&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "Estimated biomass within 6km grids."
-        },
-        "icesat2_boreal_biomass": {
-            "id": "icesat2_boreal_biomass",
-            "name": "ICESat-2 Boreal Biomass 2020",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "minzoom": 8,
-                "tiles": [
-                    "https://titiler.maap-project.org/mosaics/e7027568-3a10-472d-a96b-3d0c81aadc6d/tiles/{z}/{x}/{y}.png?bidx=1&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "Aboveground biomass density 2020 gridded to 30m derived from ICESat-2, Harmonized Landsat Sentinel-2 and Copernicus DEM."
-        },
-        "nceo_africa": {
-            "id": "nceo_africa",
-            "name": "NCEO Africa Biomass 2017",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "{titiler_server_url}/cog/tiles/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/ae841191-8a43-4226-9c5e-db4f500adb45/AGB_map_2017v0m_COG.tif&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "The NCEO Africa Aboveground Woody Biomass (AGB) map for the year 2017 at 100m spatial resolution was developed using a combination of LiDAR, Synthetic Aperture Radar (SAR) and optical based data."
-        },
-        "icesat2_boreal_biomass_reduced": {
-            "id": "icesat2_boreal_biomass_reduced",
-            "name": "ICESat-2 Boreal Biomass 2020 - Reduced Resolution",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "maxzoom": 7,
-                "tiles": [
-                    "https://titiler.maap-project.org/cog/tiles/{z}/{x}/{y}.png?url=s3://maap-ops-workspace/shared/nathanmthomas/DPS_tile_lists/AGB/c2020/map_boreal_2022_rh_noground_v4/AGB_tindex_average_4500m.tif&bidx=1&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "Aboveground biomass density 2020 gridded to 30m derived from ICESat-2, Harmonized Landsat Sentinel-2 and Copernicus DEM."
-        },
-        "nasa_jpl": {
-            "id": "nasa_jpl",
-            "name": "NASA JPL Global Above Ground Biomass Mean Prediction 2020",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "https://titiler.maap-project.org/mosaics/f0e6f941-4e50-46b3-9463-11b3c2181662/tiles/{z}/{x}/{y}?bidx=1&max_size=1024&resampling_method=nearest&rescale=0,400&return_mask=true&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "Global aboveground biomass (AGB) density estimates (unit: Mg/ha) derived from a combination of Landsat-8 composites, ALOS-2 PALSAR-2 backscatter (2019-2020) data and SRTM DEM at 100m spatial resolution, trained with samples from the spaceborne lidar data of ICESAT-1, airborne laser scanning (ALS) data, and field inventory data. The boosting tree machine learning model was applied to predict wall-to-wall AGB inferred from satellite data."
-        },
-        "icesat2_boreal_biomass_se": {
-            "id": "icesat2_boreal_biomass_se",
-            "name": "ICESat-2 Boreal Biomass SE",
-            "type": "raster",
-            "swatch": {
-                "color": "#c0392b",
-                "name": "Pomegranate"
-            },
-            "source": {
-                "type": "raster",
-                "minzoom": 8,
-                "tiles": [
-                    "https://titiler.maap-project.org/mosaics/e7027568-3a10-472d-a96b-3d0c81aadc6d/tiles/{z}/{x}/{y}.png?bidx=2&rescale=0%2C20&colormap_name=reds&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": "0",
-                "max": "20",
-                "units": "Mg/ha",
-                "stops": [
-                    "#fff5f0",
-                    "#fee6da",
-                    "#fdcfbc",
-                    "#fcb498",
-                    "#fc9676",
-                    "#fb7959",
-                    "#f7593f",
-                    "#ec382b",
-                    "#d21e20",
-                    "#b61319",
-                    "#940b13",
-                    "#67000d"
-                ]
-            },
-            "info": "Boreal above ground biomass (AGB) standard error (SE), Mg/ha, of the biomass calculated from ICESat-2, Harmonized Landsat Sentinel-2, and Copernicus DEM."
-        },
-        "gedi_l4b": {
-            "id": "gedi_l4b",
-            "name": "GEDI Gridded Biomass 2020",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "https://titiler.dit.maap-project.org/cog/tiles/{z}/{x}/{y}.png?url=s3://ornl-cumulus-prod-protected/gedi/GEDI_L4B_Gridded_Biomass/data/GEDI04_B_MW019MW138_02_002_05_R01000M_MU.tif&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "Mean aboveground biomass density (MU): Estimated mean AGBD for the 1 km grid cell, including forest and non-forest. This Global Ecosystem Dynamics Investigation (GEDI) L4B product provides 1 km x 1 km (1 km, hereafter) estimates of mean aboveground biomass density (AGBD) based on observations from mission week 19 starting on 2019-04-18 to mission week 138 ending on 2021-08-04. The GEDI L4A Footprint Biomass product converts each high-quality waveform to an AGBD prediction, and the L4B product uses the sample present within the borders of each 1 km cell to statistically infer mean AGBD. The gridding procedure is described in the GEDI L4B Algorithm Theoretical Basis Document (ATBD). Patterson et al. (2019) describes the hybrid model-based mode of inference used in the L4B product. Corresponding 1 km estimates of the standard error of the mean are also provided in the L4B product. Uncertainty is due to both GEDI's sampling of the 1 km area (as opposed to making wall-to-wall observations) and the fact that L4A biomass values are modeled in a process subject to error instead of measured in a process that may be assumed to be error-free. Learn more: https://daac.ornl.gov/GEDI/guides/GEDI_L4B_Gridded_Biomass.html"
-        },
-        "gedi_l4b_se": {
-            "id": "gedi_l4b_se",
-            "name": "GEDI Gridded Biomass 2020 Standard Error",
-            "type": "raster",
-            "swatch": {
-                "color": "#c0392b",
-                "name": "Pomegranate"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "https://titiler.dit.maap-project.org/cog/tiles/{z}/{x}/{y}.png?url=s3://ornl-cumulus-prod-protected/gedi/GEDI_L4B_Gridded_Biomass/data/GEDI04_B_MW019MW138_02_002_05_R01000M_SE.tif&rescale=0,310&colormap_name=reds&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": "0",
-                "max": "310",
-                "units": "Mg/ha",
-                "stops": [
-                    "#fff5f0",
-                    "#fee6da",
-                    "#fdcfbc",
-                    "#fcb498",
-                    "#fc9676",
-                    "#fb7959",
-                    "#f7593f",
-                    "#ec382b",
-                    "#d21e20",
-                    "#b61319",
-                    "#940b13",
-                    "#67000d"
-                ]
-            },
-            "info": "Mean aboveground biomass density standard error (SE): Standard Error of the mean estimate, combining sampling and modeling uncertainty. Learn more: https://daac.ornl.gov/GEDI/guides/GEDI_L4B_Gridded_Biomass.html"
-        },
-        "cci_biomass_sd": {
-            "id": "cci_biomass_sd",
-            "name": "CCI Biomass SD",
-            "type": "raster",
-            "swatch": {
-                "color": "#c0392b",
-                "name": "Pomegranate"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "https://titiler.maap-project.org/mosaics/f343756d-bf15-4095-a8f3-f4fcbb26b5f9/tiles/{z}/{x}/{y}?rescale=0,500&bidx=2&colormap_name=reds&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": "0",
-                "max": "500",
-                "units": "Mg/ha",
-                "stops": [
-                    "#fff5f0",
-                    "#fee6da",
-                    "#fdcfbc",
-                    "#fcb498",
-                    "#fc9676",
-                    "#fb7959",
-                    "#f7593f",
-                    "#ec382b",
-                    "#d21e20",
-                    "#b61319",
-                    "#940b13",
-                    "#67000d"
-                ]
-            },
-            "info": "Validation of the Biomass CCI 2020 map used a dedicated tool (plot2map) that allowed comparison with an extensive dataset of ground-based tree size measurements collected from small (averaging 0.15 ha; n > 70,549) and medium (0.9 - 3 ha; n > 462) to large-sized (> 6 ha; n > 20) research plots (Tiers 1-3 respectively), with adjustments made for temporal discrepancies and partial forest fractions."
-        },
-        "gedi_calval_plots": {
-            "id": "gedi_calval_plots",
-            "name": "GEDI Cal/Val Field Data",
-            "type": "geojson",
-            "source": {
-                "type": "geojson",
-                "data": "https://gist.githubusercontent.com/abarciauskas-bgse/23d637003fce13aa6740ec4586550658/raw/22452601f339ab10c9d64597a05a9ed9f32599b5/gedi-calval-plot.geojson"
-            },
-            "enabled": true,
-            "paint": {
-                "circle-radius": 5,
-                "circle-color": "#F261AC",
-                "circle-opacity": 1,
-                "circle-stroke-width": 0.5,
-                "circle-stroke-color": "#730B41"
-            },
-            "swatch": {
-                "color": "#C0C0C0",
-                "name": "Grey"
-            },
-            "info": "Plot locations from the Global Ecosystem Dynamics Investigation (GEDI) Forest Structure and Biomass Database (FSBD). The database is a collection of field and LiDAR datasets developed to serve a central repository for calibration and validation of the GEDI mission data. The GEDI Cal/Val Field Data collection contains the field data contributions to the FSBD. The database has contributions across the globe for a variety of vegetation types from projects dating back to 2003. This shows only the publicly available portion of this training dataset. GEDI's biomass product also uses training data from a large set of internationally contributed datasets that are not currently publicly available."
-        },
-        "paraguay_forest_mask": {
-            "id": "paraguay_forest_mask",
-            "name": "2020 Paraguay Forest/Non-Forest Mask",
-            "type": "raster",
-            "swatch": {
-                "color": "#C0C0C0",
-                "name": "Grey"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "{titiler_server_url}/cog/tiles/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/45fe2e6f-2007-4cb1-964a-f337f39f4fdc/1_forest_cog.masked.tif&rescale=0,1&nodata=0&colormap_name=greens"
-                ]
-            },
-            "legend": {
-                "type": "categorical",
-                "stops": [
-                    {
-                        "color": "#00441b",
-                        "label": "Forest"
-                    }
-                ]
-            },
-            "info": "A binary forest/non-forest mask for Paraguay for 2020."
-        },
-        "paraguay_tree_cover": {
-            "id": "paraguay_tree_cover",
-            "name": "% Tree cover for 2019",
-            "type": "raster",
-            "swatch": {
-                "color": "#C0C0C0",
-                "name": "Grey"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "{titiler_server_url}/cog/tiles/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/ee5eb60c-3c01-4789-ae8e-c03f1d719440/4_tree_cover_cog.masked.tif&rescale=0,75&nodata=0&colormap_name=greens&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": "0",
-                "max": "75",
-                "stops": [
-                    "#f7fcf5",
-                    "#00441b"
-                ]
-            },
-            "info": "Percent (%) Tree cover for 2019."
-        },
-        "cci_biomass": {
-            "id": "cci_biomass",
-            "name": "CCI Biomass 2020",
-            "type": "raster",
-            "swatch": {
-                "color": "#189C54",
-                "name": "Dark Green"
-            },
-            "source": {
-                "type": "raster",
-                "tiles": [
-                    "https://titiler.maap-project.org/mosaics/f343756d-bf15-4095-a8f3-f4fcbb26b5f9/tiles/{z}/{x}/{y}?rescale=0,400&bidx=1&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
-                ]
-            },
-            "legend": {
-                "type": "gradient-adjustable",
-                "min": 0,
-                "max": 400,
-                "units": "Mg/ha",
-                "stops": [
-                    "#fdfbfb",
-                    "#e3c3b5",
-                    "#c9a87a",
-                    "#bab060",
-                    "#9db059",
-                    "#76a652",
-                    "#45994a",
-                    "#3a8c66",
-                    "#2e7c7f",
-                    "#1f567b",
-                    "#0f2577",
-                    "#000000"
-                ]
-            },
-            "info": "The CCI BIOMASS project delivers spatially explicit estimates of AGB for four epochs and related standard deviations (SDs) as separate map products. The AGB product consists of global datasets with estimates of AGB (unit: tons/ha = Mg/ha). AGB is defined as the mass, expressed as the oven-dry weight of the woody parts (stem, bark, branches and twigs) of all living trees excluding stump and roots. The AGB SD product is a separate data layer providing per-pixel SD of the AGB estimates in Mg/ha. The data products currently provided by the project (year 3, Version 3.0, and additional 2020) consist of four maps of AGB and AGB SD based on Earth Observation data acquired in 2010, 2017, 2018 and 2020, respectively. The spatial resolution of the map products is 100 m."
+        {
+          "type": "raster",
+          "maxzoom": 8,
+          "tiles": [
+            "https://titiler.maap-project.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://nasa-maap-data-store/file-staging/dashboard-datasets/icesat2-boreal-v3.0-agb-downsampled-300m-daac.tif&bidx=1&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
+          ]
         }
+      ],
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": 0,
+        "max": 400,
+        "units": "Mg/ha",
+        "stops": [
+          "#fdfbfb",
+          "#e3c3b5",
+          "#c9a87a",
+          "#bab060",
+          "#9db059",
+          "#76a652",
+          "#45994a",
+          "#3a8c66",
+          "#2e7c7f",
+          "#1f567b",
+          "#0f2577",
+          "#000000"
+        ]
+      },
+      "info": "Aboveground biomass density 2020 gridded to 30m derived from ICESat-2, Harmonized Landsat Sentinel-2 and Copernicus DEM."
+    },
+    "nceo_africa_sd": {
+      "id": "nceo_africa_sd",
+      "name": "NCEO Africa Standard Deviation",
+      "type": "raster",
+      "swatch": {
+        "color": "#c0392b",
+        "name": "Pomegranate"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "{titiler_server_url}/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/96a28977-02db-46a0-8429-70f5b4267d38/SD_map_2017v0m_COG.tif&rescale=0%2C310&colormap_name=reds&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": "0",
+        "max": "310",
+        "units": "Mg/ha",
+        "stops": [
+          "#fff5f0",
+          "#fee6da",
+          "#fdcfbc",
+          "#fcb498",
+          "#fc9676",
+          "#fb7959",
+          "#f7593f",
+          "#ec382b",
+          "#d21e20",
+          "#b61319",
+          "#940b13",
+          "#67000d"
+        ]
+      },
+      "info": "The total uncertainty (SD) at pixel level is composed of different sources of error, which are assumed to be random and independent."
+    },
+    "cci_biomass_sd": {
+      "id": "cci_biomass_sd",
+      "name": "CCI Biomass SD",
+      "type": "raster",
+      "swatch": {
+        "color": "#c0392b",
+        "name": "Pomegranate"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "https://titiler.maap-project.org/mosaic/4f2b21b1d359e0169117e84c35ed5f7d/tiles/WebMercatorQuad/{z}/{x}/{y}?assets=standard_deviation&rescale=0,500&bidx=2&colormap_name=reds&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": "0",
+        "max": "500",
+        "units": "Mg/ha",
+        "stops": [
+          "#fff5f0",
+          "#fee6da",
+          "#fdcfbc",
+          "#fcb498",
+          "#fc9676",
+          "#fb7959",
+          "#f7593f",
+          "#ec382b",
+          "#d21e20",
+          "#b61319",
+          "#940b13",
+          "#67000d"
+        ]
+      },
+      "info": "Validation of the Biomass CCI 2020 map used a dedicated tool (plot2map) that allowed comparison with an extensive dataset of ground-based tree size measurements collected from small (averaging 0.15 ha; n > 70,549) and medium (0.9 - 3 ha; n > 462) to large-sized (> 6 ha; n > 20) research plots (Tiers 1-3 respectively), with adjustments made for temporal discrepancies and partial forest fractions."
+    },
+    "paraguay_forest_mask": {
+      "id": "paraguay_forest_mask",
+      "name": "2020 Paraguay Forest/Non-Forest Mask",
+      "type": "raster",
+      "swatch": {
+        "color": "#C0C0C0",
+        "name": "Grey"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "{titiler_server_url}/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/45fe2e6f-2007-4cb1-964a-f337f39f4fdc/1_forest_cog.masked.tif&rescale=0,1&nodata=0&colormap_name=greens"
+        ]
+      },
+      "legend": {
+        "type": "categorical",
+        "stops": [
+          {
+            "color": "#00441b",
+            "label": "Forest"
+          }
+        ]
+      },
+      "info": "A binary forest/non-forest mask for Paraguay for 2020."
+    },
+    "cci_biomass": {
+      "id": "cci_biomass",
+      "name": "CCI Biomass 2020",
+      "type": "raster",
+      "swatch": {
+        "color": "#189C54",
+        "name": "Dark Green"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "https://titiler.maap-project.org/mosaic/4f2b21b1d359e0169117e84c35ed5f7d/tiles/WebMercatorQuad/{z}/{x}/{y}?assets=estimates&rescale=0,400&bidx=1&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": 0,
+        "max": 400,
+        "units": "Mg/ha",
+        "stops": [
+          "#fdfbfb",
+          "#e3c3b5",
+          "#c9a87a",
+          "#bab060",
+          "#9db059",
+          "#76a652",
+          "#45994a",
+          "#3a8c66",
+          "#2e7c7f",
+          "#1f567b",
+          "#0f2577",
+          "#000000"
+        ]
+      },
+      "info": "The CCI BIOMASS project delivers spatially explicit estimates of AGB for four epochs and related standard deviations (SDs) as separate map products. The AGB product consists of global datasets with estimates of AGB (unit: tons/ha = Mg/ha). AGB is defined as the mass, expressed as the oven-dry weight of the woody parts (stem, bark, branches and twigs) of all living trees excluding stump and roots. The AGB SD product is a separate data layer providing per-pixel SD of the AGB estimates in Mg/ha. The data products currently provided by the project (year 3, Version 3.0, and additional 2020) consist of four maps of AGB and AGB SD based on Earth Observation data acquired in 2010, 2017, 2018 and 2020, respectively. The spatial resolution of the map products is 100 m."
+    },
+    "paraguay_tree_cover": {
+      "id": "paraguay_tree_cover",
+      "name": "% Tree cover for 2019",
+      "type": "raster",
+      "swatch": {
+        "color": "#C0C0C0",
+        "name": "Grey"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "{titiler_server_url}/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/ee5eb60c-3c01-4789-ae8e-c03f1d719440/4_tree_cover_cog.masked.tif&rescale=0,75&nodata=0&colormap_name=greens&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": "0",
+        "max": "75",
+        "stops": ["#f7fcf5", "#00441b"]
+      },
+      "info": "Percent (%) Tree cover for 2019."
     }
+  },
+  "global": {
+    "gedi_l4b_se": {
+      "id": "gedi_l4b_se",
+      "name": "GEDI Gridded Biomass 2020 Standard Error",
+      "type": "raster",
+      "swatch": {
+        "color": "#c0392b",
+        "name": "Pomegranate"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "https://titiler.maap-project.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://ornl-cumulus-prod-protected/gedi/GEDI_L4B_Gridded_Biomass_V2_1/data/GEDI04_B_MW019MW223_02_002_02_R01000M_SE.tif&rescale=0,310&colormap_name=reds&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": "0",
+        "max": "310",
+        "units": "Mg/ha",
+        "stops": [
+          "#fff5f0",
+          "#fee6da",
+          "#fdcfbc",
+          "#fcb498",
+          "#fc9676",
+          "#fb7959",
+          "#f7593f",
+          "#ec382b",
+          "#d21e20",
+          "#b61319",
+          "#940b13",
+          "#67000d"
+        ]
+      },
+      "info": "Mean aboveground biomass density standard error (SE): Standard Error of the mean estimate, combining sampling and modeling uncertainty. Learn more: https://daac.ornl.gov/GEDI/guides/GEDI_L4B_Gridded_Biomass.html"
+    },
+    "nceo_africa": {
+      "id": "nceo_africa",
+      "name": "NCEO Africa Biomass 2017",
+      "type": "raster",
+      "swatch": {
+        "color": "#189C54",
+        "name": "Dark Green"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "{titiler_server_url}/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/ae841191-8a43-4226-9c5e-db4f500adb45/AGB_map_2017v0m_COG.tif&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": 0,
+        "max": 400,
+        "units": "Mg/ha",
+        "stops": [
+          "#fdfbfb",
+          "#e3c3b5",
+          "#c9a87a",
+          "#bab060",
+          "#9db059",
+          "#76a652",
+          "#45994a",
+          "#3a8c66",
+          "#2e7c7f",
+          "#1f567b",
+          "#0f2577",
+          "#000000"
+        ]
+      },
+      "info": "The NCEO Africa Aboveground Woody Biomass (AGB) map for the year 2017 at 100m spatial resolution was developed using a combination of LiDAR, Synthetic Aperture Radar (SAR) and optical based data."
+    },
+    "paraguay_estimated_biomass": {
+      "id": "paraguay_estimated_biomass",
+      "name": "Estimated biomass in Paraguay within 6km grids",
+      "type": "raster",
+      "swatch": {
+        "color": "#189C54",
+        "name": "Dark Green"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "{titiler_server_url}/cog/tiles/WebMercatorQaud/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/0bfec58c-45fb-464e-b301-b1afbdf5249e/5_biomass_cog.masked.tif&nodata=0&bidx=1&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": 0,
+        "max": 400,
+        "units": "Mg/ha",
+        "stops": [
+          "#fdfbfb",
+          "#e3c3b5",
+          "#c9a87a",
+          "#bab060",
+          "#9db059",
+          "#76a652",
+          "#45994a",
+          "#3a8c66",
+          "#2e7c7f",
+          "#1f567b",
+          "#0f2577",
+          "#000000"
+        ]
+      },
+      "info": "Estimated biomass within 6km grids."
+    },
+    "icesat2_boreal_biomass_se": {
+      "id": "icesat2_boreal_biomass_se",
+      "name": "ICESat-2 Boreal Biomass SE",
+      "type": "raster",
+      "swatch": {
+        "color": "#c0392b",
+        "name": "Pomegranate"
+      },
+      "source": {
+        "type": "raster",
+        "minzoom": 8,
+        "tiles": [
+          "https://titiler.maap-project.org/searches/76c04112ddbe5d4fa938c24a88855882/tiles/WebMercatorQuad/{z}/{x}/{y}.png?assets=cog&bidx=2&rescale=0%2C20&colormap_name=reds&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": "0",
+        "max": "20",
+        "units": "Mg/ha",
+        "stops": [
+          "#fff5f0",
+          "#fee6da",
+          "#fdcfbc",
+          "#fcb498",
+          "#fc9676",
+          "#fb7959",
+          "#f7593f",
+          "#ec382b",
+          "#d21e20",
+          "#b61319",
+          "#940b13",
+          "#67000d"
+        ]
+      },
+      "info": "Boreal above ground biomass (AGB) standard error (SE), Mg/ha, of the biomass calculated from ICESat-2, Harmonized Landsat Sentinel-2, and Copernicus DEM."
+    },
+    "gedi_calval_plots": {
+      "id": "gedi_calval_plots",
+      "name": "GEDI Cal/Val Field Data",
+      "type": "geojson",
+      "source": {
+        "type": "geojson",
+        "data": "https://gist.githubusercontent.com/abarciauskas-bgse/23d637003fce13aa6740ec4586550658/raw/22452601f339ab10c9d64597a05a9ed9f32599b5/gedi-calval-plot.geojson"
+      },
+      "enabled": true,
+      "paint": {
+        "circle-radius": 5,
+        "circle-color": "#F261AC",
+        "circle-opacity": 1,
+        "circle-stroke-width": 0.5,
+        "circle-stroke-color": "#730B41"
+      },
+      "swatch": {
+        "color": "#C0C0C0",
+        "name": "Grey"
+      },
+      "info": "Plot locations from the Global Ecosystem Dynamics Investigation (GEDI) Forest Structure and Biomass Database (FSBD). The database is a collection of field and LiDAR datasets developed to serve a central repository for calibration and validation of the GEDI mission data. The GEDI Cal/Val Field Data collection contains the field data contributions to the FSBD. The database has contributions across the globe for a variety of vegetation types from projects dating back to 2003. This shows only the publicly available portion of this training dataset. GEDI's biomass product also uses training data from a large set of internationally contributed datasets that are not currently publicly available."
+    },
+    "gedi_l4b": {
+      "id": "gedi_l4b",
+      "name": "GEDI Gridded Biomass 2020",
+      "type": "raster",
+      "swatch": {
+        "color": "#189C54",
+        "name": "Dark Green"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "https://titiler.maap-project.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://ornl-cumulus-prod-protected/gedi/GEDI_L4B_Gridded_Biomass_V2_1/data/GEDI04_B_MW019MW223_02_002_02_R01000M_MU.tif&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": 0,
+        "max": 400,
+        "units": "Mg/ha",
+        "stops": [
+          "#fdfbfb",
+          "#e3c3b5",
+          "#c9a87a",
+          "#bab060",
+          "#9db059",
+          "#76a652",
+          "#45994a",
+          "#3a8c66",
+          "#2e7c7f",
+          "#1f567b",
+          "#0f2577",
+          "#000000"
+        ]
+      },
+      "info": "Mean aboveground biomass density (MU): Estimated mean AGBD for the 1 km grid cell, including forest and non-forest. This Global Ecosystem Dynamics Investigation (GEDI) L4B product provides 1 km x 1 km (1 km, hereafter) estimates of mean aboveground biomass density (AGBD) based on observations from mission week 19 starting on 2019-04-18 to mission week 138 ending on 2021-08-04. The GEDI L4A Footprint Biomass product converts each high-quality waveform to an AGBD prediction, and the L4B product uses the sample present within the borders of each 1 km cell to statistically infer mean AGBD. The gridding procedure is described in the GEDI L4B Algorithm Theoretical Basis Document (ATBD). Patterson et al. (2019) describes the hybrid model-based mode of inference used in the L4B product. Corresponding 1 km estimates of the standard error of the mean are also provided in the L4B product. Uncertainty is due to both GEDI's sampling of the 1 km area (as opposed to making wall-to-wall observations) and the fact that L4A biomass values are modeled in a process subject to error instead of measured in a process that may be assumed to be error-free. Learn more: https://daac.ornl.gov/GEDI/guides/GEDI_L4B_Gridded_Biomass.html"
+    },
+    "icesat2_boreal_biomass": {
+      "id": "icesat2_boreal_biomass",
+      "name": "ICESat-2 Boreal Biomass 2020",
+      "type": "raster",
+      "swatch": {
+        "color": "#189C54",
+        "name": "Dark Green"
+      },
+      "source": [
+        {
+          "type": "raster",
+          "minzoom": 7,
+          "tiles": [
+            "https://titiler.maap-project.org/searches/76c04112ddbe5d4fa938c24a88855882/tiles/WebMercatorQuad/{z}/{x}/{y}.png?assets=cog&bidx=1&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
+          ]
+        },
+        {
+          "type": "raster",
+          "maxzoom": 7,
+          "tiles": [
+            "https://titiler.maap-project.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://nasa-maap-data-store/file-staging/dashboard-datasets/icesat2-boreal-v3.0-agb-downsampled-300m-daac.tif&bidx=1&rescale=0,400&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
+          ]
+        }
+      ],
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": 0,
+        "max": 400,
+        "units": "Mg/ha",
+        "stops": [
+          "#fdfbfb",
+          "#e3c3b5",
+          "#c9a87a",
+          "#bab060",
+          "#9db059",
+          "#76a652",
+          "#45994a",
+          "#3a8c66",
+          "#2e7c7f",
+          "#1f567b",
+          "#0f2577",
+          "#000000"
+        ]
+      },
+      "info": "Aboveground biomass density 2020 gridded to 30m derived from ICESat-2, Harmonized Landsat Sentinel-2 and Copernicus DEM."
+    },
+    "nceo_africa_sd": {
+      "id": "nceo_africa_sd",
+      "name": "NCEO Africa Standard Deviation",
+      "type": "raster",
+      "swatch": {
+        "color": "#c0392b",
+        "name": "Pomegranate"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "{titiler_server_url}/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/96a28977-02db-46a0-8429-70f5b4267d38/SD_map_2017v0m_COG.tif&rescale=0%2C310&colormap_name=reds&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": "0",
+        "max": "310",
+        "units": "Mg/ha",
+        "stops": [
+          "#fff5f0",
+          "#fee6da",
+          "#fdcfbc",
+          "#fcb498",
+          "#fc9676",
+          "#fb7959",
+          "#f7593f",
+          "#ec382b",
+          "#d21e20",
+          "#b61319",
+          "#940b13",
+          "#67000d"
+        ]
+      },
+      "info": "The total uncertainty (SD) at pixel level is composed of different sources of error, which are assumed to be random and independent."
+    },
+    "cci_biomass_sd": {
+      "id": "cci_biomass_sd",
+      "name": "CCI Biomass SD",
+      "type": "raster",
+      "swatch": {
+        "color": "#c0392b",
+        "name": "Pomegranate"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "https://titiler.maap-project.org/mosaic/4f2b21b1d359e0169117e84c35ed5f7d/tiles/WebMercatorQuad/{z}/{x}/{y}?assets=standard_deviation&rescale=0,500&bidx=2&colormap_name=reds&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": "0",
+        "max": "500",
+        "units": "Mg/ha",
+        "stops": [
+          "#fff5f0",
+          "#fee6da",
+          "#fdcfbc",
+          "#fcb498",
+          "#fc9676",
+          "#fb7959",
+          "#f7593f",
+          "#ec382b",
+          "#d21e20",
+          "#b61319",
+          "#940b13",
+          "#67000d"
+        ]
+      },
+      "info": "Validation of the Biomass CCI 2020 map used a dedicated tool (plot2map) that allowed comparison with an extensive dataset of ground-based tree size measurements collected from small (averaging 0.15 ha; n > 70,549) and medium (0.9 - 3 ha; n > 462) to large-sized (> 6 ha; n > 20) research plots (Tiers 1-3 respectively), with adjustments made for temporal discrepancies and partial forest fractions."
+    },
+    "paraguay_forest_mask": {
+      "id": "paraguay_forest_mask",
+      "name": "2020 Paraguay Forest/Non-Forest Mask",
+      "type": "raster",
+      "swatch": {
+        "color": "#C0C0C0",
+        "name": "Grey"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "{titiler_server_url}/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/45fe2e6f-2007-4cb1-964a-f337f39f4fdc/1_forest_cog.masked.tif&rescale=0,1&nodata=0&colormap_name=greens"
+        ]
+      },
+      "legend": {
+        "type": "categorical",
+        "stops": [
+          {
+            "color": "#00441b",
+            "label": "Forest"
+          }
+        ]
+      },
+      "info": "A binary forest/non-forest mask for Paraguay for 2020."
+    },
+    "cci_biomass": {
+      "id": "cci_biomass",
+      "name": "CCI Biomass 2020",
+      "type": "raster",
+      "swatch": {
+        "color": "#189C54",
+        "name": "Dark Green"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "https://titiler.maap-project.org/mosaic/4f2b21b1d359e0169117e84c35ed5f7d/tiles/WebMercatorQuad/{z}/{x}/{y}?assets=estimates&rescale=0,400&bidx=1&colormap_name=gist_earth_r&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": 0,
+        "max": 400,
+        "units": "Mg/ha",
+        "stops": [
+          "#fdfbfb",
+          "#e3c3b5",
+          "#c9a87a",
+          "#bab060",
+          "#9db059",
+          "#76a652",
+          "#45994a",
+          "#3a8c66",
+          "#2e7c7f",
+          "#1f567b",
+          "#0f2577",
+          "#000000"
+        ]
+      },
+      "info": "The CCI BIOMASS project delivers spatially explicit estimates of AGB for four epochs and related standard deviations (SDs) as separate map products. The AGB product consists of global datasets with estimates of AGB (unit: tons/ha = Mg/ha). AGB is defined as the mass, expressed as the oven-dry weight of the woody parts (stem, bark, branches and twigs) of all living trees excluding stump and roots. The AGB SD product is a separate data layer providing per-pixel SD of the AGB estimates in Mg/ha. The data products currently provided by the project (year 3, Version 3.0, and additional 2020) consist of four maps of AGB and AGB SD based on Earth Observation data acquired in 2010, 2017, 2018 and 2020, respectively. The spatial resolution of the map products is 100 m."
+    },
+    "paraguay_tree_cover": {
+      "id": "paraguay_tree_cover",
+      "name": "% Tree cover for 2019",
+      "type": "raster",
+      "swatch": {
+        "color": "#C0C0C0",
+        "name": "Grey"
+      },
+      "source": {
+        "type": "raster",
+        "tiles": [
+          "{titiler_server_url}/cog/tiles/WebMercatorQuad/{z}/{x}/{y}.png?url=s3://maap-landing-zone-gccops/user-added/uploaded_objects/ee5eb60c-3c01-4789-ae8e-c03f1d719440/4_tree_cover_cog.masked.tif&rescale=0,75&nodata=0&colormap_name=greens&color_formula=gamma r {gamma}"
+        ]
+      },
+      "legend": {
+        "type": "gradient-adjustable",
+        "min": "0",
+        "max": "75",
+        "stops": ["#f7fcf5", "#00441b"]
+      },
+      "info": "Percent (%) Tree cover for 2019."
+    }
+  }
 }

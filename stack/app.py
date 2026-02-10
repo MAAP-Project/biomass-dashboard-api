@@ -4,14 +4,14 @@ import os
 from typing import Any
 
 import config
-from constructs import Construct
+from aws_cdk import App, CfnOutput, Duration, Stack, Tag
 from aws_cdk import aws_apigatewayv2_alpha as apigw
 from aws_cdk import aws_apigatewayv2_integrations_alpha as apigw_integrations
 from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_elasticache as escache
 from aws_cdk import aws_iam as iam
 from aws_cdk import aws_lambda
-from aws_cdk import App, Stack, CfnOutput, Duration, Tag
+from constructs import Construct
 
 s3_full_access_to_data_bucket = iam.PolicyStatement(
     actions=["s3:*"], resources=[f"arn:aws:s3:::{config.BUCKET}*"]
@@ -29,6 +29,7 @@ DEFAULT_ENV = dict(
     VSI_CACHE="TRUE",
     VSI_CACHE_SIZE="1000000",
 )
+
 
 class dashboardApiLambdaStack(Stack):
     """

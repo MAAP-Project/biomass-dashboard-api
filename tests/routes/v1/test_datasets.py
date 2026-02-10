@@ -1,6 +1,5 @@
 """Test /v1/datasets endpoints"""
 
-
 import json
 
 import boto3
