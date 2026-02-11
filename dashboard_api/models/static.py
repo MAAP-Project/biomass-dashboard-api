@@ -113,8 +113,20 @@ class Dataset(BaseModel):
     is_periodic: bool = False
     time_unit: Optional[str] = ""
     domain: Optional[List[str]] = []
-    source: Optional[Union[NonGeoJsonSource, GeoJsonSource]]
-    background_source: Optional[Union[NonGeoJsonSource, GeoJsonSource]]
+    source: Optional[
+        Union[
+            NonGeoJsonSource,
+            GeoJsonSource,
+            List[Union[NonGeoJsonSource, GeoJsonSource]],
+        ]
+    ]
+    background_source: Optional[
+        Union[
+            NonGeoJsonSource,
+            GeoJsonSource,
+            List[Union[NonGeoJsonSource, GeoJsonSource]],
+        ]
+    ]
     exclusive_with: Optional[List[str]] = []
     swatch: Optional[Swatch]
     compare: Optional[DatasetComparison]
