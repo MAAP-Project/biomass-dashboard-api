@@ -1,4 +1,5 @@
 """ Dataset metadata generator lambda. """
+
 import datetime
 import json
 import os
@@ -150,7 +151,7 @@ def _gather_datasets_metadata(datasets: List[dict], sites: List[dict]):
     return metadata
 
 
-def _gather_json_data(dirpath: str, filter: List[str] = None) -> List[dict]:
+def _gather_json_data(dirpath: str, filter: Optional[List[str]] = None) -> List[dict]:
     """Gathers all JSON files from within a diven directory"""
 
     results = []

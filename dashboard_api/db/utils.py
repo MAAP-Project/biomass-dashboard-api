@@ -3,7 +3,7 @@
 import csv
 import json
 from datetime import datetime
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 import boto3
 from botocore import config
@@ -23,7 +23,9 @@ _lambda = boto3.client(
 
 
 def invoke_lambda(
-    lambda_function_name: str, payload: dict = None, invocation_type="RequestResponse"
+    lambda_function_name: str,
+    payload: Optional[dict] = None,
+    invocation_type="RequestResponse",
 ):
     """Invokes a lambda function using the boto3 lambda client.
 

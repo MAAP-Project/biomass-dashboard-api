@@ -1,4 +1,5 @@
 """dashboard_api app."""
+
 from typing import Any, Dict, Optional
 
 from fastapi import FastAPI
