@@ -32,7 +32,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: 3.8
 
       - name: Create Config.yml
         uses: franzbischoff/replace_envs@v1
@@ -53,7 +53,7 @@ jobs:
           node-version: '16'
 
       - name: Cache Node.js modules
-        uses: actions/cache@v4
+        uses: actions/cache@v2
         with:
           # npm cache files are stored in `~/.npm` on Linux/macOS
           path: ~/.npm
@@ -72,15 +72,15 @@ jobs:
           echo "::set-output name=dir::$(pip cache dir)"
 
       - name: pip cache
-        uses: actions/cache@v4
+        uses: actions/cache@v2
         with:
           path: ${{ steps.pip-cache.outputs.dir }}
           key: ${{ runner.os }}-pip-${{ hashFiles('setup.py') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      - name: Install Node.js dependencies
-        run: npm install
+      - name: Install AWS CDK
+        run: npm install -g cdk
 
       - name: Install python packages
         run: |

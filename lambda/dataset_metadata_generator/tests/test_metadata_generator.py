@@ -1,5 +1,4 @@
 """Test class for metadata generator lambda"""
-
 from datetime import datetime
 
 import boto3

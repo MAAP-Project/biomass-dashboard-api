@@ -1,157 +1,326 @@
 {
-  "products": [
-    {
-      "id": "global",
-      "label": "All (Global)",
-      "center": [0.0, 0.0],
-      "polygon": {
-        "coordinates": [
-          [
-            [-180, -90],
-            [180, -90],
-            [180, 90],
-            [180, -90],
-            [-180, -90]
-          ]
-        ],
-        "type": "Polygon"
-      },
-      "bounding_box": [-180, -90, 180, 90],
-      "indicators": [],
-      "datasets": [
+    "products": [
         {
-          "id": "icesat2_boreal_biomass"
+            "id": "global",
+            "label": "All (Global)",
+            "center": [
+                0,
+                0
+            ],
+            "polygon": {
+                "coordinates": [
+                    [
+                        [
+                            -180,
+                            -90
+                        ],
+                        [
+                            180,
+                            -90
+                        ],
+                        [
+                            180,
+                            90
+                        ],
+                        [
+                            180,
+                            -90
+                        ],
+                        [
+                            -180,
+                            -90
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "bounding_box": [
+                -180,
+                -90,
+                180,
+                90
+            ],
+            "indicators": [],
+            "datasets": [
+                {
+                    "id": "icesat2_boreal_biomass"
+                },
+                {
+                    "id": "gedi_l4b"
+                },
+                {
+                    "id": "cci_biomass"
+                },
+                {
+                    "id": "nasa_jpl"
+                },
+                {
+                    "id": "nceo_africa"
+                }
+            ],
+            "summary": "<p>\n  This is a default description for the <code>global</code> product config.\n</p>\n"
         },
         {
-          "id": "gedi_l4b"
+            "id": "cci_biomass",
+            "label": "CCI Biomass 2020",
+            "center": [
+                0,
+                0
+            ],
+            "polygon": {
+                "coordinates": [
+                    [
+                        [
+                            -180,
+                            -90
+                        ],
+                        [
+                            180,
+                            -90
+                        ],
+                        [
+                            180,
+                            90
+                        ],
+                        [
+                            -180,
+                            90
+                        ],
+                        [
+                            -180,
+                            -90
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "bounding_box": [
+                -180,
+                -90,
+                180,
+                90
+            ],
+            "indicators": [],
+            "datasets": [
+                {
+                    "id": "cci_biomass"
+                },
+                {
+                    "id": "cci_biomass_sd"
+                }
+            ],
+            "summary": "<p>\n  ESA's <a href=\"https://climate.esa.int/en/projects/biomass/\">Climate Change Initiative (CCI) Biomass project</a> has, in close collaboration with JAXA, produced maps of the Above-Ground Biomass (AGB) of woody vegetation at 100m resolution for 4 epochs: 2010, 2017, 2018 and 2020, with plans to increase this to annual products from 2016-2022, plus a 2005/2007 product. Requirements on global coverage during each of the four epochs, open access to the data and sensitivity of the observations to forest structural parameters restricted the useful pool of remote sensing observations to images acquired by the Japanese (JAXA) L-band radar sensors (ALOS PALSAR for 2010 and ALOS-2 PALSAR-2 for 2017-2018 and 2020) and the European C-band radar (Envisat ASAR for 2010 and Copernicus Sentinel-1 for 2017-2018 and 2020).\n</p>\n\n<p>Validation of the map products used a dedicated tool (plot2map) that allowed comparison with an extensive dataset of ground-based tree size measurements collected from small (averaging 0.15 ha; n > 70,549) and medium (0.9 - 3 ha; n > 462) to large-sized (> 6 ha; n > 20) research plots (Tiers 1-3 respectively), with adjustments made for temporal discrepancies and partial forest fractions.</p>\n\n<p>Relevant Links:</p>\n<ul>\n  <li><a href=\"https://ceos.org/gst/cci-biomass.html\">Committee for Earth Observing Satellites (CEOS) CCI Biomass Product page</a></li>\n  <li><a href=\"https://climate.esa.int/en/projects/biomass/\">ESA's CCI Biomass Project Homepage</a></li>\n</ul>\n"
         },
         {
-          "id": "cci_biomass"
+            "id": "gedi_l4b",
+            "label": "GEDI Gridded Biomass 2020",
+            "center": [
+                0,
+                0
+            ],
+            "polygon": {
+                "coordinates": [
+                    [
+                        [
+                            -180,
+                            -90
+                        ],
+                        [
+                            180,
+                            -90
+                        ],
+                        [
+                            180,
+                            90
+                        ],
+                        [
+                            180,
+                            -90
+                        ],
+                        [
+                            -180,
+                            -90
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "bounding_box": [
+                -180,
+                -90,
+                180,
+                90
+            ],
+            "indicators": [],
+            "datasets": [
+                {
+                    "id": "gedi_l4b"
+                },
+                {
+                    "id": "gedi_l4b_se"
+                },
+                {
+                    "id": "gedi_calval_plots"
+                }
+            ],
+            "summary": "<p>\n  The Global Ecosystem Dynamics Investigation (GEDI) L4B product provides 1 km estimates of mean aboveground biomass density (AGBD). NASA's <a href=\"https://gedi.umd.edu/\">GEDI</a> mission is a full waveform lidar instrument aboard the <a href=\"https://www.nasa.gov/mission_pages/station/main/index.html\">ISS</a>. It launched in December 2018 and has been collecting 3D Earth surface and vegetation samples of temperate and tropical forests since April, 2019. <a href=\"https://www.sciencedirect.com/science/article/pii/S2666017220300018\">GEDI is the first satellite lidar designed specifically to measure vegetation structure</a> and biomass, filling a critical data gap. Each laser illuminates ~25 m on the ground, and measures tree heights and volumes within those 25 m areas. <a href=\"https://daac.ornl.gov/GEDI/guides/GEDI_L4A_AGB_Density.html\">GEDI estimates biomass</a> by relating lidar measurements to biomass collected in forest plots across the globe.\n  </p>\n  <p>\n    The GEDI L4B product provides 1 km x 1 km (1 km, hereafter) estimates of mean aboveground biomass density (AGBD) based on observations from mission week 19 starting on 2019-04-18 to mission week 138 ending on 2021-08-04. The GEDI L4A parametric footprint biomass models convert each high-quality waveform to an AGBD prediction, and the L4B algorithm uses the sample present within the borders of each 1 km cell to statistically infer mean AGBD and the standard error of the mean. The GEDI L4B product is 1 km spatial resolution and the gridding procedure is described in the GEDI L4B Algorithm Theoretical Basis Document (ATBD). <a href=\"https://doi.org/10.1088/1748-9326/ab18df\">Patterson et al. (2019)</a> and <a href=\"http://patterson%20et%20al.%20%282019%29%20describes%20the%20hybrid%20model-based%20mode%20of%20inference%20used%20in%20the%20l4b%20product./\">Dubayah et al. (2022)</a> describe the hybrid model-based mode of inference used, where estimates of the standard error of the mean account for both GEDI L4A modeling uncertainty and uncertainty related to how the 1 km cells are sampled by GEDI's observations (as opposed to making wall-to-wall observations).\n  </p>\n  <p>\n    For more information on how this product was made, visit: <a href=\"https://daac.ornl.gov/GEDI/guides/GEDI_L4B_Gridded_Biomass.html\">https://daac.ornl.gov/GEDI/guides/GEDI_L4B_Gridded_Biomass.html</a> and <a href=\"https://ceos.org/gst/GEDI-biomass.html\">https://ceos.org/gst/GEDI-biomass.html</a>.\n  </p>\n\n<div style=\"text-align: center;\">\n  <figure>\n    <img src=\"/maap-biomass/assets/graphics/content/products/gedi_1.png\" style=\"height: 280px;\"/>\n    <figcaption>Mean (top) and Standard Error (bottom) of 1 km Biomass in GEDI's gridded biomass product.</figcaption>\n  </figure>\n</div>\n"
         },
         {
-          "id": "nceo_africa"
+            "id": "icesat2_boreal",
+            "label": "ICESat-2 Boreal 2020",
+            "center": [
+                -123,
+                56
+            ],
+            "polygon": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -164.70703125,
+                            48.63290858589535
+                        ],
+                        [
+                            -83.3203125,
+                            48.63290858589535
+                        ],
+                        [
+                            -83.3203125,
+                            72.39570570653261
+                        ],
+                        [
+                            -164.70703125,
+                            72.39570570653261
+                        ],
+                        [
+                            -164.70703125,
+                            48.63290858589535
+                        ]
+                    ]
+                ]
+            },
+            "bounding_box": [
+                -164.707,
+                50.289,
+                -83.32,
+                72.074
+            ],
+            "indicators": [],
+            "datasets": [
+                {
+                    "id": "icesat2_boreal_biomass"
+                },
+                {
+                    "id": "icesat2_boreal_biomass_reduced"
+                },                
+                {
+                    "id": "icesat2_boreal_biomass_se"
+                }
+            ],
+            "summary": "<p>\n  <a href=\"https://icesat-2.gsfc.nasa.gov/\">NASA’s ICESat-2</a> is a photon counting lidar instrument that launched in\n  2018, and is collecting global 3D structure\n  measurements of Earth’s terrain and vegetation. This provisional (still in development) product uses samples from\n  <a href=\"https://nsidc.org/data/atl08\">ICESat-2’s vegetation height product</a> in combination with 30m data from <a href=\"https://hls.gsfc.nasa.gov/\">Harmonized Landsat Sentinel-2</a>, and the <a href=\"https://spacedata.copernicus.eu/explore-more/news-archive/-/asset_publisher/Ye8egYeRPLEs/blog/id/434960\">Copernicus\n    DEM</a>.\n  This product focuses on high latitude boreal forests where NASA’s <a href=\"https://gedi.umd.edu/\">GEDI</a> instrument\n  doesn’t collect data, and is meant to\n  complement the temperate and tropical forest maps from GEDI. The Arctic and Boreal regions are warming faster than\n  anywhere on the planet, and high resolution forest carbon products like this help us understand how much carbon is\n  currently stored in these ecosystems, and how it may change in the future. This research is funded by NASA’s <a href=\"https://above.nasa.gov/index.html\">Arctic\n    Boreal Vulnerability Experiment</a> and the ICESat-2 Science Team. For more information on how this product was\n  made, click\n  <a href=\"https://ceos.org/gst/icesat2-boreal-biomass.html\">HERE</a>. This product will soon be accessible through NASA’s\n  ORNL DAAC. Want to help us make this product better? Please let us know where it’s working well and where it can be\n  improved by <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSe2HsWelJRGbm2riEZqI2oUVZnhBIvlh5Mtq2jY2ZjYf226Fg/viewform\">giving us feedback</a>.\n</p>\n\n<div style=\"text-align: center;\">\n  <figure>\n    <img src=\"/maap-biomass/assets/graphics/content/products/above_1.jpg\" />\n    <figcaption>Photo credit: Paul Montesano</figcaption>\n  </figure>\n</div>\n\n<p>Relevant Links:</p>\n<ul>\n  <li>\n    <a href=\"https://ceos.org/gst/icesat2-boreal-biomass.html\">Committee for Earth Observing Satellites (CEOS) ICESat-2 Boreal Biomass 2020 Product page</a>\n  </li>\n</ul>\n"
+        },
+        {
+            "id": "nasa_jpl",
+            "label": "NASA JPL 2020",
+            "center": [
+                0,
+                0
+            ],
+            "polygon": {
+                "coordinates": [
+                    [
+                        [
+                            -180,
+                            -90
+                        ],
+                        [
+                            180,
+                            -90
+                        ],
+                        [
+                            180,
+                            90
+                        ],
+                        [
+                            180,
+                            -90
+                        ],
+                        [
+                            -180,
+                            -90
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "bounding_box": [
+                -180,
+                -90,
+                180,
+                90
+            ],
+            "indicators": [],
+            "datasets": [
+                {
+                    "id": "nasa_jpl"
+                },
+                {
+                    "id": "nasa_jpl_se"
+                }
+            ],
+            "summary": "<p>\n  The JPL 2020 map is the global aboveground biomass (AGB) density estimates (unit: Mg/ha) derived from a combination of Landsat-8 composites, ALOS PALSAR backscatter (2019-2020) data and SRTM DEM at 100m spatial resolution, trained with samples from the spaceborne lidar data of ICESAT-1, airborne laser scanning (ALS) data, and field inventory data. We applied the boosting tree machine learning model to predict wall-to-wall AGB inferred from satellite data.\n</p>\n<p>\n  The product shared on the Multi-Mission Algorithm and Analysis Platform (MAAP) is separated continentally, including Africa, Asia, Europe, N America, Oceania, and S America. One can merge the 6 files to obtain the global mosaic.\n</p>\n<p>Relevant Links:</p>\n<ul>\n  <li><a href=\"https://ceos.org/gst/jpl-biomass.html\">Committee for Earth Observing Satellites (CEOS) JPL 2020 Global Biomass Product page</a></li>\n</ul>\n"
+        },
+        {
+            "id": "nceo_africa",
+            "label": "NCEO Africa 2017",
+            "center": [
+                16.7954,
+                1.3385
+            ],
+            "polygon": {
+                "coordinates": [
+                    [
+                        [
+                            51.86423292864056,
+                            -35.05405901691194
+                        ],
+                        [
+                            51.86423292864056,
+                            37.73103856358816
+                        ],
+                        [
+                            -18.27352950955931,
+                            37.73103856358816
+                        ],
+                        [
+                            -18.27352950955931,
+                            -35.05405901691194
+                        ],
+                        [
+                            51.86423292864056,
+                            -35.05405901691194
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "bounding_box": [
+                -18.273529509559307,
+                -35.054059016911935,
+                51.86423292864056,
+                37.73103856358816
+            ],
+            "indicators": [],
+            "datasets": [
+                {
+                    "id": "nceo_africa"
+                },
+                {
+                    "id": "nceo_africa_sd"
+                }
+            ],
+            "info": "The NCEO Africa Aboveground Woody Biomass (AGB) map for the year 2017 at 100 m spatial resolution was developed using a combination of LiDAR, Synthetic Aperture Radar (SAR) and optical based data.",
+            "summary": "<p>\n  The National Centre for Earth Observation (NCEO) Africa Aboveground Woody Biomass (AGB) map for the year 2017 at 100m spatial resolution was developed\n  using\n  the NASA’s Global Ecosystem Dynamics Investigation (<a href=\"https://gedi.umd.edu/\">GEDI</a>), JAXA’s L-band SAR\n  <a href=\"https://www.eorc.jaxa.jp/ALOS/en/palsar_fnf/fnf_index.htm\">ALOS-2 PALSAR-2 mosaics</a> and Landsat Percent\n  Tree Cover (PTC) (<a href=\"https://www.science.org/doi/10.1126/science.1244693\">Hansen et al., 2012</a>).\n  This product is part of a time series of AGB maps (2007-2017) developed by the\n  UK’s NERC <a href=\"https://www.nceo.ac.uk/\">National Centre for Earth Observation (NCEO)</a> through the Carbon\n  Cycle and Official Development Assistance\n  (ODA) programmes. This preliminary version of the 2017 map is available <a\n    href=\"https://leicester.figshare.com/articles/dataset/Africa_Aboveground_Biomass_map_for_2017/15060270\">here</a>.\n  The final version of the AGB time\n  series\n  (2007-2017) will be available at the Centre for Environmental Data Analysis (<a\n    href=\"https://archive.ceda.ac.uk/\">CEDA</a>).\n</p>\n<p>Relevant Links:</p>\n<ul>\n  <li><a href=\"https://ceos.org/gst/africa-biomass.html\">Committee for Earth Observing Satellites (CEOS) NCEO Africa Aboveground Woody Biomass Product page</a></li>\n</ul>\n"
         }
-      ],
-      "summary": "<p>\n  This is a default description for the <code>global</code> product config.\n</p>\n"
-    },
-    {
-      "id": "cci_biomass",
-      "label": "CCI Biomass 2020",
-      "center": [0.0, 0.0],
-      "polygon": {
-        "coordinates": [
-          [
-            [-180, -90],
-            [180, -90],
-            [180, 90],
-            [-180, 90],
-            [-180, -90]
-          ]
-        ],
-        "type": "Polygon"
-      },
-      "bounding_box": [-180, -90, 180, 90],
-      "indicators": [],
-      "datasets": [
-        {
-          "id": "cci_biomass"
-        },
-        {
-          "id": "cci_biomass_sd"
-        }
-      ],
-      "summary": "<p>\n  ESA's <a href=\"https://climate.esa.int/en/projects/biomass/\">Climate Change Initiative (CCI) Biomass project</a> has, in close collaboration with JAXA, produced maps of the Above-Ground Biomass (AGB) of woody vegetation at 100m resolution for 4 epochs: 2010, 2017, 2018 and 2020, with plans to increase this to annual products from 2016-2022, plus a 2005/2007 product. Requirements on global coverage during each of the four epochs, open access to the data and sensitivity of the observations to forest structural parameters restricted the useful pool of remote sensing observations to images acquired by the Japanese (JAXA) L-band radar sensors (ALOS PALSAR for 2010 and ALOS-2 PALSAR-2 for 2017-2018 and 2020) and the European C-band radar (Envisat ASAR for 2010 and Copernicus Sentinel-1 for 2017-2018 and 2020).\n</p>\n\n<p>Validation of the map products used a dedicated tool (plot2map) that allowed comparison with an extensive dataset of ground-based tree size measurements collected from small (averaging 0.15 ha; n > 70,549) and medium (0.9 - 3 ha; n > 462) to large-sized (> 6 ha; n > 20) research plots (Tiers 1-3 respectively), with adjustments made for temporal discrepancies and partial forest fractions.</p>\n\n<p>Relevant Links:</p>\n<ul>\n  <li><a href=\"https://ceos.org/gst/cci-biomass.html\">Committee for Earth Observing Satellites (CEOS) CCI Biomass Product page</a></li>\n  <li><a href=\"https://climate.esa.int/en/projects/biomass/\">ESA's CCI Biomass Project Homepage</a></li>\n</ul>\n"
-    },
-    {
-      "id": "gedi_l4b",
-      "label": "GEDI Gridded Biomass 2020",
-      "center": [0.0, 0.0],
-      "polygon": {
-        "coordinates": [
-          [
-            [-180, -90],
-            [180, -90],
-            [180, 90],
-            [180, -90],
-            [-180, -90]
-          ]
-        ],
-        "type": "Polygon"
-      },
-      "bounding_box": [-180, -90, 180, 90],
-      "indicators": [],
-      "datasets": [
-        {
-          "id": "gedi_l4b"
-        },
-        {
-          "id": "gedi_l4b_se"
-        },
-        {
-          "id": "gedi_calval_plots"
-        }
-      ],
-      "summary": "<p>\n  The Global Ecosystem Dynamics Investigation (GEDI) L4B product provides 1 km estimates of mean aboveground biomass density (AGBD). NASA's <a href=\"https://gedi.umd.edu/\">GEDI</a> mission is a full waveform lidar instrument aboard the <a href=\"https://www.nasa.gov/mission_pages/station/main/index.html\">ISS</a>. It launched in December 2018 and has been collecting 3D Earth surface and vegetation samples of temperate and tropical forests since April, 2019. <a href=\"https://www.sciencedirect.com/science/article/pii/S2666017220300018\">GEDI is the first satellite lidar designed specifically to measure vegetation structure</a> and biomass, filling a critical data gap. Each laser illuminates ~25 m on the ground, and measures tree heights and volumes within those 25 m areas. <a href=\"https://daac.ornl.gov/GEDI/guides/GEDI_L4A_AGB_Density.html\">GEDI estimates biomass</a> by relating lidar measurements to biomass collected in forest plots across the globe.\n  </p>\n  <p>\n    The Global Ecosystem Dynamics Investigation (GEDI) L4B product provides 1 km x 1 km (1 km, hereafter) estimates of mean aboveground biomass density (AGBD) based on observations from mission week 19 starting on 2019-04-18 to mission week 223 ending on 2023-03-16. The GEDI L4A Footprint Biomass product converts each high-quality waveform to an AGBD prediction, and the L4B product uses the sample present within the borders of each 1 km cell to statistically infer mean AGBD. The gridding procedure is described in the GEDI L4B Algorithm Theoretical Basis Document (ATBD). <a href=\"https://doi.org/10.1088/1748-9326/ab18df\">Patterson et al. (2019)</a> and describes the hybrid model-based mode of inference used in the L4B product. Corresponding 1 km estimates of the standard error of the mean are also provided in the L4B product. Uncertainty is due to both GEDI's sampling of the 1 km area (as opposed to making wall-to-wall observations) and the fact that L4A biomass values are modeled in a process subject to error instead of measured in a process that may be assumed to be error-free.\n  </p>\n  <p>\n    For more information on how this product was made, visit: <a href=\"https://daac.ornl.gov/GEDI/guides/GEDI_L4B_Gridded_Biomass_V2_1.html\">https://daac.ornl.gov/GEDI/guides/GEDI_L4B_Gridded_Biomass_V2_1.html</a>.\n  </p>\n\n<div style=\"text-align: center;\">\n  <figure>\n    <img src=\"/maap-biomass/assets/graphics/content/products/gedi_1.png\" style=\"height: 280px;\"/>\n    <figcaption>Mean (top) and Standard Error (bottom) of 1 km Biomass in GEDI's gridded biomass product.</figcaption>\n  </figure>\n</div>\n"
-    },
-    {
-      "id": "icesat2_boreal",
-      "label": "ICESat-2 Boreal 2020",
-      "center": [-123, 56],
-      "polygon": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [-164.70703125, 48.63290858589535],
-            [-83.3203125, 48.63290858589535],
-            [-83.3203125, 72.39570570653261],
-            [-164.70703125, 72.39570570653261],
-            [-164.70703125, 48.63290858589535]
-          ]
-        ]
-      },
-      "bounding_box": [-164.707, 50.289, -83.32, 72.074],
-      "indicators": [],
-      "datasets": [
-        {
-          "id": "icesat2_boreal_biomass"
-        },
-        {
-          "id": "icesat2_boreal_biomass_se"
-        }
-      ],
-      "summary": "<p>\n  <a href=\"https://icesat-2.gsfc.nasa.gov/\">NASA’s ICESat-2</a> is a photon counting lidar instrument that launched in\n  2018, and is collecting global 3D structure\n  measurements of Earth’s terrain and vegetation. This provisional (still in development) product uses samples from\n  <a href=\"https://nsidc.org/data/atl08\">ICESat-2’s vegetation height product</a> in combination with 30m data from <a href=\"https://hls.gsfc.nasa.gov/\">Harmonized Landsat Sentinel-2</a>, and the <a href=\"https://spacedata.copernicus.eu/explore-more/news-archive/-/asset_publisher/Ye8egYeRPLEs/blog/id/434960\">Copernicus\n    DEM</a>.\n  This product focuses on high latitude boreal forests where NASA’s <a href=\"https://gedi.umd.edu/\">GEDI</a> instrument\n  doesn’t collect data, and is meant to\n  complement the temperate and tropical forest maps from GEDI. The Arctic and Boreal regions are warming faster than\n  anywhere on the planet, and high resolution forest carbon products like this help us understand how much carbon is\n  currently stored in these ecosystems, and how it may change in the future. This research is funded by NASA’s <a href=\"https://above.nasa.gov/index.html\">Arctic\n    Boreal Vulnerability Experiment</a> and the ICESat-2 Science Team. For more information on how this product was\n  made, click\n  <a href=\"https://ceos.org/gst/icesat2-boreal-biomass.html\">HERE</a>. This product will soon be accessible through NASA’s\n  ORNL DAAC. Want to help us make this product better? Please let us know where it’s working well and where it can be\n  improved by <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSe2HsWelJRGbm2riEZqI2oUVZnhBIvlh5Mtq2jY2ZjYf226Fg/viewform\">giving us feedback</a>.\n</p>\n\n<div style=\"text-align: center;\">\n  <figure>\n    <img src=\"/maap-biomass/assets/graphics/content/products/above_1.jpg\" />\n    <figcaption>Photo credit: Paul Montesano</figcaption>\n  </figure>\n</div>\n\n<p>Relevant Links:</p>\n<ul>\n  <li>\n    <a href=\"https://ceos.org/gst/icesat2-boreal-biomass.html\">Committee for Earth Observing Satellites (CEOS) ICESat-2 Boreal Biomass 2020 Product page</a>\n  </li>\n</ul>\n"
-    },
-    {
-      "id": "nceo_africa",
-      "label": "NCEO Africa 2017",
-      "center": [16.7954, 1.3385],
-      "polygon": {
-        "coordinates": [
-          [
-            [51.86423292864056, -35.05405901691194],
-            [51.86423292864056, 37.73103856358816],
-            [-18.27352950955931, 37.73103856358816],
-            [-18.27352950955931, -35.05405901691194],
-            [51.86423292864056, -35.05405901691194]
-          ]
-        ],
-        "type": "Polygon"
-      },
-      "bounding_box": [
-        -18.273529509559307, -35.054059016911935, 51.86423292864056,
-        37.73103856358816
-      ],
-      "indicators": [],
-      "datasets": [
-        {
-          "id": "nceo_africa"
-        },
-        {
-          "id": "nceo_africa_sd"
-        }
-      ],
-      "info": "The NCEO Africa Aboveground Woody Biomass (AGB) map for the year 2017 at 100 m spatial resolution was developed using a combination of LiDAR, Synthetic Aperture Radar (SAR) and optical based data.",
-      "summary": "<p>\n  The National Centre for Earth Observation (NCEO) Africa Aboveground Woody Biomass (AGB) map for the year 2017 at 100m spatial resolution was developed\n  using\n  the NASA’s Global Ecosystem Dynamics Investigation (<a href=\"https://gedi.umd.edu/\">GEDI</a>), JAXA’s L-band SAR\n  <a href=\"https://www.eorc.jaxa.jp/ALOS/en/palsar_fnf/fnf_index.htm\">ALOS-2 PALSAR-2 mosaics</a> and Landsat Percent\n  Tree Cover (PTC) (<a href=\"https://www.science.org/doi/10.1126/science.1244693\">Hansen et al., 2012</a>).\n  This product is part of a time series of AGB maps (2007-2017) developed by the\n  UK’s NERC <a href=\"https://www.nceo.ac.uk/\">National Centre for Earth Observation (NCEO)</a> through the Carbon\n  Cycle and Official Development Assistance\n  (ODA) programmes. This preliminary version of the 2017 map is available <a\n    href=\"https://leicester.figshare.com/articles/dataset/Africa_Aboveground_Biomass_map_for_2017/15060270\">here</a>.\n  The final version of the AGB time\n  series\n  (2007-2017) will be available at the Centre for Environmental Data Analysis (<a\n    href=\"https://archive.ceda.ac.uk/\">CEDA</a>).\n</p>\n<p>Relevant Links:</p>\n<ul>\n  <li><a href=\"https://ceos.org/gst/africa-biomass.html\">Committee for Earth Observing Satellites (CEOS) NCEO Africa Aboveground Woody Biomass Product page</a></li>\n</ul>\n"
-    }
-  ]
+    ]
 }

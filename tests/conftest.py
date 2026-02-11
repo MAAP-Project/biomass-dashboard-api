@@ -10,7 +10,6 @@ from starlette.testclient import TestClient
 
 @pytest.fixture(autouse=True)
 def aws_credentials(monkeypatch):
-    """mock aws credentials"""
     monkeypatch.setenv("DISABLE_CACHE", "YESPLEASE")
     monkeypatch.setenv("AWS_ACCESS_KEY_ID", "jqt")
     monkeypatch.setenv("AWS_SECRET_ACCESS_KEY", "rde")
@@ -36,7 +35,6 @@ def mock_rio(src_path: str) -> DatasetReader:
 
 @pytest.fixture
 def dataset_manager(monkeypatch):
-    """DatasetManager"""
 
     from dashboard_api.db.static.datasets import DatasetManager
 
