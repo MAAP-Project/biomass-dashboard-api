@@ -1,5 +1,4 @@
 """ dashboard_api static products """
-
 import json
 import os
 from typing import Optional
