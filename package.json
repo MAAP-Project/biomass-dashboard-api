@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "cdk": ">=2.0.0"
+    "cdk": "~2.91.0"
   },
   "scripts": {
     "cdk": "cdk",

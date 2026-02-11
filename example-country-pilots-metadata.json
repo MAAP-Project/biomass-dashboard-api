@@ -1,283 +1,268 @@
 {
-    "country_pilots": [
+  "country_pilots": [
+    {
+      "id": "japan",
+      "label": "Japan",
+      "center": [
+        138.2529,
+        36.2048
+      ],
+      "polygon": {
+        "coordinates": [
+          [
+            [
+              129.408463169,
+              31.0295791692
+            ],
+            [
+              145.543137242,
+              31.0295791692
+            ],
+            [
+              145.543137242,
+              45.5514834662
+            ],
+            [
+              129.408463169,
+              45.5514834662
+            ],
+            [
+              129.408463169,
+              31.0295791692
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "bounding_box": [
+        129.408463169,
+        31.0295791692,
+        145.543137242,
+        45.5514834662
+      ],
+      "indicators": [],
+      "datasets": [
         {
-            "id": "japan",
-            "label": "Japan",
-            "center": [
-                138.2529,
-                36.2048
-            ],
-            "polygon": {
-                "coordinates": [
-                    [
-                        [
-                            129.408463169,
-                            31.0295791692
-                        ],
-                        [
-                            145.543137242,
-                            31.0295791692
-                        ],
-                        [
-                            145.543137242,
-                            45.5514834662
-                        ],
-                        [
-                            129.408463169,
-                            45.5514834662
-                        ],
-                        [
-                            129.408463169,
-                            31.0295791692
-                        ]
-                    ]
-                ],
-                "type": "Polygon"
-            },
-            "bounding_box": [
-                129.408463169,
-                31.0295791692,
-                145.543137242,
-                45.5514834662
-            ],
-            "indicators": [],
-            "datasets": [
-                {
-                    "id": "cci_biomass"
-                },
-                {
-                    "id": "nasa_jpl"
-                },
-                {
-                    "id": "gedi_l4b"
-                }
-            ],
-            "summary": "<p>\n  Japan, despite its high population density, is covered by almost two thirds of forest (about 25 million ha). About 40% of these are forest plantations (typically Japanese cedar and cypress) which often are located in areas of moderate to steep terrain (that are unsuitable for agriculture or large-scale human habitation). Remaining natural forests include both high biomass species such as oak and beech, as well as low biomass species such as bamboo.\n</p>\n\n<p>\n  The large diversity of tree species, climate zones, and topographic conditions thus contribute to making Japan a suitable location for validation of existing and forthcoming satellite-based AGB maps.\n</p>\n\n<p>\n  The total (above and below-ground) carbon stocks of Japanese forests have been estimated to between about 2700 and 3020 million (M) tonnes around 2011 (Egusa et al., Scientific Reports, 10, 7895, 2020). This estimate was based on National Forest Inventory (NFI) ground survey data (including stem volume, species and age), with total biomass estimated using parameters such as biomass expansion factor, wood density, and Japanese total forest area.\n</p>\n\n<p>\n  The validation effort is coordinated and undertaken by the Japan Aerospace Exploration Agency (JAXA), using the \"plot2map\" validation tool available on the Multi-Mission Algorithm and Analysis Platform (MAAP). Ground-based inventory data have been obtained from the National Forest Agency NFI, the \"Monitoring Site 1000\" project data of the Ministry of Environment, and SYNRA, a university forest research network. As the characteristics of each of the three data collections varies (e.g., in relation to plot sizes, geolocation accuracy and measurement methods), validation approaches need to be adapted accordingly but allow independent estimates of uncertainty to be provided.\n</p>\n\n<p>\n  As part of the biomass harmonization collaboration, JAXA provides the global ALOS (for the time period 2007-2010) and ALOS-2 (2015-present) radar imagery that constitute the key input data for the CCI Biomass, JPL, and NCEO Africa biomass products.\n</p>\n<div style=\"text-align: center;\">\n  <figure>\n    <img src=\"/maap-biomass/assets/graphics/content/country_pilots/ALOS-2_Japan.png\" />\n    <figcaption>\n      Figure 1: Locations of forest inventory sites in Japan (sub-set) obtained from the Ministry of Environment \"Monitoring Site 1000\" project, overlaid on an ALOS-2 PALSAR-2 radar mosaic image (© JAXA 2020)\n    </figcaption>\n  </figure>\n</div>"
+          "id": "cci_biomass"
         },
         {
-            "id": "paraguay",
-            "label": "Paraguay",
-            "center": [
-                -58.4438,
-                -23.4425
-            ],
-            "polygon": {
-                "coordinates": [
-                    [
-                        [
-                            -62.6850571357,
-                            -27.5484990374
-                        ],
-                        [
-                            -54.2929595608,
-                            -27.5484990374
-                        ],
-                        [
-                            -54.2929595608,
-                            -19.3427466773
-                        ],
-                        [
-                            -62.6850571357,
-                            -19.3427466773
-                        ],
-                        [
-                            -62.6850571357,
-                            -27.5484990374
-                        ]
-                    ]
-                ],
-                "type": "Polygon"
-            },
-            "bounding_box": [
-                -62.6850571357,
-                -27.5484990374,
-                -54.2929595608,
-                -19.3427466773
-            ],
-            "indicators": [],
-            "datasets": [
-                {
-                    "id": "paraguay_forest_mask"
-                },
-                {
-                    "id": "paraguay_tree_cover"
-                },
-                {
-                    "id": "paraguay_estimated_biomass"
-                },
-                {
-                    "id": "cci_biomass"
-                },
-                {
-                    "id": "nasa_jpl"
-                },
-                {
-                    "id": "gedi_l4b"
-                }
-            ],
-            "summary": "<p>\n  Paraguay is a landlocked South American country that contains vast forest ecosystems. The Gran Chaco covers over 60\n  percent of Paraguay’s land and is South America’s second largest forest after the Amazon. The carbon stored in\n  Paraguay’s forests was measured as part of the national REDD+ program, when the first national forest inventory (NFI)\n  was deployed from 2014 to 2016. Paraguay is now seeking to update the NFI and expand to regions that were unreachable\n  in\n  the original survey.\n</p>\n<p>\n  Remote sensing data offers an attractive alternative to field surveys since it is freely accessible, spatially\n  explicit,\n  and can be used to measure forest characteristics in areas that are inaccessible. A collaborative team involving\n  members\n  of Paraguay’s Instituto Forestal Nacional, USGS SilvaCarbon, the CEOS Biomass Harmonization group, and US Forest\n  Service\n  is exploring a remote sensing approach to update and supplement national biomass estimation.\n</p>\n\n<div style=\"text-align: center;\">\n  <figure>\n    <img src=\"/maap-biomass/assets/graphics/content/country_pilots/paraguay_1.jpg\" />\n    <figcaption></figcaption>\n  </figure>\n</div>\n\n<p>\n  The map shown to the left reflects NFI-calibrated interpretations of biomass at the locations of millions of\n  measurements from NASA’s GEDI (Global Ecosystem Dynamics Investigation) lidar instrument, which is mounted on the\n  International Space Station.\n</p>\n\n<div style=\"text-align: center;\">\n  <figure>\n    <img src=\"/maap-biomass/assets/graphics/content/country_pilots/paraguay_2.png\" />\n    <figcaption></figcaption>\n  </figure>\n</div>\n\n<p>\n  Our national estimate of biomass is 66.01 Mg per hectare (±4.91, 95% confidence interval), which is consistent with the\n  69.89 Mg/ha value reported by Paraguay to the FAO in 2020. Our generalizable approach can be applied anywhere with\n  forests and GEDI observations.\n</p>"
-        },
-        {
-            "id": "peru",
-            "label": "Peru",
-            "center": [
-                -75.0152,
-                -9.19
-            ],
-            "polygon": {
-                "coordinates": [
-                    [
-                        [
-                            -81.4109425524,
-                            -18.3479753557
-                        ],
-                        [
-                            -68.6650797187,
-                            -18.3479753557
-                        ],
-                        [
-                            -68.6650797187,
-                            -0.0572054988649
-                        ],
-                        [
-                            -81.4109425524,
-                            -0.0572054988649
-                        ],
-                        [
-                            -81.4109425524,
-                            -18.3479753557
-                        ]
-                    ]
-                ],
-                "type": "Polygon"
-            },
-            "bounding_box": [
-                -81.4109425524,
-                -18.3479753557,
-                -68.6650797187,
-                -0.0572054988649
-            ],
-            "indicators": [],
-            "datasets": [
-                {
-                    "id": "cci_biomass"
-                },
-                {
-                    "id": "nasa_jpl"
-                },
-                {
-                    "id": "gedi_l4b"
-                }
-            ],
-            "summary": "<p>\n    While Peru’s network of forest inventories is key for defining national forest policies and management strategies, there is a need to include additional spatially-explicit biomass and biomass change information that could contribute to more comprehensive and continuous biomass information for LULUCF GHG monitoring and reporting. Peru relies on a probabilistic, though incomplete, sample of plots from the National Forest &amp; Wildlife Inventory (NF&amp;WI) for estimating national forest-related emission factors. Hence, while the NF&amp;WI is still incomplete, Peru is interested to benefit from the use of remote sensing-based biomass products to enhance the accuracy of national and subnational AGB estimates. At the same time, in the latest update of the FREL, the country also recognized the need to better account and propagate the sources of uncertainties within its LULUCF-GHG accountability system.\n</p>\n<p>\n    A dedicated demonstration study was implemented together with SERFOR (the Peruvian agency conducting the NFI efforts), and Wageningen University and partners (Málaga et al., in prep). At the Peruvian Amazonia level the study explored how global biomass maps (e.g. CCI Biomass 2017 map) in combination with ground based data contribute to enhance national AGB estimates, for instance, by defining more efficient national sampling efforts for GHG LULUCF monitoring and reporting. The work is complemented by the INFFS team in collaboration with USGS Silvacarbon looking into calibrating the global Biomass maps for all the ecozones of Peru, using the data as a basis the field plots to obtain a spatially explicit biomass map for all the ecozones of Peru.\n</p>\n\n<div style=\"text-align: center;\">\n    <figure>\n        <img src=\"/maap-biomass/assets/graphics/content/country_pilots/peru-nfi.png\" />\n        <figcaption>Example of the harmonization of the global biomass map using NFI plot data</figcaption>\n    </figure>\n</div>\n\n<p>\n    The study statistically assessed whether the use of a global biomass map as an auxiliary source of information resulted in a gain in precision of AGB estimates in the Peruvian Amazonia. Two-stage model-assisted estimators were used accommodating for the country NFI sampling design, and explored hybrid inferential techniques to additionally account for the sources of uncertainty resulting from the integration of the remote sensing products with the NFI data. The demonstration case resulted in three main findings:\n</p>\n\n<ol>\n    <li>\n        Without correcting for the map systematic error, the 2017 CCI biomass map tended to consistently overestimate forest-related AGB values across the Peruvian Amazon, revealing that there is still room for improvement in future map updates.\n    </li>\n    <li>\n        Accounting for the sources of uncertainties from the integration of the biomass map and the NF&amp;WI data conveyed in a more comprehensive error assessment exercise, prompted by the IPCC good practice guidelines. In the study, the largest contribution came from the within polygon variability, related to the effect of the reference data being of smaller size than the remote sensing-based sampling units. Subsequently, the measurement error was the second contributor to the total variability; whereas the positional error was found negligible.\n    </li>\n    <li>\n        Using the map as auxiliary source of information to the NF&amp;WI reference data progressively enhanced the precision of our forest-related stratum-wise and Peruvian Amazonia AGB model-assisted estimates. Whereas the uncorrelated version of the map resulted in a marginal benefit; after calibration, the global biomass map proved a substantial contribution to the AGB estimates, even when propagating the sources of uncertainty mentioned above. \n    </li>\n</ol>\n\n<p>\n    In conclusion, even when propagating uncertainties, the precision of the estimates was enhanced up to 90% and 60% at the stratum and Amazon level, respectively.  Thus, the use of a global biomass map did improve the precision and a better consideration of uncertainties for Peru’s national forest monitoring and GHG inventory estimation.\n</p>\n  \n"
-        },
-        {
-            "id": "solomon_islands",
-            "label": "Solomon Islands",
-            "center": [
-                159.816667,
-                -9.466667
-            ],
-            "polygon": {
-                "coordinates": [
-                    [
-                        [
-                            156.491357864,
-                            -10.8263672828
-                        ],
-                        [
-                            162.398645868,
-                            -10.8263672828
-                        ],
-                        [
-                            162.398645868,
-                            -6.59933847415
-                        ],
-                        [
-                            156.491357864,
-                            -6.59933847415
-                        ],
-                        [
-                            156.491357864,
-                            -10.8263672828
-                        ]
-                    ]
-                ],
-                "type": "Polygon"
-            },
-            "bounding_box": [
-                156.491357864,
-                -10.8263672828,
-                162.398645868,
-                -6.59933847415
-            ],
-            "indicators": [],
-            "datasets": [
-                {
-                    "id": "cci_biomass"
-                },
-                {
-                    "id": "nasa_jpl"
-                },
-                {
-                    "id": "gedi_l4b"
-                }
-            ],
-            "summary": "<p>\n  The Solomon Islands comprises a scattered archipelago of 994 islands combining mountainous islands\n  and a land area of 28,896 km<sup>2</sup>. The implementation of a National Forest Inventory\n  remains challenging but the Solomon Islands is committed to carry out its GHG inventories and\n  develop its measurement and monitoring capacity.\n</p>\n<p>\n  In 2019, the first Forest Reference Emission Level was submitted to the UNFCCC using IPCC biomass\n  default estimates to derive Emission Factors for deforested areas. The national REDD+ team is now\n  starting to explore the opportunities arising from the increasing availability of biomass products\n  derived from satellite data. The objective is to explore the utility of these maps to derive\n  estimates of forest above-ground biomass that are potentially more accurate and more representative\n  of the national forests than the IPCC defaults, while at the same time developing feedback to\n  global biomass monitoring experts to improve their products.\n</p>"
-        },
-        {
-            "id": "wales",
-            "label": "Wales (UK)",
-            "center": [
-                -3.7837,
-                52.1307
-            ],
-            "polygon": {
-                "coordinates": [
-                    [
-                        [
-                            -5.467691152113777,
-                            51.37962291764847
-                        ],
-                        [
-                            -2.7046296495198936,
-                            51.37962291764847
-                        ],
-                        [
-                            -2.7046296495198936,
-                            53.466099815736506
-                        ],
-                        [
-                            -5.467691152113777,
-                            53.466099815736506
-                        ],
-                        [
-                            -5.467691152113777,
-                            51.37962291764847
-                        ]
-                    ]
-                ],
-                "type": "Polygon"
-            },
-            "bounding_box": [
-                -5.467691152113777,
-                51.37962291764847,
-                -2.7046296495198936,
-                53.466099815736506
-            ],
-            "indicators": [],
-            "datasets": [
-                {
-                    "id": "cci_biomass"
-                },
-                {
-                    "id": "nasa_jpl"
-                },
-                {
-                    "id": "gedi_l4b"
-                }
-            ],
-            "summary": "<p>\nThe native forests of Wales are primarily broadleaved, occur mainly at lower altitudes, and include unique and rare\nAtlantic temperate rainforests. The vast majority of forest plantations are comprised of non-native coniferous species,\nlocated in the uplands and some coastal regions, and generally support the greatest amounts of biomass on a per hectare\nbasis.\n</p>\n\n<div style=\"text-align: center;\">\n  <figure>\n    <img src=\"/maap-biomass/assets/graphics/content/country_pilots/wales_1.jpg\" />\n    <figcaption>National Forest Inventory (NFI) woodland map in Wales</figcaption>\n  </figure>\n</div>\n\n<p>\nThe total (above and below-ground) carbon stocks of Wales’s forests has been estimated as 22.1 million (M) tonnes,\nbroadly split equally between conifers (11.5 M tonnes) and broadleaves (10.6 M tonnes as of 31st March 2011). This\nestimate was based on maps of forest extent by type and informed by National Forest Inventory (NFI) ground survey data\n(including species and age), with total biomass determined using allometric equations relating tree size to volume and\nwood density values.\n</p>\n\n<p>\nFor Wales, extracts of the global above ground biomass (AGB) maps provide new information on the spatial distribution of\ncarbon in forests and other woody vegetation. These extents have been included in Living Wales’ annual national land\ncover maps (<a href=\"https://wales.livingearth.online/\">wales.livingearth.online</a> and available on the MAAP) that have been these constructed from environmental\ndescriptors (e.g, leaf type, canopy cover, selected dominant species) retrieved from satellite data.\n</p>\n\n<p>\nThe plot2map tool available within the NASA-ESA MAAP has given a unique opportunity for Forest Research scientists to\nevaluate which of the global maps provided the most robust estimates of forest AGBs for Wales without releasing their\nNFI fieldwork data (1700 1-hectare (ha) squares in total).\n</p>\n\n<p>\nTwo of these NFI squares have been located in forests near the <a href=\"https://cat.org.uk\">Centre for Alternative Technology</a>, which\nalso hosts the Living Wales Exhibition and Training Centre (with Aberystwyth University). Within these 1-ha squares,\ndetailed measurements of trees are being undertaken according to the Committee on Earth Observing Satellites (CEOS)\nBiomass Land Product Validation (LPV) Biomass Protocol \n(<a href=\"https://lpvs.gsfc.nasa.gov/PDF/CEOS_WGCV_LPV_Biomass_Protocol_2021_V1.0.pdf\">CEOS biomass cal/val protocol</a>), \nwith these contributing to the\nglobal network of high quality biomass plots required for future development and validation of EO-focused biomass\nretrieval algorithms.\n</p>\n"
+          "id": "gedi_l4b"
         }
-    ]
+      ],
+      "summary": "<p>\n  Japan, despite its high population density, is covered by almost two thirds of forest (about 25 million ha). About 40% of these are forest plantations (typically Japanese cedar and cypress) which often are located in areas of moderate to steep terrain (that are unsuitable for agriculture or large-scale human habitation). Remaining natural forests include both high biomass species such as oak and beech, as well as low biomass species such as bamboo.\n</p>\n\n<p>\n  The large diversity of tree species, climate zones, and topographic conditions thus contribute to making Japan a suitable location for validation of existing and forthcoming satellite-based AGB maps.\n</p>\n\n<p>\n  The total (above and below-ground) carbon stocks of Japanese forests have been estimated to between about 2700 and 3020 million (M) tonnes around 2011 (Egusa et al., Scientific Reports, 10, 7895, 2020). This estimate was based on National Forest Inventory (NFI) ground survey data (including stem volume, species and age), with total biomass estimated using parameters such as biomass expansion factor, wood density, and Japanese total forest area.\n</p>\n\n<p>\n  The validation effort is coordinated and undertaken by the Japan Aerospace Exploration Agency (JAXA), using the \"plot2map\" validation tool available on the Multi-Mission Algorithm and Analysis Platform (MAAP). Ground-based inventory data have been obtained from the National Forest Agency NFI, the \"Monitoring Site 1000\" project data of the Ministry of Environment, and SYNRA, a university forest research network. As the characteristics of each of the three data collections varies (e.g., in relation to plot sizes, geolocation accuracy and measurement methods), validation approaches need to be adapted accordingly but allow independent estimates of uncertainty to be provided.\n</p>\n\n<p>\n  As part of the biomass harmonization collaboration, JAXA provides the global ALOS (for the time period 2007-2010) and ALOS-2 (2015-present) radar imagery that constitute the key input data for the CCI Biomass and NCEO Africa biomass products.\n</p>\n<div style=\"text-align: center;\">\n  <figure>\n    <img src=\"/maap-biomass/assets/graphics/content/country_pilots/ALOS-2_Japan.png\" />\n    <figcaption>\n      Figure 1: Locations of forest inventory sites in Japan (sub-set) obtained from the Ministry of Environment \"Monitoring Site 1000\" project, overlaid on an ALOS-2 PALSAR-2 radar mosaic image (© JAXA 2020)\n    </figcaption>\n  </figure>\n</div>\n"
+    },
+    {
+      "id": "paraguay",
+      "label": "Paraguay",
+      "center": [
+        -58.4438,
+        -23.4425
+      ],
+      "polygon": {
+        "coordinates": [
+          [
+            [
+              -62.6850571357,
+              -27.5484990374
+            ],
+            [
+              -54.2929595608,
+              -27.5484990374
+            ],
+            [
+              -54.2929595608,
+              -19.3427466773
+            ],
+            [
+              -62.6850571357,
+              -19.3427466773
+            ],
+            [
+              -62.6850571357,
+              -27.5484990374
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "bounding_box": [
+        -62.6850571357,
+        -27.5484990374,
+        -54.2929595608,
+        -19.3427466773
+      ],
+      "indicators": [],
+      "datasets": [
+        {
+          "id": "paraguay_forest_mask"
+        },
+        {
+          "id": "paraguay_tree_cover"
+        },
+        {
+          "id": "paraguay_estimated_biomass"
+        },
+        {
+          "id": "cci_biomass"
+        },
+        {
+          "id": "gedi_l4b"
+        }
+      ],
+      "summary": "<p>\n  Paraguay is a landlocked South American country that contains vast forest ecosystems. The Gran Chaco covers over 60\n  percent of Paraguay’s land and is South America’s second largest forest after the Amazon. The carbon stored in\n  Paraguay’s forests was measured as part of the national REDD+ program, when the first national forest inventory (NFI)\n  was deployed from 2014 to 2016. Paraguay is now seeking to update the NFI and expand to regions that were unreachable\n  in\n  the original survey.\n</p>\n<p>\n  Remote sensing data offers an attractive alternative to field surveys since it is freely accessible, spatially\n  explicit,\n  and can be used to measure forest characteristics in areas that are inaccessible. A collaborative team involving\n  members\n  of Paraguay’s Instituto Forestal Nacional, USGS SilvaCarbon, the CEOS Biomass Harmonization group, and US Forest\n  Service\n  is exploring a remote sensing approach to update and supplement national biomass estimation.\n</p>\n\n<div style=\"text-align: center;\">\n  <figure>\n    <img src=\"/maap-biomass/assets/graphics/content/country_pilots/paraguay_1.jpg\" />\n    <figcaption></figcaption>\n  </figure>\n</div>\n\n<p>\n  The map shown to the left reflects NFI-calibrated interpretations of biomass at the locations of millions of\n  measurements from NASA’s GEDI (Global Ecosystem Dynamics Investigation) lidar instrument, which is mounted on the\n  International Space Station.\n</p>\n\n<div style=\"text-align: center;\">\n  <figure>\n    <img src=\"/maap-biomass/assets/graphics/content/country_pilots/paraguay_2.png\" />\n    <figcaption></figcaption>\n  </figure>\n</div>\n\n<p>\n  Our national estimate of biomass is 66.01 Mg per hectare (±4.91, 95% confidence interval), which is consistent with the\n  69.89 Mg/ha value reported by Paraguay to the FAO in 2020. Our generalizable approach can be applied anywhere with\n  forests and GEDI observations.\n</p>"
+    },
+    {
+      "id": "peru",
+      "label": "Peru",
+      "center": [
+        -75.0152,
+        -9.19
+      ],
+      "polygon": {
+        "coordinates": [
+          [
+            [
+              -81.4109425524,
+              -18.3479753557
+            ],
+            [
+              -68.6650797187,
+              -18.3479753557
+            ],
+            [
+              -68.6650797187,
+              -0.0572054988649
+            ],
+            [
+              -81.4109425524,
+              -0.0572054988649
+            ],
+            [
+              -81.4109425524,
+              -18.3479753557
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "bounding_box": [
+        -81.4109425524,
+        -18.3479753557,
+        -68.6650797187,
+        -0.0572054988649
+      ],
+      "indicators": [],
+      "datasets": [
+        {
+          "id": "cci_biomass"
+        },
+        {
+          "id": "gedi_l4b"
+        }
+      ],
+      "summary": "<p>\n    While Peru’s network of forest inventories is key for defining national forest policies and management strategies, there is a need to include additional spatially-explicit biomass and biomass change information that could contribute to more comprehensive and continuous biomass information for LULUCF GHG monitoring and reporting. Peru relies on a probabilistic, though incomplete, sample of plots from the National Forest &amp; Wildlife Inventory (NF&amp;WI) for estimating national forest-related emission factors. Hence, while the NF&amp;WI is still incomplete, Peru is interested to benefit from the use of remote sensing-based biomass products to enhance the accuracy of national and subnational AGB estimates. At the same time, in the latest update of the FREL, the country also recognized the need to better account and propagate the sources of uncertainties within its LULUCF-GHG accountability system.\n</p>\n<p>\n    A dedicated demonstration study was implemented together with SERFOR (the Peruvian agency conducting the NFI efforts), and Wageningen University and partners (Málaga et al., in prep). At the Peruvian Amazonia level the study explored how global biomass maps (e.g. CCI Biomass 2017 map) in combination with ground based data contribute to enhance national AGB estimates, for instance, by defining more efficient national sampling efforts for GHG LULUCF monitoring and reporting. The work is complemented by the INFFS team in collaboration with USGS Silvacarbon looking into calibrating the global Biomass maps for all the ecozones of Peru, using the data as a basis the field plots to obtain a spatially explicit biomass map for all the ecozones of Peru.\n</p>\n\n<div style=\"text-align: center;\">\n    <figure>\n        <img src=\"/maap-biomass/assets/graphics/content/country_pilots/peru-nfi.png\" />\n        <figcaption>Example of the harmonization of the global biomass map using NFI plot data</figcaption>\n    </figure>\n</div>\n\n<p>\n    The study statistically assessed whether the use of a global biomass map as an auxiliary source of information resulted in a gain in precision of AGB estimates in the Peruvian Amazonia. Two-stage model-assisted estimators were used accommodating for the country NFI sampling design, and explored hybrid inferential techniques to additionally account for the sources of uncertainty resulting from the integration of the remote sensing products with the NFI data. The demonstration case resulted in three main findings:\n</p>\n\n<ol>\n    <li>\n        Without correcting for the map systematic error, the 2017 CCI biomass map tended to consistently overestimate forest-related AGB values across the Peruvian Amazon, revealing that there is still room for improvement in future map updates.\n    </li>\n    <li>\n        Accounting for the sources of uncertainties from the integration of the biomass map and the NF&amp;WI data conveyed in a more comprehensive error assessment exercise, prompted by the IPCC good practice guidelines. In the study, the largest contribution came from the within polygon variability, related to the effect of the reference data being of smaller size than the remote sensing-based sampling units. Subsequently, the measurement error was the second contributor to the total variability; whereas the positional error was found negligible.\n    </li>\n    <li>\n        Using the map as auxiliary source of information to the NF&amp;WI reference data progressively enhanced the precision of our forest-related stratum-wise and Peruvian Amazonia AGB model-assisted estimates. Whereas the uncorrelated version of the map resulted in a marginal benefit; after calibration, the global biomass map proved a substantial contribution to the AGB estimates, even when propagating the sources of uncertainty mentioned above. \n    </li>\n</ol>\n\n<p>\n    In conclusion, even when propagating uncertainties, the precision of the estimates was enhanced up to 90% and 60% at the stratum and Amazon level, respectively.  Thus, the use of a global biomass map did improve the precision and a better consideration of uncertainties for Peru’s national forest monitoring and GHG inventory estimation.\n</p>\n  \n"
+    },
+    {
+      "id": "solomon_islands",
+      "label": "Solomon Islands",
+      "center": [
+        159.816667,
+        -9.466667
+      ],
+      "polygon": {
+        "coordinates": [
+          [
+            [
+              156.491357864,
+              -10.8263672828
+            ],
+            [
+              162.398645868,
+              -10.8263672828
+            ],
+            [
+              162.398645868,
+              -6.59933847415
+            ],
+            [
+              156.491357864,
+              -6.59933847415
+            ],
+            [
+              156.491357864,
+              -10.8263672828
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "bounding_box": [
+        156.491357864,
+        -10.8263672828,
+        162.398645868,
+        -6.59933847415
+      ],
+      "indicators": [],
+      "datasets": [
+        {
+          "id": "cci_biomass"
+        },
+        {
+          "id": "gedi_l4b"
+        }
+      ],
+      "summary": "<p>\n  The Solomon Islands comprises a scattered archipelago of 994 islands combining mountainous islands\n  and a land area of 28,896 km<sup>2</sup>. The implementation of a National Forest Inventory\n  remains challenging but the Solomon Islands is committed to carry out its GHG inventories and\n  develop its measurement and monitoring capacity.\n</p>\n<p>\n  In 2019, the first Forest Reference Emission Level was submitted to the UNFCCC using IPCC biomass\n  default estimates to derive Emission Factors for deforested areas. The national REDD+ team is now\n  starting to explore the opportunities arising from the increasing availability of biomass products\n  derived from satellite data. The objective is to explore the utility of these maps to derive\n  estimates of forest above-ground biomass that are potentially more accurate and more representative\n  of the national forests than the IPCC defaults, while at the same time developing feedback to\n  global biomass monitoring experts to improve their products.\n</p>"
+    },
+    {
+      "id": "wales",
+      "label": "Wales (UK)",
+      "center": [
+        -3.7837,
+        52.1307
+      ],
+      "polygon": {
+        "coordinates": [
+          [
+            [
+              -5.467691152113777,
+              51.37962291764847
+            ],
+            [
+              -2.7046296495198936,
+              51.37962291764847
+            ],
+            [
+              -2.7046296495198936,
+              53.466099815736506
+            ],
+            [
+              -5.467691152113777,
+              53.466099815736506
+            ],
+            [
+              -5.467691152113777,
+              51.37962291764847
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "bounding_box": [
+        -5.467691152113777,
+        51.37962291764847,
+        -2.7046296495198936,
+        53.466099815736506
+      ],
+      "indicators": [],
+      "datasets": [
+        {
+          "id": "cci_biomass"
+        },
+        {
+          "id": "gedi_l4b"
+        }
+      ],
+      "summary": "<p>\nThe native forests of Wales are primarily broadleaved, occur mainly at lower altitudes, and include unique and rare\nAtlantic temperate rainforests. The vast majority of forest plantations are comprised of non-native coniferous species,\nlocated in the uplands and some coastal regions, and generally support the greatest amounts of biomass on a per hectare\nbasis.\n</p>\n\n<div style=\"text-align: center;\">\n  <figure>\n    <img src=\"/maap-biomass/assets/graphics/content/country_pilots/wales_1.jpg\" />\n    <figcaption>National Forest Inventory (NFI) woodland map in Wales</figcaption>\n  </figure>\n</div>\n\n<p>\nThe total (above and below-ground) carbon stocks of Wales’s forests has been estimated as 22.1 million (M) tonnes,\nbroadly split equally between conifers (11.5 M tonnes) and broadleaves (10.6 M tonnes as of 31st March 2011). This\nestimate was based on maps of forest extent by type and informed by National Forest Inventory (NFI) ground survey data\n(including species and age), with total biomass determined using allometric equations relating tree size to volume and\nwood density values.\n</p>\n\n<p>\nFor Wales, extracts of the global above ground biomass (AGB) maps provide new information on the spatial distribution of\ncarbon in forests and other woody vegetation. These extents have been included in Living Wales’ annual national land\ncover maps (<a href=\"https://wales.livingearth.online/\">wales.livingearth.online</a> and available on the MAAP) that have been these constructed from environmental\ndescriptors (e.g, leaf type, canopy cover, selected dominant species) retrieved from satellite data.\n</p>\n\n<p>\nThe plot2map tool available within the NASA-ESA MAAP has given a unique opportunity for Forest Research scientists to\nevaluate which of the global maps provided the most robust estimates of forest AGBs for Wales without releasing their\nNFI fieldwork data (1700 1-hectare (ha) squares in total).\n</p>\n\n<p>\nTwo of these NFI squares have been located in forests near the <a href=\"https://cat.org.uk\">Centre for Alternative Technology</a>, which\nalso hosts the Living Wales Exhibition and Training Centre (with Aberystwyth University). Within these 1-ha squares,\ndetailed measurements of trees are being undertaken according to the Committee on Earth Observing Satellites (CEOS)\nBiomass Land Product Validation (LPV) Biomass Protocol \n(<a href=\"https://lpvs.gsfc.nasa.gov/PDF/CEOS_WGCV_LPV_Biomass_Protocol_2021_V1.0.pdf\">CEOS biomass cal/val protocol</a>), \nwith these contributing to the\nglobal network of high quality biomass plots required for future development and validation of EO-focused biomass\nretrieval algorithms.\n</p>\n"
+    }
+  ]
 }
